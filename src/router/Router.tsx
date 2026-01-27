@@ -1,10 +1,23 @@
 import MainLayout from "@/layouts/MainLayout";
+import Login from "@/pages/Auth/Login";
+import Register from "@/pages/Auth/Register";
 import { createBrowserRouter } from "react-router";
 
 const Router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+    ],
   },
 ]);
 

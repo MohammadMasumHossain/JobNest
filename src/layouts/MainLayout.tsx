@@ -1,9 +1,9 @@
-import Login from "@/pages/Auth/Login";
+import { Outlet } from "react-router";
 
 const MainLayout = () => {
   return (
-    <div>
-      <Login></Login>
+    <div className=" max-w-7xl mx-auto">
+      <Outlet></Outlet>
     </div>
   );
 };

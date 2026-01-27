@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { NavLink } from "react-router";
 
 type Inputs = {
   email: string;
@@ -25,7 +26,9 @@ const Login = () => {
         </h1>
         <p className="text-center  mt-2 text-[#808080] text-md  ">
           Don't Have an Account?{" "}
-          <span className="text-[#ff8a00] cursor-pointer">Sign Up!</span>
+          <NavLink to="register">
+            <span className="text-[#ff8a00] cursor-pointer">Sign Up!</span>
+          </NavLink>
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
