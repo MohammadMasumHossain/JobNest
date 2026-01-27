@@ -1,5 +1,11 @@
+import Login from "@/pages/Auth/Login";
+
 const MainLayout = () => {
-  return <div>hello</div>;
+  return (
+    <div>
+      <Login></Login>
+    </div>
+  );
 };
 
 export default MainLayout;
