@@ -27,7 +27,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#ffffff] ">
+    <div className="flex justify-center items-center min-h-screen bg-background ">
       <div className="p-8 bg-white shadow-lg outline outline-gray-200 rounded-lg max-w-sm lg:max-w-lg w-full">
         <h1 className="text-2xl text-[#333] font-bold text-center ">
           Create Your New Account!
@@ -35,7 +35,7 @@ const Register = () => {
         <p className="text-center  mt-2 text-[#808080] text-md  ">
           Already Have an account?{" "}
           <NavLink to="/">
-            <span className="text-[#ff8a00] cursor-pointer">Log In!</span>
+            <span className="text-primary cursor-pointer">Log In!</span>
           </NavLink>
         </p>
 

@@ -121,3 +121,9 @@
     @apply bg-background text-foreground;
   }
 }
+@theme {
+  --color-background: #f9f9f9;
+  --color-pirmary: #ff8a00;
+  --color-secondary: #2b2b2b;
+  --color-accent: #ffffff;
+}

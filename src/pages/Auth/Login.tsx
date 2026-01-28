@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#ffffff] ">
+    <div className="flex justify-center items-center min-h-screen bg-background ">
       <div className="p-8 bg-white shadow-lg outline outline-gray-200 rounded-lg max-w-sm lg:max-w-lg w-full">
         <h1 className="text-2xl text-[#333] font-bold text-center ">
           Welcome Back Sign in to Continue
@@ -27,7 +27,7 @@ const Login = () => {
         <p className="text-center  mt-2 text-[#808080] text-md  ">
           Don't Have an Account?{" "}
           <NavLink to="register">
-            <span className="text-[#ff8a00] cursor-pointer">Sign Up!</span>
+            <span className="text-primary cursor-pointer">Sign Up!</span>
           </NavLink>
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,17 +62,19 @@ const Login = () => {
             )}
           </div>
 
-          <button
-            className=" group flex items-center justify-center border mt-8 px-3 py-2 w-full bg-[#FF8A00] font-bold text-md cursor-pointer text-white"
-            type="submit"
-          >
-            <span className="transition duration-300 group-hover:-translate-x-2">
-              Sign In
-            </span>
-            <span className="w-5 h-5 opacity-0  group-hover:opacity-100  group-hover:translate-x-2 transition duration-300">
-              <ChevronRight size={20} />
-            </span>
-          </button>
+          <NavLink to="/dashboard">
+            <button
+              className=" group flex items-center justify-center border mt-8 px-3 py-2 w-full bg-[#FF8A00] font-bold text-md cursor-pointer text-white"
+              type="submit"
+            >
+              <span className="transition duration-300 group-hover:-translate-x-2">
+                Sign In
+              </span>
+              <span className="w-5 h-5 opacity-0  group-hover:opacity-100  group-hover:translate-x-2 transition duration-300">
+                <ChevronRight size={20} />
+              </span>
+            </button>
+          </NavLink>
         </form>
       </div>
     </div>
