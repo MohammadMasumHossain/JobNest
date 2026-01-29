@@ -1,7 +1,12 @@
+import DashboardHome from "@/components/DashboardHome";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import MainLayout from "@/layouts/MainLayout";
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
+import JobListing from "@/pages/Dashboard/Admin/JobListing";
+import ManageUser from "@/pages/Dashboard/Admin/ManageUser";
+import JobPost from "@/pages/Dashboard/Employer/JobPost";
+import Profile from "@/pages/Dashboard/Employer/Profile";
 
 import { createBrowserRouter } from "react-router";
 
@@ -24,6 +29,25 @@ const Router = createBrowserRouter([
   {
     path: "/dashboard",
     Component: DashboardLayout,
+    children: [
+      { index: true, Component: DashboardHome },
+      {
+        path: "jobpost",
+        Component: JobPost,
+      },
+      {
+        path: "joblisting",
+        Component: JobListing,
+      },
+      {
+        path: "manageuser",
+        Component: ManageUser,
+      },
+      {
+        path: "profile",
+        Component: Profile,
+      },
+    ],
   },
 ]);
 

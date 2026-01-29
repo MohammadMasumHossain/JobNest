@@ -7,17 +7,19 @@ import {
   List,
   UserCog,
 } from "lucide-react";
+
 import { useState } from "react";
+import { NavLink } from "react-router";
 
 const Dashboard_sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const menuItems = [
-    { name: "Dashboard", icon: LayoutDashboard },
-    { name: "jobPost", icon: Briefcase },
-    { name: "Job Listing", icon: List },
-    { name: "ManageUser", icon: UserCog },
-    { name: "Profile", icon: CircleUserRound },
+    { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+    { name: "jobPost", icon: Briefcase, path: "/dashboard/jobpost" },
+    { name: "Job Listing", icon: List, path: "/dashboard/joblisting" },
+    { name: "ManageUser", icon: UserCog, path: "/dashboard/manageuser" },
+    { name: "Profile", icon: CircleUserRound, path: "/dashboard/profile" },
   ];
   return (
     <div
@@ -49,19 +51,28 @@ const Dashboard_sidebar = () => {
       <div className="mt-6 place-items-center ">
         <ul className="pt-2 grow ">
           {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className="flex rounded-md py-2 lg:px-10  cursor-pointer hover:text-orange-500  hover:bg-white/10 items-center gap-x-4 mb-2 mx-2"
-            >
-              <div className="bg-gray-400  p-2 rounded-full">
-                <item.icon size={24} />
-              </div>
-              <span
-                className={`${!isOpen && "hidden"}   origin-left duration-300`}
-              >
-                {item.name}
-              </span>
-            </li>
+            <NavLink key={index} to={item.path} end>
+              {({ isActive }) => (
+                <li
+                  key={index}
+                  className={`flex rounded-md py-2 lg:px-10 cursor-pointer items-center gap-x-4 mb-2 mx-2
+          ${
+            isActive
+              ? "bg-white/20 text-orange-500"
+              : "hover:text-orange-500 hover:bg-white/10"
+          }`}
+                >
+                  <div className="bg-gray-400  p-2 rounded-full">
+                    <item.icon size={24} />
+                  </div>
+                  <span
+                    className={`${!isOpen && "hidden"}   origin-left duration-300`}
+                  >
+                    {item.name}
+                  </span>
+                </li>
+              )}
+            </NavLink>
           ))}
         </ul>
       </div>
