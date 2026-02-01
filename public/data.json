@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Software Engineer",
+    "Email": "software.engineer@example.com",
+    "location": "New York, NY",
+    "role": "employer",
+    "phone": "01956197231"
+  },
+  {
+    "id": 2,
+    "title": "Frontend Developer",
+    "Email": "frontend.developer@example.com",
+    "location": "San Francisco, CA",
+    "role": "employer",
+    "phone": "01645842668"
+  }
+]

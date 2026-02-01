@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Software Engineer",
+    "Email": "software.engineer@example.com",
+    "location": "New York, NY",
+    "role": "employer",
+    "phone": "01956197231"
+  },
+  {
+    "id": 2,
+    "title": "Frontend Developer",
+    "Email": "frontend.developer@example.com",
+    "location": "San Francisco, CA",
+    "role": "employer",
+    "phone": "01645842668"
+  },
+  {
+    "id": 3,
+    "title": "Backend Developer",
+    "Email": "backend.developer@example.com",
+    "location": "Austin, TX",
+    "role": "employer",
+    "phone": "01723456789"
+  },
+  {
+    "id": 4,
+    "title": "Full Stack Developer",
+    "Email": "fullstack.dev@example.com",
+    "location": "Seattle, WA",
+    "role": "employer",
+    "phone": "01876543210"
+  },
+  {
+    "id": 5,
+    "title": "UI/UX Designer",
+    "Email": "uiux.designer@example.com",
+    "location": "Los Angeles, CA",
+    "role": "employer",
+    "phone": "01567891234"
+  },
+  {
+    "id": 6,
+    "title": "Data Scientist",
+    "Email": "data.scientist@example.com",
+    "location": "Chicago, IL",
+    "role": "employer",
+    "phone": "01678912345"
+  },
+  {
+    "id": 7,
+    "title": "DevOps Engineer",
+    "Email": "devops.engineer@example.com",
+    "location": "Denver, CO",
+    "role": "employer",
+    "phone": "01987654321"
+  },
+  {
+    "id": 8,
+    "title": "Mobile App Developer",
+    "Email": "mobile.dev@example.com",
+    "location": "Miami, FL",
+    "role": "employer",
+    "phone": "01789123456"
+  },
+  {
+    "id": 9,
+    "title": "Cloud Engineer",
+    "Email": "cloud.engineer@example.com",
+    "location": "Boston, MA",
+    "role": "employer",
+    "phone": "01891234567"
+  },
+  {
+    "id": 10,
+    "title": "Cyber Security Analyst",
+    "Email": "security.analyst@example.com",
+    "location": "Washington, DC",
+    "role": "employer",
+    "phone": "01543219876"
+  },
+  {
+    "id": 11,
+    "title": "Product Manager",
+    "Email": "product.manager@example.com",
+    "location": "Dallas, TX",
+    "role": "admin",
+    "phone": "01654321987"
+  },
+  {
+    "id": 12,
+    "title": "QA Engineer",
+    "Email": "qa.engineer@example.com",
+    "location": "Phoenix, AZ",
+    "role": "employer",
+    "phone": "01765432198"
+  },
+  {
+    "id": 13,
+    "title": "System Administrator",
+    "Email": "sysadmin@example.com",
+    "location": "Atlanta, GA",
+    "role": "admin",
+    "phone": "01876549812"
+  },
+  {
+    "id": 14,
+    "title": "Technical Support Engineer",
+    "Email": "support.engineer@example.com",
+    "location": "Houston, TX",
+    "role": "employer",
+    "phone": "01912345678"
+  },
+  {
+    "id": 15,
+    "title": "AI Engineer",
+    "Email": "ai.engineer@example.com",
+    "location": "San Diego, CA",
+    "role": "admin",
+    "phone": "01598765432"
+  }
+]
