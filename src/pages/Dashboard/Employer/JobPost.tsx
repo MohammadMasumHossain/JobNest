@@ -236,7 +236,7 @@ const JobPost = () => {
                 id="applicationDeadline"
                 type="date"
                 {...register("applicationDeadline", {
-                  required: "Application Deadline is required",
+                  required: " is required",
                 })}
                 className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
