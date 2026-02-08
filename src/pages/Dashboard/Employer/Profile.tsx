@@ -75,10 +75,15 @@ const Profile = () => {
             </h2>
           </div>
           <div className="flex items-center">
-            {!isEditing ? (
-              <div onClick={() => setIsEditing(true)}>
+            {isEditing ? (
+              <button
+                onClick={() => {
+                  reset(profile);
+                  setIsEditing(false);
+                }}
+              >
                 <X size={20} className="w-8 h-8 text-white" />
-              </div>
+              </button>
             ) : (
               <div>
                 <button
@@ -93,138 +98,6 @@ const Profile = () => {
         </div>
 
         {isEditing ? (
-          <div>
-            {/* basic information */}
-            <div className="mx-auto grid place-items-center  ">
-              <div
-                className="bg-linear-to-r from-gray-700 to-gray-500 text-white
-               flex flex-col justify-center items-center max-w-5xl md:px-60 rounded-md p-6
-                 shadow-md"
-              >
-                <div>
-                  <h2 className="text-2xl font-bold">{profile.name}</h2>
-                  <p className="text-md items-center justify-center flex opacity-80">
-                    {profile.role}
-                  </p>
-                </div>
-                <div className="mt-4 text-md">
-                  <div className="flex items-center justify-center flex-col md:flex-row gap-4 opacity-80">
-                    <p>{profile.email}</p>
-                    <p>{profile.mobile}</p>
-                    <p>{profile.address}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 mt-6 gap-6 md:mt-14">
-              {/* Personal Info */}
-              <motion.div
-                whileHover={{
-                  borderColor: "border-orange-600",
-                  scale: 1.05,
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut",
-                }}
-                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border  border-orange-500"
-              >
-                <h3 className="text-lg font-semibold mb-4">Personal Info</h3>
-                <ul className="space-y-2 text-sm  text-gray-700">
-                  <li>
-                    <span className="font-medium">Name: {profile.name}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">Email: {profile.email}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">
-                      Gender: {profile.gender}
-                    </span>
-                  </li>
-                  <li>
-                    <span className="font-medium">Age: {profile.age}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">Role:{profile.role} </span>
-                  </li>
-                </ul>
-              </motion.div>
-              {/* Educational background */}
-              <motion.div
-                whileHover={{
-                  borderColor: "border-orange-600",
-                  scale: 1.05,
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut",
-                }}
-                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border border-green-500"
-              >
-                <h3 className="text-lg font-semibold mb-4">
-                  Educational Background
-                </h3>
-                <ul className="space-y-2 text-sm  text-gray-700">
-                  <li>
-                    <span className="font-medium">
-                      Degree: {profile.degree_title}
-                    </span>
-                  </li>
-                  <li>
-                    <span className="font-medium">Major: {profile.Major}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">
-                      University:{profile.university}
-                    </span>
-                  </li>
-                  <li>
-                    <span className="font-medium">
-                      Passing Year: {profile.passing_year}
-                    </span>
-                  </li>
-                </ul>
-              </motion.div>
-              {/* Work Details */}
-              <motion.div
-                whileHover={{
-                  borderColor: "border-orange-600",
-                  scale: 1.05,
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut",
-                }}
-                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border border-blue-500"
-              >
-                <h3 className="text-lg font-semibold mb-4">Work Details</h3>
-                <ul className="space-y-2 text-sm  text-gray-700">
-                  <li>
-                    <span className="font-medium">
-                      Designation: {profile.job_designation}
-                    </span>
-                  </li>
-                  <li>
-                    <span className="font-medium">
-                      Company: {profile.company_name}
-                    </span>
-                  </li>
-                  <li>
-                    <span className="font-medium flex items-center">
-                      <div>Duration: {profile.start_date} </div>
-                      <div className="mx-2 ">
-                        <ArrowRight size={16} className="text-red-600" />
-                      </div>
-                      <div> {profile.end_date}</div>
-                    </span>
-                  </li>
-                </ul>
-              </motion.div>
-            </div>
-          </div>
-        ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="bg-accent pb-8 rounded-md shadow-md">
               <div className="mb-6">
@@ -439,7 +312,10 @@ const Profile = () => {
             <div className="flex justify-center space-x-2 py-8">
               <button
                 type="button"
-                onClick={() => setIsEditing(false)}
+                onClick={() => {
+                  reset(profile);
+                  setIsEditing(false);
+                }}
                 className="bg-orange-500 text-white w-36 cursor-pointer px-4 py-2 rounded-md hover:bg-orange-600 transition"
               >
                 Cancel
@@ -452,6 +328,138 @@ const Profile = () => {
               </button>
             </div>
           </form>
+        ) : (
+          <div>
+            {/* basic information */}
+            <div className="mx-auto grid place-items-center  ">
+              <div
+                className="bg-linear-to-r from-gray-700 to-gray-500 text-white
+               flex flex-col justify-center items-center max-w-5xl md:px-60 rounded-md p-6
+                 shadow-md"
+              >
+                <div>
+                  <h2 className="text-2xl font-bold">{profile.name}</h2>
+                  <p className="text-md items-center justify-center flex opacity-80">
+                    {profile.role}
+                  </p>
+                </div>
+                <div className="mt-4 text-md">
+                  <div className="flex items-center justify-center flex-col md:flex-row gap-4 opacity-80">
+                    <p>{profile.email}</p>
+                    <p>{profile.mobile}</p>
+                    <p>{profile.address}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 mt-6 gap-6 md:mt-14">
+              {/* Personal Info */}
+              <motion.div
+                whileHover={{
+                  borderColor: "border-orange-600",
+                  scale: 1.05,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border  border-orange-500"
+              >
+                <h3 className="text-lg font-semibold mb-4">Personal Info</h3>
+                <ul className="space-y-2 text-sm  text-gray-700">
+                  <li>
+                    <span className="font-medium">Name: {profile.name}</span>
+                  </li>
+                  <li>
+                    <span className="font-medium">Email: {profile.email}</span>
+                  </li>
+                  <li>
+                    <span className="font-medium">
+                      Gender: {profile.gender}
+                    </span>
+                  </li>
+                  <li>
+                    <span className="font-medium">Age: {profile.age}</span>
+                  </li>
+                  <li>
+                    <span className="font-medium">Role:{profile.role} </span>
+                  </li>
+                </ul>
+              </motion.div>
+              {/* Educational background */}
+              <motion.div
+                whileHover={{
+                  borderColor: "border-orange-600",
+                  scale: 1.05,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border border-green-500"
+              >
+                <h3 className="text-lg font-semibold mb-4">
+                  Educational Background
+                </h3>
+                <ul className="space-y-2 text-sm  text-gray-700">
+                  <li>
+                    <span className="font-medium">
+                      Degree: {profile.degree_title}
+                    </span>
+                  </li>
+                  <li>
+                    <span className="font-medium">Major: {profile.Major}</span>
+                  </li>
+                  <li>
+                    <span className="font-medium">
+                      University:{profile.university}
+                    </span>
+                  </li>
+                  <li>
+                    <span className="font-medium">
+                      Passing Year: {profile.passing_year}
+                    </span>
+                  </li>
+                </ul>
+              </motion.div>
+              {/* Work Details */}
+              <motion.div
+                whileHover={{
+                  borderColor: "border-orange-600",
+                  scale: 1.05,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="bg-white rounded-md shadow-md p-6 border-t-4 hover:border border-blue-500"
+              >
+                <h3 className="text-lg font-semibold mb-4">Work Details</h3>
+                <ul className="space-y-2 text-sm  text-gray-700">
+                  <li>
+                    <span className="font-medium">
+                      Designation: {profile.job_designation}
+                    </span>
+                  </li>
+                  <li>
+                    <span className="font-medium">
+                      Company: {profile.company_name}
+                    </span>
+                  </li>
+                  <li>
+                    <span className="font-medium flex items-center">
+                      <div>Duration: {profile.start_date} </div>
+                      <div className="mx-2 ">
+                        <ArrowRight size={16} className="text-red-600" />
+                      </div>
+                      <div> {profile.end_date}</div>
+                    </span>
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
         )}
       </div>
     </div>

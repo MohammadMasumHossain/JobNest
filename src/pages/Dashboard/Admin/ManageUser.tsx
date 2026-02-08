@@ -165,7 +165,7 @@ const ManageUser = () => {
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="px-10 py-4 whitespace-nowrap text-sm text-gray-700"
+                    className="px-10 py-5 whitespace-nowrap text-sm text-gray-700"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

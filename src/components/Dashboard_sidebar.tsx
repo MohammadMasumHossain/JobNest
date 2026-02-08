@@ -38,7 +38,7 @@ const Dashboard_sidebar = () => {
       >
         <img
           className={` ${isOpen ? "w-14 h-14" : "w-8 h-8 "} rounded-full bg-white`}
-          src="jobnestimg.webp"
+          src="/jobnestimg.webp"
           alt=""
         />
         <h1

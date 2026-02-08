@@ -1,0 +1,355 @@
+[
+  {
+    "id": "01",
+    "jobTitle": "Frontend Developer",
+    "company": "TechNova Ltd",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "60,000 - 80,000 BDT",
+    "experience": "1-3 Years",
+    "status": "Open",
+    "postedDate": "2026-01-15",
+    "jobDescription": "Develop modern and responsive web interfaces using React.",
+    "jobResponsibilities": [
+      "Build reusable React components",
+      "Convert designs into responsive UI",
+      "Optimize frontend performance",
+      "Collaborate with backend team"
+    ],
+    "requirements": [
+      "React.js experience",
+      "Strong HTML & CSS",
+      "JavaScript ES6 knowledge",
+      "Git version control"
+    ],
+    "benefits": [
+      "Competitive salary",
+      "Festival bonus",
+      "Career growth",
+      "Friendly environment"
+    ]
+  },
+  {
+    "id": "02",
+    "jobTitle": "Backend Developer",
+    "company": "CodeCraft Solutions",
+    "location": "Remote",
+    "jobType": "Full-Time",
+    "salary": "80,000 - 100,000 BDT",
+    "experience": "2-4 Years",
+    "status": "Open",
+    "postedDate": "2026-01-14",
+    "jobDescription": "Build scalable backend systems and APIs.",
+    "jobResponsibilities": [
+      "Develop REST APIs",
+      "Manage MongoDB databases",
+      "Implement authentication",
+      "Ensure application security"
+    ],
+    "requirements": [
+      "Node.js & Express",
+      "MongoDB experience",
+      "JWT authentication",
+      "API design knowledge"
+    ],
+    "benefits": [
+      "Remote work",
+      "Health insurance",
+      "Paid leave",
+      "Performance bonus"
+    ]
+  },
+  {
+    "id": "03",
+    "jobTitle": "MERN Stack Developer",
+    "company": "DevSphere",
+    "location": "Chattogram, Bangladesh",
+    "jobType": "Contract",
+    "salary": "50,000 - 70,000 BDT",
+    "experience": "1-2 Years",
+    "status": "Open",
+    "postedDate": "2026-01-13",
+    "jobDescription": "Work on full-stack MERN applications.",
+    "jobResponsibilities": [
+      "Develop frontend & backend",
+      "Integrate APIs",
+      "Fix bugs",
+      "Deploy applications"
+    ],
+    "requirements": [
+      "React & Node.js",
+      "MongoDB",
+      "Basic DevOps knowledge",
+      "Problem-solving skills"
+    ],
+    "benefits": ["Flexible contract", "Remote option", "Skill development"]
+  },
+  {
+    "id": "04",
+    "jobTitle": "UI/UX Designer",
+    "company": "Creative Studio",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Part-Time",
+    "salary": "40,000 - 60,000 BDT",
+    "experience": "Freshers Welcome",
+    "status": "Open",
+    "postedDate": "2026-01-12",
+    "jobDescription": "Design intuitive and attractive user experiences.",
+    "jobResponsibilities": [
+      "Create wireframes",
+      "Design UI layouts",
+      "Collaborate with developers"
+    ],
+    "requirements": ["Figma or Adobe XD", "Basic UX principles", "Creativity"],
+    "benefits": ["Flexible hours", "Creative freedom", "Portfolio growth"]
+  },
+  {
+    "id": "05",
+    "jobTitle": "Junior React Developer",
+    "company": "NextGen Apps",
+    "location": "Remote",
+    "jobType": "Internship",
+    "salary": "15,000 - 20,000 BDT",
+    "experience": "0-1 Year",
+    "status": "Open",
+    "postedDate": "2026-01-11",
+    "jobDescription": "Assist in building React applications.",
+    "jobResponsibilities": [
+      "Write React components",
+      "Fix UI bugs",
+      "Learn from senior developers"
+    ],
+    "requirements": [
+      "Basic React knowledge",
+      "JavaScript fundamentals",
+      "Willingness to learn"
+    ],
+    "benefits": [
+      "Mentorship",
+      "Remote work",
+      "Job opportunity after internship"
+    ]
+  },
+  {
+    "id": "06",
+    "jobTitle": "Software Engineer",
+    "company": "InnoTech",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "70,000 - 90,000 BDT",
+    "experience": "2-3 Years",
+    "status": "Open",
+    "postedDate": "2026-01-10",
+    "jobDescription": "Develop scalable software solutions.",
+    "jobResponsibilities": [
+      "Write clean code",
+      "Debug applications",
+      "Participate in code reviews"
+    ],
+    "requirements": [
+      "Strong programming skills",
+      "Problem-solving ability",
+      "Team collaboration"
+    ],
+    "benefits": ["Annual bonus", "Health benefits", "Paid leave"]
+  },
+  {
+    "id": "07",
+    "jobTitle": "QA Engineer",
+    "company": "SoftCheck",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "45,000 - 65,000 BDT",
+    "experience": "1-2 Years",
+    "status": "Open",
+    "postedDate": "2026-01-09",
+    "jobDescription": "Ensure software quality through testing.",
+    "jobResponsibilities": [
+      "Write test cases",
+      "Perform manual testing",
+      "Report bugs"
+    ],
+    "requirements": [
+      "QA fundamentals",
+      "Attention to detail",
+      "Testing tools knowledge"
+    ],
+    "benefits": ["Training", "Career growth", "Friendly team"]
+  },
+  {
+    "id": "08",
+    "jobTitle": "DevOps Engineer",
+    "company": "CloudWave",
+    "location": "Remote",
+    "jobType": "Full-Time",
+    "salary": "100,000 - 130,000 BDT",
+    "experience": "3-5 Years",
+    "status": "Open",
+    "postedDate": "2026-01-08",
+    "jobDescription": "Manage CI/CD pipelines and cloud infrastructure.",
+    "jobResponsibilities": [
+      "Automate deployments",
+      "Manage servers",
+      "Ensure system reliability"
+    ],
+    "requirements": ["AWS or Azure", "Docker & CI/CD", "Linux knowledge"],
+    "benefits": ["Remote work", "High salary", "Learning budget"]
+  },
+  {
+    "id": "09",
+    "jobTitle": "Product Manager",
+    "company": "Visionary Labs",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "90,000 - 120,000 BDT",
+    "experience": "3+ Years",
+    "status": "Open",
+    "postedDate": "2026-01-07",
+    "jobDescription": "Lead product development lifecycle.",
+    "jobResponsibilities": [
+      "Define product roadmap",
+      "Coordinate teams",
+      "Gather requirements"
+    ],
+    "requirements": [
+      "Product management experience",
+      "Communication skills",
+      "Leadership"
+    ],
+    "benefits": ["Performance bonus", "Health insurance", "Leadership role"]
+  },
+  {
+    "id": "10",
+    "jobTitle": "Data Analyst",
+    "company": "DataCore",
+    "location": "Remote",
+    "jobType": "Full-Time",
+    "salary": "70,000 - 95,000 BDT",
+    "experience": "2 Years",
+    "status": "Open",
+    "postedDate": "2026-01-06",
+    "jobDescription": "Analyze data to support business decisions.",
+    "jobResponsibilities": [
+      "Data analysis",
+      "Prepare reports",
+      "Visualize data"
+    ],
+    "requirements": [
+      "Excel & SQL",
+      "Data visualization tools",
+      "Analytical thinking"
+    ],
+    "benefits": ["Remote work", "Skill development", "Career growth"]
+  },
+  {
+    "id": "11",
+    "jobTitle": "Mobile App Developer",
+    "company": "Appify",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "80,000 - 110,000 BDT",
+    "experience": "2-4 Years",
+    "status": "Open",
+    "postedDate": "2026-01-05",
+    "jobDescription": "Develop Android and iOS applications.",
+    "jobResponsibilities": [
+      "Build mobile apps",
+      "Fix bugs",
+      "Optimize performance"
+    ],
+    "requirements": [
+      "Flutter or React Native",
+      "API integration",
+      "Mobile UI knowledge"
+    ],
+    "benefits": ["Competitive salary", "Learning opportunities", "Paid leave"]
+  },
+  {
+    "id": "12",
+    "jobTitle": "Content Writer",
+    "company": "WriteRight",
+    "location": "Remote",
+    "jobType": "Part-Time",
+    "salary": "30,000 - 45,000 BDT",
+    "experience": "1 Year",
+    "status": "Open",
+    "postedDate": "2026-01-04",
+    "jobDescription": "Create engaging content for blogs and websites.",
+    "jobResponsibilities": [
+      "Write articles",
+      "Edit content",
+      "SEO optimization"
+    ],
+    "requirements": ["Good writing skills", "SEO basics", "Creativity"],
+    "benefits": ["Flexible hours", "Remote work", "Creative freedom"]
+  },
+  {
+    "id": "13",
+    "jobTitle": "Digital Marketing Executive",
+    "company": "MarketPro",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "40,000 - 60,000 BDT",
+    "experience": "1-2 Years",
+    "status": "Open",
+    "postedDate": "2026-01-03",
+    "jobDescription": "Promote brand through digital channels.",
+    "jobResponsibilities": [
+      "Manage social media",
+      "Run ad campaigns",
+      "Analyze performance"
+    ],
+    "requirements": [
+      "Digital marketing knowledge",
+      "Facebook & Google Ads",
+      "Communication skills"
+    ],
+    "benefits": ["Bonus", "Career growth", "Training"]
+  },
+  {
+    "id": "14",
+    "jobTitle": "HR Executive",
+    "company": "PeopleFirst",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "35,000 - 55,000 BDT",
+    "experience": "1-3 Years",
+    "status": "Open",
+    "postedDate": "2026-01-02",
+    "jobDescription": "Manage recruitment and HR operations.",
+    "jobResponsibilities": [
+      "Recruit employees",
+      "Handle documentation",
+      "Employee engagement"
+    ],
+    "requirements": [
+      "HR knowledge",
+      "Communication skills",
+      "Organizational skills"
+    ],
+    "benefits": ["Friendly environment", "Career growth", "Annual increment"]
+  },
+  {
+    "id": "15",
+    "jobTitle": "System Administrator",
+    "company": "NetSecure",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "salary": "75,000 - 95,000 BDT",
+    "experience": "3 Years",
+    "status": "Open",
+    "postedDate": "2026-01-01",
+    "jobDescription": "Maintain and secure IT infrastructure.",
+    "jobResponsibilities": [
+      "Manage servers",
+      "Monitor systems",
+      "Ensure data security"
+    ],
+    "requirements": [
+      "Linux administration",
+      "Networking knowledge",
+      "Security best practices"
+    ],
+    "benefits": ["Job stability", "Health insurance", "Paid leave"]
+  }
+]
