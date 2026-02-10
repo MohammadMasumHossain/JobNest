@@ -18,7 +18,8 @@ const Dashboard_sidebar = () => {
     { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
     { name: "jobPost", icon: Briefcase, path: "/dashboard/jobpost" },
     { name: "Job Listing", icon: List, path: "/dashboard/joblisting" },
-    { name: "ManageUser", icon: UserCog, path: "/dashboard/manageuser" },
+    { name: "User", icon: UserCog, path: "/dashboard/manageuser" },
+
     { name: "Profile", icon: CircleUserRound, path: "/dashboard/profile" },
   ];
   return (

@@ -120,6 +120,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .react-calendar abbr {
+    @apply no-underline;
+  }
 }
 @theme {
   --color-background: #f9f9f9;

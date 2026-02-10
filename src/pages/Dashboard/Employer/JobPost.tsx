@@ -1,5 +1,10 @@
 import { ChevronRight } from "lucide-react";
+
 import { useForm, type SubmitHandler } from "react-hook-form";
+import "react-calendar/dist/Calendar.css";
+import CustomCalender from "@/components/CustomCalender";
+import { useState } from "react";
+import { CalendarDays } from "lucide-react";
 
 type Inputs = {
   firstName: string;
@@ -28,12 +33,16 @@ const JobPost = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log("form submitted", data);
   };
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -51,7 +60,7 @@ const JobPost = () => {
                   required: "First Name is required",
                 })}
                 placeholder="First Name"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.firstName && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -68,7 +77,7 @@ const JobPost = () => {
                   required: "Last Name is required",
                 })}
                 placeholder="Last Name"
-                className={`mt-3 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
               />
               {errors.lastName && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -85,7 +94,7 @@ const JobPost = () => {
                   required: "Email Address is required",
                 })}
                 placeholder="Email Address"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.emailAddress && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -102,7 +111,7 @@ const JobPost = () => {
                   required: "Phone Number is required",
                 })}
                 placeholder="Phone Number"
-                className={`mt-3 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
               />
               {errors.phoneNumber && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -119,7 +128,7 @@ const JobPost = () => {
                   required: "Job Category is required",
                 })}
                 placeholder="Job Category"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.jobcategory && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -136,7 +145,7 @@ const JobPost = () => {
                   required: "Job Type is required",
                 })}
                 placeholder="Job Type"
-                className={`mt-3 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
               />
               {errors.jobType && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -153,7 +162,7 @@ const JobPost = () => {
                   required: "Skills are required",
                 })}
                 placeholder="Skills"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.skills && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -170,7 +179,7 @@ const JobPost = () => {
                   required: "Experience Level is required",
                 })}
                 placeholder="Experience Level"
-                className={`mt-3 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
               />
               {errors.experienceLevel && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -188,7 +197,7 @@ const JobPost = () => {
                   required: "Job Location is required",
                 })}
                 placeholder="Job Location"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.jobLocation && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -198,7 +207,7 @@ const JobPost = () => {
             </div>
             <div>
               <label className="font-medium">Monthly Salary</label>
-              <div className="grid grid-cols-2 gap-4 mt-3">
+              <div className="grid grid-cols-2 gap-4 ">
                 <input
                   id="Minsalary"
                   type="number"
@@ -206,7 +215,7 @@ const JobPost = () => {
                     required: "Minimum Salary is required",
                   })}
                   placeholder="Min Salary"
-                  className="p-3 border rounded-sm w-full"
+                  className="mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm"
                 />
                 {errors.Minsalary && (
                   <p className=" mt-2  px-1 text-sm text-red-600">
@@ -220,7 +229,7 @@ const JobPost = () => {
                     required: "Maximum Salary is required",
                   })}
                   placeholder="Max Salary"
-                  className="p-3 border rounded-sm w-full"
+                  className="mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm"
                 />
                 {errors.Maxsalary && (
                   <p className=" mt-2  px-1 text-sm text-red-600">
@@ -230,22 +239,73 @@ const JobPost = () => {
               </div>
             </div>
 
-            <div>
+            <div className="relative">
               <label className="font-medium">Application Deadline</label>
+
+              {/* Fake input – styled exactly like Vacancy */}
+              <div
+                className="mt-1 w-full flex justify-between items-center
+               px-3 py-2 border border-gray-300 shadow-sm rounded-sm
+               bg-white cursor-pointer hover:bg-gray-50 transition"
+                onClick={() => setShowCalendar(true)}
+              >
+                <span
+                  className={selectedDate ? "text-gray-900" : "text-gray-400"}
+                >
+                  {selectedDate
+                    ? selectedDate.toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "Select application deadline"}
+                </span>
+
+                <CalendarDays className="w-5 h-5 text-gray-500" />
+              </div>
+
+              {/* Calendar Modal */}
+              {showCalendar && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center">
+                  {/* Overlay */}
+                  <div
+                    className="absolute inset-0 bg-black/50"
+                    onClick={() => setShowCalendar(false)}
+                  />
+
+                  {/* Calendar */}
+                  <div className="relative z-10">
+                    <CustomCalender
+                      value={selectedDate}
+                      onChange={(date) => {
+                        setSelectedDate(date);
+                        setValue(
+                          "applicationDeadline",
+                          date.toISOString().split("T")[0],
+                          { shouldValidate: true },
+                        );
+                        setShowCalendar(false);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Hidden react-hook-form field */}
               <input
-                id="applicationDeadline"
-                type="date"
+                type="hidden"
                 {...register("applicationDeadline", {
-                  required: " is required",
+                  required: "Application deadline is required",
                 })}
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
+
               {errors.applicationDeadline && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.applicationDeadline?.message}
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.applicationDeadline.message}
                 </p>
               )}
             </div>
+
             <div>
               <label className="font-medium">Vacancy</label>
               <input
@@ -255,7 +315,7 @@ const JobPost = () => {
                   required: "Vacancy is required",
                 })}
                 placeholder="Vacancy"
-                className={` mt-3 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
               {errors.vacancy && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -279,7 +339,7 @@ const JobPost = () => {
                   required: "Job Description is required",
                 })}
                 placeholder="Job Description"
-                className={` mt-3 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.jobDescription && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -295,7 +355,7 @@ const JobPost = () => {
                   required: "Job Responsibilities is required",
                 })}
                 placeholder="Job Responsibilities"
-                className={` mt-3 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.JobResponsibilities && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -311,7 +371,7 @@ const JobPost = () => {
                   required: "Educational Requirements is required",
                 })}
                 placeholder="Educational Requirements"
-                className={` mt-3 w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.educationalRequirements && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -327,7 +387,7 @@ const JobPost = () => {
                   required: "Benefits is required",
                 })}
                 placeholder="Benefits"
-                className={` mt-3 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.benefits && (
                 <p className=" mt-2  px-1 text-sm text-red-600">

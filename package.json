@@ -17,6 +17,7 @@
     "lucide-react": "^0.563.0",
     "motion": "^12.31.0",
     "react": "^19.2.3",
+    "react-calendar": "^6.0.0",
     "react-dom": "^19.2.0",
     "react-form-stepper": "^2.0.3",
     "react-hook-form": "^7.71.1",
