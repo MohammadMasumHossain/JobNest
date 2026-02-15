@@ -9,6 +9,7 @@ import {
   type SortingState,
 } from "@tanstack/react-table";
 import mockData from "./data.json";
+
 import {
   ArrowUpDown,
   ChevronLeft,
@@ -24,6 +25,7 @@ import {
   type User,
 } from "lucide-react";
 import { useState } from "react";
+import { NavLink } from "react-router";
 
 type User = {
   id: number;
@@ -116,19 +118,29 @@ const ManageUser = () => {
   console.log(table.getRowModel().rows[0].getVisibleCells());
   return (
     <div className="flex flex-col min-h-screen max-w-8xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div className="mb-4 relative">
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full px-9 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-          value={globalFilter ?? ""}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-        />
-        <Search
-          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-          size={20}
-        />
+      <div className="flex justify-between items-center ">
+        <div className="mb-8  relative">
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full px-9 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            value={globalFilter ?? ""}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+          />
+          <Search
+            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          />
+        </div>
+        <div>
+          <NavLink to="/dashboard/createuser">
+            <button className="px-4 py-2  rounded-md bg-slate-900 text-white hover:bg-slate-500">
+              Create User
+            </button>
+          </NavLink>
+        </div>
       </div>
+
       <div className="overflow-x-auto bg-white rounded-md shadow-md">
         <table className="min-w-full divide-y divide-gray-200 ">
           <thead className="bg-secondary">

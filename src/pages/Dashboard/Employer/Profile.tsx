@@ -2,6 +2,8 @@ import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
+import { CalendarDays } from "lucide-react";
+import CustomCalender from "@/components/CustomCalender";
 
 type ProfileData = {
   name: string;
@@ -46,6 +48,8 @@ const initialProfile: ProfileData = {
 const Profile = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [profile, setProfile] = useState<ProfileData>(initialProfile);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const handleEditClick = () => {
     reset(profile); // Ensure form has latest data
@@ -55,6 +59,7 @@ const Profile = () => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<ProfileData>({
@@ -112,7 +117,7 @@ const Profile = () => {
                   </label>
                   <input
                     {...register("name", { required: "Name is required" })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">
@@ -127,7 +132,7 @@ const Profile = () => {
                   </label>
                   <input
                     {...register("email", { required: "Email is required" })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">
@@ -139,7 +144,7 @@ const Profile = () => {
                   <label className="text-md font-bold text-black">Role:</label>
                   <input
                     {...register("role", { required: "Role is required" })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.role && (
                     <p className="text-red-500 text-sm mt-1">
@@ -153,14 +158,14 @@ const Profile = () => {
                   </label>
                   <input
                     {...register("gender")}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                 </div>
                 <div>
                   <label className="text-md font-bold text-black">Phone:</label>
                   <input
                     {...register("mobile", { required: "Mobile is required" })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.mobile && (
                     <p className="text-red-500 text-sm mt-1">
@@ -172,7 +177,7 @@ const Profile = () => {
                   <label className="text-md font-bold text-black">Age:</label>
                   <input
                     {...register("age")}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm"
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm"
                   />
                 </div>
                 <div>
@@ -181,7 +186,7 @@ const Profile = () => {
                   </label>
                   <input
                     {...register("address", {})}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm"
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm"
                   />
                 </div>
               </div>
@@ -202,7 +207,7 @@ const Profile = () => {
                     {...register("degree_title", {
                       required: "Degree is required",
                     })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.degree_title && (
                     <p className="text-red-500 text-sm mt-1">
@@ -219,7 +224,7 @@ const Profile = () => {
                     {...register("university", {
                       required: "University is required",
                     })}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                   {errors.university && (
                     <p className="text-red-500 text-sm mt-1">
@@ -231,7 +236,7 @@ const Profile = () => {
                   <label className="text-md font-bold text-black">Major:</label>
                   <input
                     {...register("Major")}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                 </div>
                 <div>
@@ -240,7 +245,7 @@ const Profile = () => {
                   </label>
                   <input
                     {...register("passing_year", {})}
-                    className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                    className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                   />
                 </div>
               </div>
@@ -261,7 +266,7 @@ const Profile = () => {
                       {...register("job_designation", {
                         required: "Job Designation is required",
                       })}
-                      className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                      className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                     />
                     {errors.job_designation && (
                       <p className="text-red-500 text-sm mt-1">
@@ -278,7 +283,7 @@ const Profile = () => {
                       {...register("company_name", {
                         required: "Company Name is required",
                       })}
-                      className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                      className="mt-1 w-full p-2 border border-gray-300 rounded-md shadow-sm "
                     />
                     {errors.company_name && (
                       <p className="text-red-500 text-sm mt-1">
@@ -286,25 +291,141 @@ const Profile = () => {
                       </p>
                     )}
                   </div>
-                  <div>
-                    <label className="text-md font-bold text-black">
-                      Start Date:
-                    </label>
+                  <div className="relative">
+                    <label className="font-medium"> Start Date</label>
+
+                    {/* Fake input – styled exactly like Vacancy */}
+                    <div
+                      className="mt-1 w-full flex justify-between items-center
+               px-3 py-2 border border-gray-300 shadow-sm rounded-sm
+               bg-white cursor-pointer hover:bg-gray-50 transition"
+                      onClick={() => setShowCalendar(true)}
+                    >
+                      <span
+                        className={
+                          selectedDate ? "text-gray-900" : "text-gray-400"
+                        }
+                      >
+                        {selectedDate
+                          ? selectedDate.toLocaleDateString("en-GB", {
+                              day: "2-digit",
+                              month: "long",
+                              year: "numeric",
+                            })
+                          : "Select Start Date"}
+                      </span>
+
+                      <CalendarDays className="w-5 h-5 text-gray-500" />
+                    </div>
+
+                    {/* Calendar Modal */}
+                    {showCalendar && (
+                      <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        {/* Overlay */}
+                        <div
+                          className="absolute inset-0 bg-black/50"
+                          onClick={() => setShowCalendar(false)}
+                        />
+
+                        {/* Calendar */}
+                        <div className="relative z-10">
+                          <CustomCalender
+                            value={selectedDate}
+                            onChange={(date) => {
+                              setSelectedDate(date);
+                              setValue(
+                                "start_date",
+                                date.toISOString().split("T")[0],
+                                { shouldValidate: true },
+                              );
+                              setShowCalendar(false);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Hidden react-hook-form field */}
                     <input
-                      type="date"
-                      {...register("start_date", {})}
-                      className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                      type="hidden"
+                      {...register("start_date", {
+                        required: "start Date is required",
+                      })}
                     />
+
+                    {errors.start_date && (
+                      <p className="mt-2 text-sm text-red-600">
+                        {errors.start_date.message}
+                      </p>
+                    )}
                   </div>
-                  <div>
-                    <label className="text-md font-bold text-black">
-                      End Date:
-                    </label>
+                  <div className="relative">
+                    <label className="font-medium"> End Date</label>
+
+                    {/* Fake input – styled exactly like Vacancy */}
+                    <div
+                      className="mt-1 w-full flex justify-between items-center
+               px-3 py-2 border border-gray-300 shadow-sm rounded-sm
+               bg-white cursor-pointer hover:bg-gray-50 transition"
+                      onClick={() => setShowCalendar(true)}
+                    >
+                      <span
+                        className={
+                          selectedDate ? "text-gray-900" : "text-gray-400"
+                        }
+                      >
+                        {selectedDate
+                          ? selectedDate.toLocaleDateString("en-GB", {
+                              day: "2-digit",
+                              month: "long",
+                              year: "numeric",
+                            })
+                          : "Select End Date"}
+                      </span>
+
+                      <CalendarDays className="w-5 h-5 text-gray-500" />
+                    </div>
+
+                    {/* Calendar Modal */}
+                    {showCalendar && (
+                      <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        {/* Overlay */}
+                        <div
+                          className="absolute inset-0 bg-black/50"
+                          onClick={() => setShowCalendar(false)}
+                        />
+
+                        {/* Calendar */}
+                        <div className="relative z-10">
+                          <CustomCalender
+                            value={selectedDate}
+                            onChange={(date) => {
+                              setSelectedDate(date);
+                              setValue(
+                                "end_date",
+                                date.toISOString().split("T")[0],
+                                { shouldValidate: true },
+                              );
+                              setShowCalendar(false);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Hidden react-hook-form field */}
                     <input
-                      type="date"
-                      {...register("end_date", {})}
-                      className="mt-2 w-full p-2 border border-gray-300 rounded-md shadow-sm "
+                      type="hidden"
+                      {...register("end_date", {
+                        required: "End Date is required",
+                      })}
                     />
+
+                    {errors.start_date && (
+                      <p className="mt-2 text-sm text-red-600">
+                        {errors.start_date.message}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
