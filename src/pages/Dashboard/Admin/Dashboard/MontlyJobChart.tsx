@@ -84,7 +84,14 @@ const MontlyJobChart: React.FC = () => {
               }}
             />
             <Tooltip content={CustomTooltip} />
-            <Bar dataKey="jobs" label={renderCustomBarLabel}>
+            <Bar
+              dataKey="jobs"
+              label={renderCustomBarLabel}
+              isAnimationActive={true}
+              animationBegin={100}
+              animationDuration={600}
+              animationEasing="ease-out"
+            >
               {Data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}

@@ -1,46 +1,51 @@
 import React from "react";
-
 import { Users, Briefcase, FileText, Clock } from "lucide-react";
 import StatCard from "./StatCard";
 
 const DashboardPage: React.FC = () => {
-  const metrics = {
-    totalUsers: 1500,
-    totalEmployers: 250,
-    totalJobsPosted: 5000,
-    applicationsPending: 120,
-  };
+  const dummyMetrics = [
+    {
+      title: "Total Users",
+      value: 1500,
+      icon: <Users />,
+      color: "bg-blue-500",
+    },
+    {
+      title: "Total Employers",
+      value: 250,
+      icon: <Briefcase />,
+      color: "bg-green-500",
+    },
+    {
+      title: "Total Jobs Posted",
+      value: 5000,
+      icon: <FileText />,
+      color: "bg-yellow-500",
+    },
+    {
+      title: "Applications Pending",
+      value: 120,
+      icon: <Clock />,
+      color: "bg-red-500",
+    },
+  ];
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-semibold mb-6 text-gray-800">
         Analytics Dashboard
       </h1>
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          title="Total Users"
-          value={metrics.totalUsers.toLocaleString()}
-          icon={<Users />}
-          color="bg-blue-500"
-        />
-        <StatCard
-          title="Total Employers"
-          value={metrics.totalEmployers.toLocaleString()}
-          icon={<Briefcase />}
-          color="bg-green-500"
-        />
-        <StatCard
-          title="Total Jobs Posted"
-          value={metrics.totalJobsPosted.toLocaleString()}
-          icon={<FileText />}
-          color="bg-yellow-500"
-        />
-        <StatCard
-          title="Applications Pending"
-          value={metrics.applicationsPending.toLocaleString()}
-          icon={<Clock />}
-          color="bg-red-500"
-        />
+        {dummyMetrics.map((metric, index) => (
+          <StatCard
+            key={index}
+            title={metric.title}
+            value={metric.value.toLocaleString()}
+            icon={metric.icon}
+            color={metric.color}
+          />
+        ))}
       </div>
     </div>
   );

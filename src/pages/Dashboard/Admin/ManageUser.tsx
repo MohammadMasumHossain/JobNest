@@ -25,7 +25,7 @@ import {
   type User,
 } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router";
+import CreateUser from "./CreateUser";
 
 type User = {
   id: number;
@@ -91,6 +91,7 @@ const ManageUser = () => {
   const [data] = useState(() => [...mockData]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const table = useReactTable({
     data,
@@ -118,12 +119,12 @@ const ManageUser = () => {
   console.log(table.getRowModel().rows[0].getVisibleCells());
   return (
     <div className="flex flex-col min-h-screen max-w-8xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center ">
-        <div className="mb-8  relative">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <div className="relative flex-1 w-full md:max-w-md">
           <input
             type="text"
-            placeholder="Search"
-            className="w-full px-9 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="Search users..."
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition"
             value={globalFilter ?? ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
@@ -132,13 +133,14 @@ const ManageUser = () => {
             size={20}
           />
         </div>
-        <div>
-          <NavLink to="/dashboard/createuser">
-            <button className="px-4 py-2  rounded-md bg-slate-900 text-white hover:bg-slate-500">
-              Create User
-            </button>
-          </NavLink>
-        </div>
+
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 px-6 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl shadow-lg hover:from-orange-600 hover:to-orange-700 transition transform hover:-translate-y-0.5"
+        >
+          <User2 size={20} />
+          Create User
+        </button>
       </div>
 
       <div className="overflow-x-auto bg-white rounded-md shadow-md">
@@ -258,6 +260,7 @@ const ManageUser = () => {
           </button>
         </div>
       </div>
+      {isModalOpen && <CreateUser onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
