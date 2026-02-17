@@ -4,6 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import CreateUser from "@/pages/Dashboard/Admin/CreateUser";
+import JobDetails from "@/pages/Dashboard/Admin/JobDetails";
 import JobListing from "@/pages/Dashboard/Admin/JobListing";
 import ManageUser from "@/pages/Dashboard/Admin/ManageUser";
 import JobPost from "@/pages/Dashboard/Employer/JobPost";
@@ -41,16 +42,16 @@ const Router = createBrowserRouter([
         Component: JobListing,
       },
       {
+        path: "job/:id",
+        Component: JobDetails,
+      },
+      {
         path: "manageuser",
         Component: ManageUser,
       },
       {
         path: "profile",
         Component: Profile,
-      },
-      {
-        path: "createuser",
-        Component: CreateUser,
       },
     ],
   },

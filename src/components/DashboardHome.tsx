@@ -4,7 +4,7 @@ import JobByCategory from "@/pages/Dashboard/Admin/Dashboard/JobByCategory";
 import MonthlyJobsChart from "@/pages/Dashboard/Admin/Dashboard/MontlyJobChart";
 
 const DashboardHome = () => (
-  <div>
+  <div className="mt-16 md:mt-6 lg:mt-4 px-4 md:px-6 lg:px-8">
     <h1 className="font-bold text-2xl text-center items-center">
       Welcome to Dashboard Home
     </h1>

@@ -16,18 +16,18 @@ type jobData = {
   color: string;
 };
 const Data: jobData[] = [
-  { month: "Jan", jobs: 40, color: "#FF5733" },
-  { month: "Feb", jobs: 65, color: "#33CFFF" },
-  { month: "Mar", jobs: 80, color: "#33FF57" },
-  { month: "Apr", jobs: 55, color: "#FF33C6" },
-  { month: "May", jobs: 95, color: "#C633FF" },
-  { month: "Jun", jobs: 70, color: "#FFC633" },
-  { month: "Jul", jobs: 110, color: "#FF5733" },
+  { month: "Jan", jobs: 40, color: "#FFC633" },
+  { month: "Feb", jobs: 65, color: "#FFC633" },
+  { month: "Mar", jobs: 80, color: "#FFC633" },
+  { month: "Apr", jobs: 55, color: "#FFC633" },
+  { month: "May", jobs: 95, color: "#33CFFF" },
+  { month: "Jun", jobs: 70, color: "#33CFFF" },
+  { month: "Jul", jobs: 110, color: "#33CFFF" },
   { month: "Aug", jobs: 90, color: "#33CFFF" },
-  { month: "Sep", jobs: 120, color: "#33FF57" },
+  { month: "Sep", jobs: 120, color: "#FF33C6" },
   { month: "Oct", jobs: 100, color: "#FF33C6" },
-  { month: "Nov", jobs: 140, color: "#FFC633" },
-  { month: "Dec", jobs: 160, color: "#33CFFF" },
+  { month: "Nov", jobs: 140, color: "#FF33C6" },
+  { month: "Dec", jobs: 160, color: "#FF33C6" },
 ];
 const renderCustomBarLabel = ({ x, y, width, value }: any) => {
   return (

@@ -76,7 +76,6 @@ const CreateUser = ({ onClose }: CreateUserModalProps) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
       <div className="bg-white w-full max-w-lg rounded-xl shadow-xl p-6 sm:p-8 relative">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"

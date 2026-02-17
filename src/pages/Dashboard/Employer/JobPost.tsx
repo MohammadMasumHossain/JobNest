@@ -5,10 +5,10 @@ import "react-calendar/dist/Calendar.css";
 import CustomCalender from "@/components/CustomCalender";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
+import CustomDropDown from "@/components/ui/CustomDropDownMenu";
 
 type Inputs = {
-  firstName: string;
-  lastName: string;
+  companyname: string;
   emailAddress: string;
   phoneNumber: string;
   jobcategory: string;
@@ -19,6 +19,7 @@ type Inputs = {
   Maxsalary: number;
   applicationDeadline: string;
   skills: string;
+  option: string[];
 
   vacancy: number;
 
@@ -40,6 +41,7 @@ const JobPost = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log("form submitted", data);
   };
+  const jobType = ["FullTime", "PartTime"];
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [showCalendar, setShowCalendar] = useState(false);
 
@@ -48,43 +50,22 @@ const JobPost = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="bg-accent mb-10 rounded-sm">
           <h2 className="bg-gray-800 text-white font-bold rounded-sm px-4 py-4">
-            General Information
+            Job Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 px-8 pb-8 ">
             <div>
-              <label className="font-medium">First Name</label>
+              <label className="font-medium">Company Name</label>
               <input
-                id="firstName"
+                id="companyname"
                 type="text"
-                {...register("firstName", {
-                  required: "First Name is required",
+                {...register("companyname", {
+                  required: "Company Name is required",
                 })}
-                placeholder="First Name"
+                placeholder="Company Name"
                 className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
               />
-              {errors.firstName && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.firstName?.message}
-                </p>
-              )}
             </div>
-            <div>
-              <label className="font-medium">Last Name</label>
-              <input
-                id="lastName"
-                type="text"
-                {...register("lastName", {
-                  required: "Last Name is required",
-                })}
-                placeholder="Last Name"
-                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
-              />
-              {errors.lastName && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.lastName?.message}
-                </p>
-              )}
-            </div>
+
             <div>
               <label className="font-medium">Email Address</label>
               <input
@@ -102,23 +83,7 @@ const JobPost = () => {
                 </p>
               )}
             </div>
-            <div>
-              <label className="font-medium">Phone Number</label>
-              <input
-                id="phoneNumber"
-                type="text"
-                {...register("phoneNumber", {
-                  required: "Phone Number is required",
-                })}
-                placeholder="Phone Number"
-                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
-              />
-              {errors.phoneNumber && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.phoneNumber?.message}
-                </p>
-              )}
-            </div>
+
             <div>
               <label className="font-medium">Job Category</label>
               <input
@@ -136,7 +101,7 @@ const JobPost = () => {
                 </p>
               )}
             </div>
-            <div>
+            {/* <div>
               <label className="font-medium">Job Type</label>
               <input
                 id="jobType"
@@ -152,7 +117,25 @@ const JobPost = () => {
                   {errors.jobType?.message}
                 </p>
               )}
-            </div>
+            </div> */}
+            {/* <CustomDropDown
+              id="jobType"
+              label="Job Type"
+              placeholder="Select Job Type"
+              options={[
+                { label: "Full-Time", value: "full-time" },
+                { label: "Part-Time", value: "part-time" },
+                { label: "Contract", value: "contract" },
+                { label: "Internship", value: "internship" },
+              ]}
+              register={register("jobType", {
+                required: "Job Type is required",
+              })}
+              error={errors.jobType}
+            /> */}
+
+            <CustomDropDown options={jobType} />
+
             <div>
               <label className="font-medium">Skills</label>
               <input
@@ -242,7 +225,6 @@ const JobPost = () => {
             <div className="relative">
               <label className="font-medium">Application Deadline</label>
 
-              {/* Fake input – styled exactly like Vacancy */}
               <div
                 className="mt-1 w-full flex justify-between items-center
                px-3 py-2 border border-gray-300 shadow-sm rounded-sm
@@ -324,13 +306,7 @@ const JobPost = () => {
               )}
             </div>
           </div>
-        </div>
-
-        <div className="bg-accent  rounded-sm">
-          <h2 className="bg-gray-800 text-white font-bold rounded-sm px-4 py-4">
-            Job Information
-          </h2>
-          <div className="grid grid-cols-1 mt-6 px-8 pb-8">
+          <div className="grid grid-cols-1  px-8 pb-8">
             <div>
               <label className="font-medium">Job Description</label>
               <textarea
@@ -339,7 +315,7 @@ const JobPost = () => {
                   required: "Job Description is required",
                 })}
                 placeholder="Job Description"
-                className={` mt-1 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.jobDescription && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -355,7 +331,7 @@ const JobPost = () => {
                   required: "Job Responsibilities is required",
                 })}
                 placeholder="Job Responsibilities"
-                className={` mt-1 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.JobResponsibilities && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -371,7 +347,7 @@ const JobPost = () => {
                   required: "Educational Requirements is required",
                 })}
                 placeholder="Educational Requirements"
-                className={` mt-1 w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-2 w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.educationalRequirements && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -397,6 +373,8 @@ const JobPost = () => {
             </div>
           </div>
         </div>
+
+        <div className="bg-accent  rounded-sm"></div>
 
         <button
           className=" group flex items-center justify-center border mt-8 px-3 py-2 w-full bg-[#FF8A00] font-bold text-md cursor-pointer text-white"

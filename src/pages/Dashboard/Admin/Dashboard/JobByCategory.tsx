@@ -43,8 +43,8 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 const JobByCategory: React.FC = () => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md h-full">
-      <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
+    <div className="bg-white p-6   rounded-lg shadow-md w-full max-w-md mx-auto">
+      <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 text-center mb-2">
         Job Posts by Category
       </h2>
 
@@ -55,8 +55,8 @@ const JobByCategory: React.FC = () => {
               data={data}
               dataKey="value"
               nameKey="name"
-              outerRadius={120}
-              innerRadius={60}
+              outerRadius="80%"
+              innerRadius="40%"
               paddingAngle={3}
             >
               {data.map((entry, index) => (
