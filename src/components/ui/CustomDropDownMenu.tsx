@@ -29,7 +29,7 @@ const CustomDropDownMenu = ({ options }: CustomDropDownMenuProps) => {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative mt-7 w-full">
+    <div ref={dropdownRef} className="relative mt-1 w-full">
       <div
         onClick={() => setIsDropDownVisible((prev) => !prev)}
         className="w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm flex justify-between cursor-pointer"
@@ -51,7 +51,7 @@ const CustomDropDownMenu = ({ options }: CustomDropDownMenuProps) => {
                 setSelected(option);
                 setIsDropDownVisible(false);
               }}
-              className="px-3 py-2 cursor-pointer hover:bg-neutral-600 text-neutral-100"
+              className="px-6 py-2 cursor-pointer hover:bg-neutral-600 text-neutral-100"
             >
               {option}
             </div>
@@ -63,3 +63,83 @@ const CustomDropDownMenu = ({ options }: CustomDropDownMenuProps) => {
 };
 
 export default CustomDropDownMenu;
+// import { ChevronDown } from "lucide-react";
+// import { useState, useRef, useEffect } from "react";
+
+// type CustomDropDownMenuProps = {
+//   options: string[];
+//   value: string;
+//   onChange: (value: string) => void;
+//   placeholder?: string;
+// };
+
+// const CustomDropDownMenu = ({
+//   options,
+//   value,
+//   onChange,
+//   placeholder = "Select option",
+// }: CustomDropDownMenuProps) => {
+//   const [isDropDownVisible, setIsDropDownVisible] = useState(false);
+//   const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+//   useEffect(() => {
+//     const handleClickOutside = (event: MouseEvent) => {
+//       if (
+//         dropdownRef.current &&
+//         !dropdownRef.current.contains(event.target as Node)
+//       ) {
+//         setIsDropDownVisible(false);
+//       }
+//     };
+
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, []);
+
+//   return (
+//     <div ref={dropdownRef} className="relative w-full">
+//       {/* Selected */}
+//       <div
+//         onClick={() => setIsDropDownVisible((prev) => !prev)}
+//         className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl
+//         flex justify-between items-center cursor-pointer
+//         hover:border-orange-400 transition"
+//       >
+//         <span className="text-gray-700">{value || placeholder}</span>
+
+//         <ChevronDown
+//           size={18}
+//           className={`transition-transform duration-200 ${
+//             isDropDownVisible ? "rotate-180" : ""
+//           }`}
+//         />
+//       </div>
+
+//       {/* Dropdown */}
+//       {isDropDownVisible && (
+//         <div
+//           className="absolute z-20 w-full bg-white border border-gray-200
+//         rounded-xl shadow-lg mt-2 overflow-hidden animate-fadeIn"
+//         >
+//           {options.map((option) => (
+//             <div
+//               key={option}
+//               onClick={() => {
+//                 onChange(option);
+//                 setIsDropDownVisible(false);
+//               }}
+//               className="px-4 py-3 cursor-pointer
+//               hover:bg-orange-50 hover:text-orange-600 transition"
+//             >
+//               {option}
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default CustomDropDownMenu;

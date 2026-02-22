@@ -386,16 +386,13 @@ const Profile = () => {
                       <CalendarDays className="w-5 h-5 text-gray-500" />
                     </div>
 
-                    {/* Calendar Modal */}
                     {showCalendar && (
                       <div className="fixed inset-0 z-50 flex items-center justify-center">
-                        {/* Overlay */}
                         <div
                           className="absolute inset-0 bg-black/50"
                           onClick={() => setShowCalendar(false)}
                         />
 
-                        {/* Calendar */}
                         <div className="relative z-10">
                           <CustomCalender
                             value={selectedDate}
@@ -413,7 +410,6 @@ const Profile = () => {
                       </div>
                     )}
 
-                    {/* Hidden react-hook-form field */}
                     <input
                       type="hidden"
                       {...register("end_date", {
@@ -451,7 +447,6 @@ const Profile = () => {
           </form>
         ) : (
           <div>
-            {/* basic information */}
             <div className="mx-auto grid place-items-center  ">
               <div
                 className="bg-linear-to-r from-gray-700 to-gray-500 text-white

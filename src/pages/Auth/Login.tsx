@@ -22,7 +22,7 @@ const Login = () => {
     <div className="flex justify-center items-center min-h-screen bg-background ">
       <div className="p-8 bg-white shadow-lg outline outline-gray-200 rounded-lg max-w-sm lg:max-w-lg w-full">
         <h1 className="text-2xl text-[#333] font-bold text-center ">
-          Welcome Back Sign in to Continue
+          Sign in to Continue
         </h1>
         <p className="text-center  mt-2 text-[#808080] text-md  ">
           Don't Have an Account?{" "}
@@ -31,40 +31,46 @@ const Login = () => {
           </NavLink>
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <input
-              id="email"
-              type="email"
-              {...register("email", {
-                required: "Email is required",
-              })}
-              placeholder="Email Address"
-              className={` mt-6 w-full px-3 py-2 border  border-gray-300 shadow-sm`}
-            />
-            {errors.email && (
-              <p className=" mt-2  px-1 text-sm text-red-600">
-                {errors.email?.message}
-              </p>
-            )}
-            <input
-              id="password"
-              type="password"
-              {...register("password", {
-                required: "Enter your Password",
-              })}
-              placeholder="Password"
-              className={`mt-6 w-full px-3 py-2 border border-gray-300 shadow-sm `}
-            />
-            {errors.password && (
-              <p className=" mt-2  px-1 text-sm text-red-600">
-                {errors.password?.message}
-              </p>
-            )}
+          <div className="space-y-2">
+            <div>
+              <label className="font-normal ">Email</label>
+              <input
+                id="email"
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                })}
+                placeholder="Email Address"
+                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-md`}
+              />
+              {errors.email && (
+                <p className=" mt-2  px-1 text-sm text-red-600">
+                  {errors.email?.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="font-normal">Password</label>
+              <input
+                id="password"
+                type="password"
+                {...register("password", {
+                  required: "Enter your Password",
+                })}
+                placeholder="Password"
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-md`}
+              />
+              {errors.password && (
+                <p className=" mt-2  px-1 text-sm text-red-600">
+                  {errors.password?.message}
+                </p>
+              )}
+            </div>
           </div>
 
           <NavLink to="/dashboard">
             <button
-              className=" group flex items-center justify-center border mt-8 px-3 py-2 w-full bg-[#FF8A00] font-bold text-md cursor-pointer text-white"
+              className=" group flex items-center justify-center border mt-8 px-3 py-2 w-full bg-[#FF8A00] rounded-md font-bold text-md cursor-pointer text-white"
               type="submit"
             >
               <span className="transition duration-300 group-hover:-translate-x-2">

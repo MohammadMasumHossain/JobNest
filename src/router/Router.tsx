@@ -2,6 +2,7 @@ import DashboardHome from "@/components/DashboardHome";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import MainLayout from "@/layouts/MainLayout";
 import Login from "@/pages/Auth/Login";
+import LogOut from "@/pages/Auth/LogOut";
 import Register from "@/pages/Auth/Register";
 import CreateUser from "@/pages/Dashboard/Admin/CreateUser";
 import JobDetails from "@/pages/Dashboard/Admin/JobDetails";
@@ -52,6 +53,10 @@ const Router = createBrowserRouter([
       {
         path: "profile",
         Component: Profile,
+      },
+      {
+        path: "logout",
+        Component: LogOut,
       },
     ],
   },

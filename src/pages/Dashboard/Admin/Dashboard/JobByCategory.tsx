@@ -48,7 +48,7 @@ const JobByCategory: React.FC = () => {
         Job Posts by Category
       </h2>
 
-      <div className="w-full h-87">
+      <div className="w-full h-100">
         <ResponsiveContainer>
           <PieChart>
             <Pie
