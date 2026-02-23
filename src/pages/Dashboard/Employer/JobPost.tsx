@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import "react-calendar/dist/Calendar.css";
@@ -102,85 +102,15 @@ const JobPost = () => {
               )}
             </div>
 
-            {/* <div>
-              <label className="font-medium">Job Category</label>
-              <input
-                id="jobcategory"
-                type="text"
-                {...register("jobcategory", {
-                  required: "Job Category is required",
-                })}
-                placeholder="Job Category"
-                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
-              />
-              {errors.jobcategory && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.jobcategory?.message}
-                </p>
-              )}
-            </div> */}
-
             <div>
               <label className="font-medium">Job Title</label>
-              <CustomDropDown options={jobTitle} />
+              <CustomDropDown options={jobTitle} icon={<ChevronDown />} />
             </div>
-            {/* <div>
-              <label className="font-medium">Job Type</label>
-              <input
-                id="jobType"
-                type="text"
-                {...register("jobType", {
-                  required: "Job Type is required",
-                })}
-                placeholder="Job Type"
-                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
-              />
-              {errors.jobType && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.jobType?.message}
-                </p>
-              )}
-            </div> */}
-            {/* <CustomDropDown
-              id="jobType"
-              label="Job Type"
-              placeholder="Select Job Type"
-              options={[
-                { label: "Full-Time", value: "full-time" },
-                { label: "Part-Time", value: "part-time" },
-                { label: "Contract", value: "contract" },
-                { label: "Internship", value: "internship" },
-              ]}
-              register={register("jobType", {
-                required: "Job Type is required",
-              })}
-              error={errors.jobType}
-            /> */}
 
             <div>
               <label className="font-medium">Job Type</label>
-              <CustomDropDown options={jobType} />
+              <CustomDropDown options={jobType} icon={<ChevronDown />} />
             </div>
-
-            {/* <div>
-              <label className="font-medium">
-                Skills <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                id="skills"
-                type="text"
-                {...register("skills", {
-                  required: "Skills are required",
-                })}
-                placeholder="Skills"
-                className={` mt-1 w-full px-3 py-2 border  border-gray-300 shadow-sm rounded-sm`}
-              />
-              {errors.skills && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.skills?.message}
-                </p>
-              )}
-            </div> */}
 
             <div>
               <label className="font-medium">
@@ -200,26 +130,13 @@ const JobPost = () => {
               type="hidden"
               {...register("skills", { required: "Job Type is required" })}
             />
-            {/* <div>
-              <label className="font-medium">Experience Level</label>
-              <input
-                id="experienceLevel"
-                type="text"
-                {...register("experienceLevel", {
-                  required: "Experience Level is required",
-                })}
-                placeholder="Experience Level"
-                className={`mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-sm `}
-              />
-              {errors.experienceLevel && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
-                  {errors.experienceLevel?.message}
-                </p>
-              )}
-            </div> */}
+
             <div>
               <label className="font-medium">Experience Level</label>
-              <CustomDropDown options={experienceLevel} />
+              <CustomDropDown
+                options={experienceLevel}
+                icon={<ChevronDown />}
+              />
             </div>
 
             <div>
@@ -319,16 +236,13 @@ const JobPost = () => {
                 <CalendarDays className="w-5 h-5 text-gray-500" />
               </div>
 
-              {/* Calendar Modal */}
               {showCalendar && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center">
-                  {/* Overlay */}
                   <div
                     className="absolute inset-0 bg-black/50"
                     onClick={() => setShowCalendar(false)}
                   />
 
-                  {/* Calendar */}
                   <div className="relative z-10">
                     <CustomCalender
                       value={selectedDate}
@@ -346,7 +260,6 @@ const JobPost = () => {
                 </div>
               )}
 
-              {/* Hidden react-hook-form field */}
               <input
                 type="hidden"
                 {...register("applicationDeadline", {
@@ -389,7 +302,7 @@ const JobPost = () => {
                   required: "Job Description is required",
                 })}
                 placeholder="Job Description"
-                className={` mt-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 mb-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.jobDescription && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -407,7 +320,7 @@ const JobPost = () => {
                   required: "Job Responsibilities is required",
                 })}
                 placeholder="Job Responsibilities"
-                className={` mt-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 mb-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.JobResponsibilities && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -425,7 +338,7 @@ const JobPost = () => {
                   required: "Educational Requirements is required",
                 })}
                 placeholder="Educational Requirements"
-                className={` mt-2 w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 mb-2  w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
               />
               {errors.educationalRequirements && (
                 <p className=" mt-2  px-1 text-sm text-red-600">
@@ -439,7 +352,7 @@ const JobPost = () => {
                 id="benefits"
                 {...register("benefits", {})}
                 placeholder="Benefits"
-                className={` mt-1 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                className={` mt-1 mb-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
               />
             </div>
           </div>
@@ -448,13 +361,13 @@ const JobPost = () => {
         <div className="bg-accent  rounded-sm"></div>
 
         <button
-          className=" group flex mx-auto justify-center border mt-8 px-3 rounded-md py-2 w-40 bg-[#FF8A00] font-bold text-md cursor-pointer text-white"
+          className=" group flex mx-auto justify-center  border mt-8 px-3 rounded-md py-2 w-40 bg-orange-500 font-bold text-md cursor-pointer text-white"
           type="submit"
         >
           <span className="transition duration-300 group-hover:-translate-x-2">
-            Submit jobs
+            Submit job
           </span>
-          <span className="w-5 h-5 opacity-0 py-0.5  group-hover:opacity-100  group-hover:translate-x-2 transition duration-300">
+          <span className="w-5 h-5 opacity-0 py-0.5  group-hover:opacity-100  group-hover:translate-x-3 transition duration-300">
             <ChevronRight size={20} />
           </span>
         </button>

@@ -31,12 +31,12 @@ const DashboardPage: React.FC = () => {
   ];
 
   return (
-    <div className="p-8">
+    <div className="p-2">
       <h1 className="text-2xl font-semibold mb-6 text-gray-800">
         Analytics Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {dummyMetrics.map((metric, index) => (
           <StatCard
             key={index}

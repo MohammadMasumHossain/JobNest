@@ -1,7 +1,8 @@
-// pages/Dashboard/Admin/JobDetails.tsx
-
 import { useNavigate, useParams } from "react-router";
 import jobListData from "./jobList.json";
+
+import toast, { Toaster } from "react-hot-toast";
+import Button from "@/components/ui/Button";
 
 const JobDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,8 +11,18 @@ const JobDetails = () => {
 
   if (!job) return <p className="p-6 text-red-500">Job not found.</p>;
 
+  const handleConfirm = () => {
+    toast.success("You confirmed the action!");
+  };
+
+  const handleCancel = () => {
+    toast.error("You cancelled the action.");
+  };
+
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-2xl mt-6">
+      <Toaster position="top-right" />
+
       <button
         onClick={() => navigate(-1)}
         className="text-orange-600 hover:underline mb-4"
@@ -58,6 +69,11 @@ const JobDetails = () => {
           ))}
         </ul>
       </section>
+
+      <div className="flex justify-center gap-4 mt-6">
+        <Button label="Confirm" variant="confirm" onClick={handleConfirm} />
+        <Button label="Delete" variant="Delete" onClick={handleCancel} />
+      </div>
     </div>
   );
 };

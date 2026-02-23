@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useNavigate } from "react-router";
 
 const LogOut = () => {
@@ -8,11 +9,14 @@ const LogOut = () => {
     localStorage.removeItem("token");
     sessionStorage.clear();
 
-    // Redirect to login page
-    navigate("/", { replace: true });
+    const timer = setTimeout(() => {
+      navigate("/", { replace: true });
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [navigate]);
 
-  return null; // No UI needed
+  return null;
 };
 
 export default LogOut;

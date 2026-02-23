@@ -1,56 +1,22 @@
-import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 import { User2 } from "lucide-react";
+import TextField from "@/components/ui/TextField";
 
 export type UserForm = {
   email: string;
   password: string;
-
+  confirmpassword: string;
   role: string;
+  location: string;
   phone: string;
-};
-
-type CreateUserModalProps = {
-  onClose: () => void;
 };
 
 const roles = ["Admin", "Employer"];
 
-const InputField = ({
-  label,
-  id,
-  type = "text",
-  placeholder,
-  register,
-  required,
-  pattern,
-  error,
-}: {
-  label: string;
-  id: keyof UserForm;
-  type?: string;
-  placeholder?: string;
-  register: any;
-  required?: string;
-  pattern?: { value: RegExp; message: string };
-  error?: string;
-}) => (
-  <div className="flex flex-col">
-    <label htmlFor={id} className="font-medium mb-1">
-      {label}
-    </label>
-    <input
-      id={id}
-      type={type}
-      placeholder={placeholder}
-      {...register(id, { required, pattern })}
-      className={`mt-1 w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-        error ? "border-red-500" : "border-gray-300"
-      }`}
-    />
-    {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-  </div>
-);
+type CreateUserModalProps = {
+  onClose: () => void;
+};
 
 const CreateUser = ({ onClose }: CreateUserModalProps) => {
   const {
@@ -59,6 +25,7 @@ const CreateUser = ({ onClose }: CreateUserModalProps) => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<UserForm>();
+
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const onSubmit: SubmitHandler<UserForm> = async (data) => {
@@ -88,34 +55,53 @@ const CreateUser = ({ onClose }: CreateUserModalProps) => {
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <InputField
+          <TextField
             label="Email"
             id="email"
             type="email"
             placeholder="you@example.com"
-            register={register}
-            required="Email is required"
+            register={register("email", { required: "Email is required" })}
             error={errors.email?.message}
+            required={true}
           />
 
-          <InputField
+          <TextField
             label="Password"
             id="password"
             type="password"
             placeholder="Enter a strong password"
-            register={register}
-            required="Password is required"
-            pattern={{
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              message:
-                "Password must be at least 8 characters with letters and numbers",
-            }}
+            register={register("password", {
+              required: "Password is required",
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                message:
+                  "Password must be at least 8 characters with letters and numbers",
+              },
+            })}
             error={errors.password?.message}
+            required={true}
+          />
+
+          <TextField
+            label="Confirm Password"
+            id="confirmpassword"
+            type="password"
+            placeholder="Confirm password"
+            register={register("confirmpassword", {
+              required: "Confirm password is required",
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                message:
+                  "Password must be at least 8 characters with letters and numbers",
+              },
+            })}
+            error={errors.confirmpassword?.message}
+            required={true}
           />
 
           <div className="flex flex-col">
             <label htmlFor="role" className="font-medium mb-1">
-              Role
+              Role <span className="text-red-600">*</span>
             </label>
             <select
               id="role"
@@ -136,14 +122,25 @@ const CreateUser = ({ onClose }: CreateUserModalProps) => {
             )}
           </div>
 
-          <InputField
+          <TextField
+            label="Location"
+            id="location"
+            placeholder="Enter your location"
+            register={register("location")}
+            error={errors.location?.message}
+            required={false}
+          />
+
+          <TextField
             label="Phone Number"
             id="phone"
             type="tel"
-            placeholder="phone number"
-            register={register}
-            required="Phone number is required"
+            placeholder="Phone number"
+            register={register("phone", {
+              required: "Phone number is required",
+            })}
             error={errors.phone?.message}
+            required={true}
           />
 
           <button

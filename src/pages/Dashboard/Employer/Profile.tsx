@@ -198,7 +198,8 @@ const Profile = () => {
                   Educational Background
                 </h1>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 px-8 gap-8">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 px-8 mt-6 gap-8">
                 <div>
                   <label className="text-md font-bold text-black">
                     Degree:
