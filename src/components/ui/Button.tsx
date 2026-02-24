@@ -6,7 +6,7 @@ type ButtonProps = {
   variant?: "confirm" | "Delete";
   onClick?: () => void;
   disabled?: boolean;
-  className?: string; // ✅ Add this line
+  className?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "confirm",
   onClick,
   disabled = false,
-  className = "", // ✅ default to empty string
+  className = "",
 }) => {
   const styles = {
     confirm: "bg-orange-500 text-white",

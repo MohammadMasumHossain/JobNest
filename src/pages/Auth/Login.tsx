@@ -17,12 +17,10 @@ const Login = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // Show toast
     toast.success("Login successful!");
 
     console.log("form submitted", data);
 
-    // Navigate to dashboard after a short delay to allow toast to show
     setTimeout(() => navigate("/dashboard"), 500);
   };
 

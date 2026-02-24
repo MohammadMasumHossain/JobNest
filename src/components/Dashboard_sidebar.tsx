@@ -29,7 +29,7 @@ const menuItems: MenuItem[] = [
 ];
 
 const profileItem: MenuItem = {
-  name: "Profile",
+  name: "Masum Hossain",
   icon: CircleUserRound,
   path: "/dashboard/profile",
 };
