@@ -40,6 +40,7 @@ const Dashboard_sidebar = () => {
 
   return (
     <>
+      {/* Mobile top bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-gray-800 text-white flex items-center justify-between px-4 py-3 shadow z-50">
         <button onClick={() => setMobileOpen(true)}>
           <Menu size={28} />
@@ -47,6 +48,7 @@ const Dashboard_sidebar = () => {
         <div />
       </div>
 
+      {/* Mobile backdrop */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -59,6 +61,7 @@ const Dashboard_sidebar = () => {
         )}
       </AnimatePresence>
 
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -73,16 +76,16 @@ const Dashboard_sidebar = () => {
                 <X size={24} />
               </button>
             </div>
-
             <SidebarContent isOpen={true} />
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Desktop Sidebar */}
       <motion.div
         animate={{ width: isOpen ? 260 : 80 }}
         transition={{ duration: 0.3 }}
-        className="hidden md:flex flex-col h-screen bg-gray-800 text-white shadow-xl"
+        className="hidden md:flex flex-col h-screen bg-gray-800 text-white shadow-xl relative"
       >
         {isOpen ? (
           <div className="flex items-center justify-between px-6 mt-4 mb-2">
@@ -122,25 +125,34 @@ const Dashboard_sidebar = () => {
 
 const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div className="flex flex-col justify-between h-full pt-2">
+    <div className="flex flex-col justify-between h-full pt-2 relative">
       <ul className="space-y-2 mt-4 px-2">
         {menuItems.map((item) => (
           <NavLink key={item.path} to={item.path} end>
             {({ isActive }) => (
-              <li
-                className={`flex items-center ${
-                  isOpen
-                    ? "gap-4 px-3 py-3 justify-start"
-                    : "justify-center py-3"
-                } rounded-lg transition-all duration-200 ${
-                  isActive
-                    ? "bg-orange-500 text-white shadow-md"
-                    : "hover:bg-gray-700"
-                }`}
-              >
-                <item.icon size={isOpen ? 22 : 24} />
-                {isOpen && (
-                  <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+              <li className="relative group">
+                <div
+                  className={`flex items-center ${
+                    isOpen
+                      ? "gap-4 px-3 py-3 justify-start"
+                      : "justify-center py-3"
+                  } rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? "bg-orange-500 text-white shadow-md"
+                      : "hover:bg-gray-700"
+                  }`}
+                >
+                  <item.icon size={isOpen ? 22 : 24} />
+                  {isOpen && (
+                    <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+                      {item.name}
+                    </span>
+                  )}
+                </div>
+
+                {/* Tooltip for collapsed sidebar */}
+                {!isOpen && (
+                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 rounded-lg bg-gray-900 text-white text-sm font-medium whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50">
                     {item.name}
                   </span>
                 )}
@@ -153,18 +165,28 @@ const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
       <div className="p-2 border-t border-gray-700 mb-4 space-y-2">
         <NavLink to={profileItem.path} end>
           {({ isActive }) => (
-            <li
-              className={`flex items-center ${
-                isOpen ? "gap-4 px-3 py-3 justify-start" : "justify-center py-3"
-              } rounded-lg transition-all duration-200 ${
-                isActive
-                  ? "bg-orange-500 text-white shadow-md"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              <profileItem.icon size={isOpen ? 22 : 24} />
-              {isOpen && (
-                <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+            <li className="relative group">
+              <div
+                className={`flex items-center ${
+                  isOpen
+                    ? "gap-4 px-3 py-3 justify-start"
+                    : "justify-center py-3"
+                } rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? "bg-orange-500 text-white shadow-md"
+                    : "hover:bg-gray-700"
+                }`}
+              >
+                <profileItem.icon size={isOpen ? 22 : 24} />
+                {isOpen && (
+                  <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+                    {profileItem.name}
+                  </span>
+                )}
+              </div>
+
+              {!isOpen && (
+                <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded-md bg-gray-900 text-white text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-50">
                   {profileItem.name}
                 </span>
               )}
@@ -173,14 +195,22 @@ const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
         </NavLink>
 
         <NavLink to="/dashboard/logout">
-          <li
-            className={`flex items-center cursor-pointer ${
-              isOpen ? "gap-4 px-3 py-3 justify-start" : "justify-center py-3"
-            } rounded-lg transition-all duration-200 hover:bg-gray-700`}
-          >
-            <LogOut size={isOpen ? 22 : 24} />
-            {isOpen && (
-              <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+          <li className="relative group">
+            <div
+              className={`flex items-center cursor-pointer ${
+                isOpen ? "gap-4 px-3 py-3 justify-start" : "justify-center py-3"
+              } rounded-lg transition-all duration-200 hover:bg-gray-700`}
+            >
+              <LogOut size={isOpen ? 22 : 24} />
+              {isOpen && (
+                <span className="text-sm md:text-base font-medium md:font-semibold tracking-wide">
+                  Logout
+                </span>
+              )}
+            </div>
+
+            {!isOpen && (
+              <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded-md bg-gray-900 text-white text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-50">
                 Logout
               </span>
             )}

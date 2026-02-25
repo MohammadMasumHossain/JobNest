@@ -127,13 +127,13 @@ const ManageUser = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setEditingUser(row.original)}
-            className="px-3 w-20 py-1 text-white bg-blue-500 rounded hover:bg-blue-600 transition"
+            className="px-3 w-20 py-1 cursor-pointer text-white bg-blue-500 rounded hover:bg-blue-600 transition"
           >
             Edit
           </button>
           <button
             onClick={() => setDeleteTarget(row.original.id)}
-            className="px-3 w-20 py-1 text-white bg-red-500 rounded hover:bg-red-600 transition"
+            className="px-3 w-20 py-1 cursor-pointer text-white bg-red-500 rounded hover:bg-red-600 transition"
           >
             Delete
           </button>
@@ -156,18 +156,19 @@ const ManageUser = () => {
   });
 
   return (
-    <div className="flex flex-col min-h-screen max-w-8xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col min-h-screen max-w-8xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <Toaster position="bottom-right" reverseOrder={false} />
 
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Manage Users</h1>
+      <h1 className="text-2xl md:text-3xl font-bold  text-gray-800 pt-4 md:pt-0  mb-4 md:mb-6">
+        Manage Users
+      </h1>
 
-      {/* Search + Create */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        <div className="relative flex-1 w-full md:max-w-md">
+      <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center mb-8 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        <div className="relative w-full sm:w-full md:flex-1 md:max-w-md lg:max-w-lg">
           <input
             type="text"
             placeholder="Search users..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition"
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition text-sm sm:text-base md:text-base lg:text-lg"
             value={globalFilter ?? ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
@@ -179,7 +180,13 @@ const ManageUser = () => {
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl shadow-lg hover:from-orange-600 hover:to-orange-700 transition transform hover:-translate-y-0.5"
+          className="flex items-center justify-center gap-2 px-4 sm:px-5 md:px-6 lg:px-8 py-3 w-full sm:w-auto md:w-auto text-sm sm:text-base md:text-base lg:text-lg cursor-pointer 
+      bg-orange-500 text-white 
+      font-semibold rounded-md 
+      shadow-lg 
+      hover:bg-orange-600 
+      transition transform hover:-translate-y-0.5
+    "
         >
           <User2 size={20} />
           Create User
@@ -236,9 +243,7 @@ const ManageUser = () => {
         </table>
       </div>
 
-      {/* Pagination */}
       <div className="flex flex-col md:flex-row justify-between items-center mt-4 text-sm text-gray-700">
-        {/* Items per page */}
         <div className="flex bg-white px-2 py-1 rounded-md items-center mb-4 mt-4 space-x-4">
           <span className="ml-2">Items per page</span>
           <select

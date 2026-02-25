@@ -47,7 +47,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
       open={open}
       onOpenChange={onClose}
       title={
-        <span className="ext-2xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+        <span className="text-2xl font-bold text-center mb-6 flex items-center justify-center gap-2">
           <User2 /> Edit User
         </span>
       }
@@ -62,7 +62,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
           required
         />
 
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <label className="font-medium mb-1">
             Role <span className="text-red-600">*</span>
           </label>

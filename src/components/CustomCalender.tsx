@@ -37,7 +37,7 @@ const CustomCalender: React.FC<Props> = ({
     date.getDate() === value.getDate();
 
   return (
-    <div className="w-105 p-6 bg-linear-to-br from-orange-50 via-white to-amber-50 border border-orange-200 rounded-2xl shadow-2xl">
+    <div className="w-80 md:w-105 p-6 bg-linear-to-br from-orange-50 via-white to-amber-50 border border-orange-200 rounded-2xl shadow-2xl">
       <div className="flex items-center justify-between mb-3">
         <button onClick={goPrev}>←</button>
         <div className="font-bold text-lg text-orange-700">

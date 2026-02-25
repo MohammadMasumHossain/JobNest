@@ -1,5 +1,3 @@
-"use client";
-
 import Button from "@/components/ui/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
@@ -40,10 +38,23 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0  bg-black/50" />
-        <Dialog.Content className="fixed pl-10 pt-10  top-1/2 left-1/2 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
-          <div className="flex justify-between items-center mb-2 mt-2 ">
-            <Dialog.Title className="text-xl font-bold">
+        <Dialog.Overlay className="fixed inset-0 bg-black/50 z-40" />
+        <Dialog.Content
+          className="
+            fixed top-1/2 left-1/2 z-50
+            w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]
+            max-w-2xl
+            max-h-[90vh]
+            overflow-y-auto
+            rounded-lg
+            bg-white
+            p-4 sm:p-6 md:p-8
+            -translate-x-1/2 -translate-y-1/2
+            shadow-lg
+          "
+        >
+          <div className="flex justify-between items-start ">
+            <Dialog.Title className="text-lg sm:text-xl md:text-2xl font-bold">
               {job.jobTitle}
             </Dialog.Title>
             <button onClick={() => onOpenChange(false)}>
@@ -51,22 +62,27 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
             </button>
           </div>
 
-          <p className=" text-bold text-lg mb-2">
+          <div className="mb-2 text-sm sm:text-base font-semibold">
             <div>{job.company}</div>
             <div>{job.location}</div>
-          </p>
-          <p className="text-gray-600 mb-4">
+          </div>
+
+          <p className="text-gray-600 mb-4 text-sm sm:text-base">
             {job.jobType} | {job.salary} | {job.experience} experience
           </p>
 
           <section className="mb-4">
-            <h2 className="font-semibold mb-1">Job Description</h2>
-            <p>{job.jobDescription}</p>
+            <h2 className="font-semibold mb-1 text-sm sm:text-base md:text-lg">
+              Job Description
+            </h2>
+            <p className="text-sm sm:text-base">{job.jobDescription}</p>
           </section>
 
           <section className="mb-4">
-            <h2 className="font-semibold mb-1">Requirements</h2>
-            <ul className="list-disc list-inside">
+            <h2 className="font-semibold mb-1 text-sm sm:text-base md:text-lg">
+              Requirements
+            </h2>
+            <ul className="list-disc list-inside text-sm sm:text-base">
               {job.requirements.map((req, i) => (
                 <li key={i}>{req}</li>
               ))}
@@ -74,26 +90,34 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
           </section>
 
           <section className="mb-4">
-            <h2 className="font-semibold mb-1">Responsibilities</h2>
-            <ul className="list-disc list-inside">
+            <h2 className="font-semibold mb-1 text-sm sm:text-base md:text-lg">
+              Responsibilities
+            </h2>
+            <ul className="list-disc list-inside text-sm sm:text-base">
               {job.jobResponsibilities.map((res, i) => (
                 <li key={i}>{res}</li>
               ))}
             </ul>
           </section>
 
-          <section className="mb-4">
-            <h2 className="font-semibold mb-1">Benefits</h2>
-            <ul className="list-disc list-inside">
+          <section className="">
+            <h2 className="font-semibold mb-1 text-sm sm:text-base md:text-lg">
+              Benefits
+            </h2>
+            <ul className="list-disc list-inside text-sm sm:text-base">
               {job.benefits.map((b, i) => (
                 <li key={i}>{b}</li>
               ))}
             </ul>
           </section>
 
-          <div className="flex justify-center gap-4 mt-6">
-            <Button label="Confirm" variant="confirm" onClick={onConfirm} />
-            <Button label="Delete" variant="Delete" onClick={onDelete} />
+          <div className="flex flex-row  justify-center items-center  gap-2 ">
+            <div>
+              <Button label="Confirm" variant="confirm" onClick={onConfirm} />
+            </div>
+            <div>
+              <Button label="Delete" variant="Delete" onClick={onDelete} />
+            </div>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
