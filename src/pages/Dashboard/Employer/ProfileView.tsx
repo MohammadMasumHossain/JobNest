@@ -1,17 +1,176 @@
+// import {
+//   CalendarDays,
+//   Mail,
+//   Phone,
+//   MapPin,
+//   User,
+//   GraduationCap,
+//   Briefcase,
+// } from "lucide-react";
+
+// type EducationData = {
+//   degree_title: string;
+//   university: string;
+//   Major: string;
+//   passing_year: number;
+// };
+
+// type ProfileData = {
+//   name: string;
+//   email: string;
+//   gender: string;
+//   age: number;
+//   role: string;
+//   address: string;
+//   mobile: string;
+//   education: EducationData[];
+//   job_designation: string;
+//   company_name: string;
+//   start_date: string;
+//   end_date: string;
+// };
+
+// const ProfileView = ({ profile }: { profile: ProfileData }) => {
+//   return (
+//     <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+//       {/* Header */}
+//       <div className="h-32 bg-linear-to-r from-gray-800 to-gray-700 relative">
+//         <div className="absolute -bottom-12 left-8">
+//           <div className="w-24 h-24 rounded-full bg-gray-200 border-4 border-white flex items-center justify-center text-3xl font-bold">
+//             {profile.name.charAt(0)}
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="pt-16 px-8 pb-6 border-b">
+//         <h2 className="text-2xl font-semibold">{profile.name}</h2>
+//         <p className="text-sm text-gray-400">{profile.role}</p>
+//       </div>
+
+//       <div className="p-8 border-b">
+//         <h3 className="font-semibold text-lg mb-6">Personal Information</h3>
+//         <div className="grid md:grid-cols-2 gap-6 text-sm">
+//           <div className="flex items-start gap-2">
+//             <Mail size={18} className="text-gray-400 " />
+//             <div className="flex-1 flex">
+//               <span className=" w-26 font-medium text-gray-700">Email:</span>
+//               <span className="text-gray-600">{profile.email}</span>
+//             </div>
+//           </div>
+//           <div className="flex items-start gap-2">
+//             <Phone size={18} className="text-gray-400 " />
+//             <div className="flex-1 flex">
+//               <span className="w-32 font-medium text-gray-700">Phone:</span>
+//               <span className="text-gray-600">{profile.mobile}</span>
+//             </div>
+//           </div>
+//           <div className="flex items-start gap-3">
+//             <User size={18} className="text-gray-400 mt-1" />
+//             <div className="flex-1 flex">
+//               <span className="w-32 font-medium text-gray-700">Gender:</span>
+//               <span className="text-gray-600">{profile.gender}</span>
+//             </div>
+//           </div>
+//           <div className="flex items-start gap-3">
+//             <User size={18} className="text-gray-400 mt-1" />
+//             <div className="flex-1 flex">
+//               <span className="w-32 font-medium text-gray-700">Age:</span>
+//               <span className="text-gray-600">{profile.age}</span>
+//             </div>
+//           </div>
+//           <div className="flex items-start gap-3">
+//             <MapPin size={18} className="text-gray-400 mt-1" />
+//             <div className="flex-1 flex">
+//               <span className="w-32 font-medium text-gray-700">Address:</span>
+//               <span className="text-gray-600 ">{profile.address}</span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="p-8 border-b">
+//         <h3 className="font-semibold text-lg mb-6">Education</h3>
+//         {profile.education.map((edu, i) => (
+//           <div
+//             key={i}
+//             className="grid md:grid-cols-2 gap-6 mb-6 last:mb-0 text-sm"
+//           >
+//             <div className="flex items-center gap-2">
+//               <GraduationCap size={18} className="text-gray-400" />
+//               <span className="w-32 font-medium text-gray-700">Degree:</span>
+//               <span className="text-gray-600">{edu.degree_title}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <GraduationCap size={18} className="text-gray-400" />
+//               <span className="w-32 font-medium text-gray-700">
+//                 University:
+//               </span>
+//               <span className="text-gray-600">{edu.university}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <GraduationCap size={18} className="text-gray-400" />
+//               <span className="w-32 font-medium text-gray-700">Major:</span>
+//               <span className="text-gray-600">{edu.Major}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <GraduationCap size={18} className="text-gray-400" />
+//               <span className="w-32 font-medium text-gray-700">
+//                 Passing Year:
+//               </span>
+//               <span className="text-gray-600">{edu.passing_year}</span>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       <div className="p-8">
+//         <h3 className="font-semibold text-lg mb-6">Work Details</h3>
+//         <div className="grid md:grid-cols-2 gap-6 text-sm">
+//           <div className="flex items-center gap-2">
+//             <Briefcase size={18} className="text-gray-400" />
+//             <span className="w-32 font-medium text-gray-700">Designation:</span>
+//             <span className="text-gray-600">{profile.job_designation}</span>
+//           </div>
+//           <div className="flex items-center gap-2">
+//             <Briefcase size={18} className="text-gray-400" />
+//             <span className="w-32 font-medium text-gray-700">Company:</span>
+//             <span className="text-gray-600">{profile.company_name}</span>
+//           </div>
+//           <div className="flex items-center gap-2">
+//             <CalendarDays size={18} className="text-gray-400" />
+//             <span className="w-32 font-medium text-gray-700">Start Date:</span>
+//             <span className="text-gray-600">{profile.start_date}</span>
+//           </div>
+//           <div className="flex items-center gap-2">
+//             <CalendarDays size={18} className="text-gray-400" />
+//             <span className="w-32 font-medium text-gray-700">End Date:</span>
+//             <span className="text-gray-600">{profile.end_date}</span>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProfileView;
 import {
   CalendarDays,
   Mail,
   Phone,
   MapPin,
   User,
-  GraduationCap,
+  BookOpen,
+  Award,
+  Layers,
   Briefcase,
+  Edit3,
 } from "lucide-react";
+import { useState } from "react";
 
 type EducationData = {
   degree_title: string;
   university: string;
-  Major: string;
+  major: string;
   passing_year: number;
 };
 
@@ -28,92 +187,101 @@ type ProfileData = {
   company_name: string;
   start_date: string;
   end_date: string;
+  profile_image?: string; // optional profile image URL
 };
 
 const ProfileView = ({ profile }: { profile: ProfileData }) => {
+  const [image, setImage] = useState(profile.profile_image || "");
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
       {/* Header */}
       <div className="h-32 bg-linear-to-r from-gray-800 to-gray-700 relative">
         <div className="absolute -bottom-12 left-8">
-          <div className="w-24 h-24 rounded-full bg-gray-200 border-4 border-white flex items-center justify-center text-3xl font-bold">
-            {profile.name.charAt(0)}
+          <div className="w-24 h-24 rounded-full bg-gray-200 border-4 border-white relative flex items-center justify-center text-3xl font-bold overflow-hidden">
+            {image ? (
+              <img
+                src={image}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              profile.name.charAt(0)
+            )}
+            {/* Change Image Button */}
+            <label className="absolute bottom-0 right-0 bg-gray-700 p-1 rounded-full cursor-pointer">
+              <Edit3 size={16} className="text-white" />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </label>
           </div>
         </div>
       </div>
 
+      {/* Name and Role */}
       <div className="pt-16 px-8 pb-6 border-b">
         <h2 className="text-2xl font-semibold">{profile.name}</h2>
         <p className="text-sm text-gray-400">{profile.role}</p>
       </div>
 
+      {/* Personal Information */}
       <div className="p-8 border-b">
         <h3 className="font-semibold text-lg mb-6">Personal Information</h3>
-        <div className="grid md:grid-cols-2 gap-6 text-sm">
-          <div className="flex items-start gap-3">
-            <Mail size={18} className="text-gray-400 mt-1" />
-            <div className="flex-1 flex">
-              <span className="w-32 font-medium text-gray-700">Email:</span>
-              <span className="text-gray-600">{profile.email}</span>
+        <div className="grid lg:grid-cols-2 gap-6 text-sm">
+          {[
+            { icon: Mail, label: "Email", value: profile.email },
+            { icon: Phone, label: "Phone", value: profile.mobile },
+            { icon: User, label: "Gender", value: profile.gender },
+            { icon: User, label: "Age", value: profile.age },
+            { icon: MapPin, label: "Address", value: profile.address },
+          ].map(({ icon: Icon, label, value }, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <Icon size={18} className="text-gray-400" />
+              <span className="w-32 font-medium text-gray-700">{label}:</span>
+              <span className="text-gray-600">{value}</span>
             </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <Phone size={18} className="text-gray-400 mt-1" />
-            <div className="flex-1 flex">
-              <span className="w-32 font-medium text-gray-700">Phone:</span>
-              <span className="text-gray-600">{profile.mobile}</span>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <User size={18} className="text-gray-400 mt-1" />
-            <div className="flex-1 flex">
-              <span className="w-32 font-medium text-gray-700">Gender:</span>
-              <span className="text-gray-600">{profile.gender}</span>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <User size={18} className="text-gray-400 mt-1" />
-            <div className="flex-1 flex">
-              <span className="w-32 font-medium text-gray-700">Age:</span>
-              <span className="text-gray-600">{profile.age}</span>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <MapPin size={18} className="text-gray-400 mt-1" />
-            <div className="flex-1 flex">
-              <span className="w-32 font-medium text-gray-700">Address:</span>
-              <span className="text-gray-600 ">{profile.address}</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
+      {/* Education */}
       <div className="p-8 border-b">
         <h3 className="font-semibold text-lg mb-6">Education</h3>
         {profile.education.map((edu, i) => (
           <div
             key={i}
-            className="grid md:grid-cols-2 gap-6 mb-6 last:mb-0 text-sm"
+            className="grid lg:grid-cols-2 gap-6 mb-6 last:mb-0 text-sm"
           >
             <div className="flex items-center gap-2">
-              <GraduationCap size={18} className="text-gray-400" />
+              <Award size={18} className="text-gray-400" />
               <span className="w-32 font-medium text-gray-700">Degree:</span>
               <span className="text-gray-600">{edu.degree_title}</span>
             </div>
             <div className="flex items-center gap-2">
-              <GraduationCap size={18} className="text-gray-400" />
+              <BookOpen size={18} className="text-gray-400" />
               <span className="w-32 font-medium text-gray-700">
                 University:
               </span>
               <span className="text-gray-600">{edu.university}</span>
             </div>
             <div className="flex items-center gap-2">
-              <GraduationCap size={18} className="text-gray-400" />
+              <Layers size={18} className="text-gray-400" />
               <span className="w-32 font-medium text-gray-700">Major:</span>
-              <span className="text-gray-600">{edu.Major}</span>
+              <span className="text-gray-600">{edu.major}</span>
             </div>
             <div className="flex items-center gap-2">
-              <GraduationCap size={18} className="text-gray-400" />
+              <CalendarDays size={18} className="text-gray-400" />
               <span className="w-32 font-medium text-gray-700">
                 Passing Year:
               </span>
@@ -123,9 +291,10 @@ const ProfileView = ({ profile }: { profile: ProfileData }) => {
         ))}
       </div>
 
+      {/* Work Details */}
       <div className="p-8">
         <h3 className="font-semibold text-lg mb-6">Work Details</h3>
-        <div className="grid md:grid-cols-2 gap-6 text-sm">
+        <div className="grid lg:grid-cols-2 gap-6 text-sm">
           <div className="flex items-center gap-2">
             <Briefcase size={18} className="text-gray-400" />
             <span className="w-32 font-medium text-gray-700">Designation:</span>

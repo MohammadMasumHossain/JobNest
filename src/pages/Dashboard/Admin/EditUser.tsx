@@ -103,7 +103,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 mt-4 rounded-md shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-semibold py-3 mt-4 rounded-md shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? "Updating..." : "Update User"}
         </button>

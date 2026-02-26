@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import jobListData from "./jobList.json";
 import ReactPaginate from "react-paginate";
 import {
-  AlignJustify,
+  ArrowUpDown,
   ArrowUpRight,
   Banknote,
   Briefcase,
@@ -154,7 +154,7 @@ const JobListing = () => {
                 selected={jobTypeFilter}
                 onSelect={setJobTypeFilter}
                 rotateIcon={false}
-                icon={<Filter className="w-5 h-5" />}
+                icon={<Filter className="w-6 h-6" />}
               />
             </div>
 
@@ -164,7 +164,7 @@ const JobListing = () => {
                 selected={sortOption}
                 onSelect={setSortOption}
                 rotateIcon={false}
-                icon={<AlignJustify className="w-5 h-5 text-gray-400" />}
+                icon={<ArrowUpDown className="w-6 h-6" />}
               />
             </div>
           </div>

@@ -1,5 +1,4 @@
 import {
-  Briefcase,
   CircleUserRound,
   LayoutDashboard,
   List,
@@ -23,7 +22,7 @@ type MenuItem = {
 
 const menuItems: MenuItem[] = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-  { name: "Job Post", icon: Briefcase, path: "/dashboard/jobpost" },
+  // { name: "Job Post", icon: Briefcase, path: "/dashboard/jobpost" },
   { name: "Job Listing", icon: List, path: "/dashboard/joblisting" },
   { name: "User", icon: UserCog, path: "/dashboard/manageuser" },
 ];
@@ -69,13 +68,14 @@ const Dashboard_sidebar = () => {
             animate={{ x: 0 }}
             exit={{ x: -260 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 h-screen w-64 bg-gray-800 text-white z-50 md:hidden shadow-xl"
+            className="fixed top-0 left-0 min-h-screen md:h-screen w-64 bg-gray-800 text-white z-50 md:hidden shadow-xl flex flex-col"
           >
             <div className="flex justify-end p-4">
               <button onClick={() => setMobileOpen(false)}>
                 <X size={24} />
               </button>
             </div>
+
             <SidebarContent isOpen={true} />
           </motion.div>
         )}
@@ -125,7 +125,8 @@ const Dashboard_sidebar = () => {
 
 const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div className="flex flex-col justify-between h-full pt-2 relative">
+    <div className="flex flex-col flex-1 justify-between pt-2 relative">
+      {/* Top Menu Items */}
       <ul className="space-y-2 mt-4 px-2">
         {menuItems.map((item) => (
           <NavLink key={item.path} to={item.path} end>
@@ -150,7 +151,6 @@ const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
                   )}
                 </div>
 
-                {/* Tooltip for collapsed sidebar */}
                 {!isOpen && (
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 rounded-lg bg-gray-900 text-white text-sm font-medium whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50">
                     {item.name}

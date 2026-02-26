@@ -10,50 +10,50 @@ import {
   YAxis,
 } from "recharts";
 
-import { FaChevronDown } from "react-icons/fa";
 import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import { ArrowUpDown, Filter } from "lucide-react";
 
 type JobData = { month: string; year: number; jobs: number; color: string };
 
 const Data: JobData[] = [
-  { month: "Jan", year: 2024, jobs: 30, color: "#5C6F91" },
-  { month: "Feb", year: 2024, jobs: 45, color: "#5C6F91" },
-  { month: "Mar", year: 2024, jobs: 50, color: "#5C6F91" },
-  { month: "Apr", year: 2024, jobs: 40, color: "#5C6F91" },
+  { month: "January", year: 2024, jobs: 30, color: "#5C6F91" },
+  { month: "February", year: 2024, jobs: 45, color: "#5C6F91" },
+  { month: "March", year: 2024, jobs: 50, color: "#5C6F91" },
+  { month: "April", year: 2024, jobs: 40, color: "#5C6F91" },
   { month: "May", year: 2024, jobs: 60, color: "#6B8E7A" },
-  { month: "Jun", year: 2024, jobs: 55, color: "#6B8E7A" },
-  { month: "Jul", year: 2024, jobs: 70, color: "#6B8E7A" },
-  { month: "Aug", year: 2024, jobs: 65, color: "#6B8E7A" },
-  { month: "Sep", year: 2024, jobs: 80, color: "#C07A5C" },
-  { month: "Oct", year: 2024, jobs: 75, color: "#C07A5C" },
-  { month: "Nov", year: 2024, jobs: 90, color: "#C07A5C" },
-  { month: "Dec", year: 2024, jobs: 100, color: "#C07A5C" },
+  { month: "June", year: 2024, jobs: 55, color: "#6B8E7A" },
+  { month: "July", year: 2024, jobs: 70, color: "#6B8E7A" },
+  { month: "August", year: 2024, jobs: 65, color: "#6B8E7A" },
+  { month: "September", year: 2024, jobs: 80, color: "#C07A5C" },
+  { month: "October", year: 2024, jobs: 75, color: "#C07A5C" },
+  { month: "November", year: 2024, jobs: 90, color: "#C07A5C" },
+  { month: "December", year: 2024, jobs: 100, color: "#C07A5C" },
 
-  { month: "Jan", year: 2025, jobs: 40, color: "#5C6F91" },
-  { month: "Feb", year: 2025, jobs: 65, color: "#5C6F91" },
-  { month: "Mar", year: 2025, jobs: 80, color: "#5C6F91" },
-  { month: "Apr", year: 2025, jobs: 55, color: "#5C6F91" },
+  { month: "January", year: 2025, jobs: 40, color: "#5C6F91" },
+  { month: "February", year: 2025, jobs: 65, color: "#5C6F91" },
+  { month: "March", year: 2025, jobs: 80, color: "#5C6F91" },
+  { month: "April", year: 2025, jobs: 55, color: "#5C6F91" },
   { month: "May", year: 2025, jobs: 95, color: "#6B8E7A" },
-  { month: "Jun", year: 2025, jobs: 70, color: "#6B8E7A" },
-  { month: "Jul", year: 2025, jobs: 110, color: "#6B8E7A" },
-  { month: "Aug", year: 2025, jobs: 90, color: "#6B8E7A" },
-  { month: "Sep", year: 2025, jobs: 120, color: "#C07A5C" },
-  { month: "Oct", year: 2025, jobs: 100, color: "#C07A5C" },
-  { month: "Nov", year: 2025, jobs: 140, color: "#C07A5C" },
-  { month: "Dec", year: 2025, jobs: 160, color: "#C07A5C" },
+  { month: "June", year: 2025, jobs: 70, color: "#6B8E7A" },
+  { month: "July", year: 2025, jobs: 110, color: "#6B8E7A" },
+  { month: "August", year: 2025, jobs: 90, color: "#6B8E7A" },
+  { month: "September", year: 2025, jobs: 120, color: "#C07A5C" },
+  { month: "October", year: 2025, jobs: 100, color: "#C07A5C" },
+  { month: "November", year: 2025, jobs: 140, color: "#C07A5C" },
+  { month: "December", year: 2025, jobs: 160, color: "#C07A5C" },
 
-  { month: "Jan", year: 2026, jobs: 50, color: "#5C6F91" },
-  { month: "Feb", year: 2026, jobs: 70, color: "#5C6F91" },
-  { month: "Mar", year: 2026, jobs: 85, color: "#5C6F91" },
-  { month: "Apr", year: 2026, jobs: 60, color: "#6B8E7A" },
+  { month: "January", year: 2026, jobs: 50, color: "#5C6F91" },
+  { month: "February", year: 2026, jobs: 70, color: "#5C6F91" },
+  { month: "March", year: 2026, jobs: 85, color: "#5C6F91" },
+  { month: "April", year: 2026, jobs: 60, color: "#6B8E7A" },
   { month: "May", year: 2026, jobs: 100, color: "#6B8E7A" },
-  { month: "Jun", year: 2026, jobs: 80, color: "#6B8E7A" },
-  { month: "Jul", year: 2026, jobs: 120, color: "#6B8E7A" },
-  { month: "Aug", year: 2026, jobs: 95, color: "#6B8E7A" },
-  { month: "Sep", year: 2026, jobs: 130, color: "#C07A5C" },
-  { month: "Oct", year: 2026, jobs: 110, color: "#C07A5C" },
-  { month: "Nov", year: 2026, jobs: 150, color: "#C07A5C" },
-  { month: "Dec", year: 2026, jobs: 170, color: "#C07A5C" },
+  { month: "June", year: 2026, jobs: 80, color: "#6B8E7A" },
+  { month: "July", year: 2026, jobs: 120, color: "#6B8E7A" },
+  { month: "August", year: 2026, jobs: 95, color: "#6B8E7A" },
+  { month: "September", year: 2026, jobs: 130, color: "#C07A5C" },
+  { month: "October", year: 2026, jobs: 110, color: "#C07A5C" },
+  { month: "November", year: 2026, jobs: 150, color: "#C07A5C" },
+  { month: "December", year: 2026, jobs: 170, color: "#C07A5C" },
 ];
 
 const renderCustomBarLabel = ({ x, y, width, value }: any) => (
@@ -114,7 +114,8 @@ const MonthlyJobsChart: React.FC = () => {
               options={years.map(String)}
               selected={String(selectedYear)}
               onSelect={(val) => setSelectedYear(Number(val))}
-              icon={<FaChevronDown />}
+              rotateIcon={false}
+              icon={<Filter />}
             />
           </div>
 
@@ -123,13 +124,14 @@ const MonthlyJobsChart: React.FC = () => {
               options={sortOptions}
               selected={sortType}
               onSelect={(val) => setSortType(val as "Default" | "Asc" | "Desc")}
-              icon={<FaChevronDown />}
+              rotateIcon={false}
+              icon={<ArrowUpDown />}
             />
           </div>
         </div>
       </div>
 
-      <div className="w-full h-70 sm:h-80 md:h-90 lg:h-95 xl:h-100">
+      <div className="w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-112">
         <ResponsiveContainer>
           <BarChart
             data={filteredData}
@@ -141,6 +143,9 @@ const MonthlyJobsChart: React.FC = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 14 }}
+              // angle={-45}
+              dy={5}
+              // textAnchor="end"
             />
             <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 14 }} />
             <Tooltip content={CustomTooltip} />

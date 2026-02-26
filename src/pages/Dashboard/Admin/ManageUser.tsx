@@ -163,17 +163,17 @@ const ManageUser = () => {
         Manage Users
       </h1>
 
-      <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center mb-8 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+      <div className="bg-gray-800 rounded-md px-4 py-4 flex flex-col sm:flex-col md:flex-row justify-between items-center mb-8 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
         <div className="relative w-full sm:w-full md:flex-1 md:max-w-md lg:max-w-lg">
           <input
             type="text"
             placeholder="Search users..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition text-sm sm:text-base md:text-base lg:text-lg"
+            className="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-xl shadow-sm placeholder-white focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition text-sm sm:text-base md:text-base lg:text-lg"
             value={globalFilter ?? ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
           <Search
-            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white"
             size={20}
           />
         </div>
@@ -193,7 +193,6 @@ const ManageUser = () => {
         </button>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto bg-white rounded-md shadow-md">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-secondary">

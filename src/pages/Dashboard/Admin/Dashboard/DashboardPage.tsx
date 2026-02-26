@@ -8,25 +8,25 @@ const DashboardPage: React.FC = () => {
       title: "Total Users",
       value: 1500,
       icon: <Users />,
-      color: "bg-blue-500",
+      color: "bg-cyan-600",
     },
     {
       title: "Total Employers",
       value: 250,
       icon: <Briefcase />,
-      color: "bg-green-500",
+      color: "bg-slate-500",
     },
     {
       title: "Total Jobs Posted",
       value: 5000,
       icon: <FileText />,
-      color: "bg-yellow-500",
+      color: "bg-teal-600",
     },
     {
       title: "Applications Pending",
       value: 120,
       icon: <Clock />,
-      color: "bg-red-500",
+      color: "bg-orange-500",
     },
   ];
 

@@ -15,7 +15,7 @@ const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
       <Dialog.Overlay className="fixed inset-0 bg-black/50" />
       <Dialog.Content className="fixed top-1/2 left-1/2 max-w-lg w-full bg-white rounded-xl shadow-xl p-6 sm:p-8 -translate-x-1/2 -translate-y-1/2">
         <button
-          className="absolute top-8 right-8  hover:text-gray-600"
+          className="absolute cursor-pointer top-8 right-8  hover:text-gray-600"
           onClick={() => onOpenChange(false)}
         >
           <X />
