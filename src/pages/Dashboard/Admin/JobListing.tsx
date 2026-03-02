@@ -9,6 +9,8 @@ import {
   Clock4,
   Filter,
   LocateFixed,
+  MoreVertical,
+  Plus,
   Search,
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
@@ -16,7 +18,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Button from "@/components/ui/Button";
 import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
 
-import ConfirmDeleteModal from "@/components/ui/ConfirmDeleteModal";
+import JobEditModal from "./JobEditModal";
 import JobDetailsModal from "./JobDetailsModal";
 import { useNavigate } from "react-router";
 
@@ -36,7 +38,13 @@ type JobData = {
   benefits: string[];
 };
 
-const sortOptions = ["Latest", "Salary: High → Low", "Salary: Low → High"];
+const sortOptions = [
+  "Latest",
+  "Salary: High → Low",
+  "Salary: Low → High",
+  "Approved",
+  "Pending",
+];
 
 const JobListing = () => {
   const [jobs, setJobs] = useState<JobData[]>(jobListData);
@@ -46,8 +54,8 @@ const JobListing = () => {
   const [sortOption, setSortOption] = useState<string>(sortOptions[0]);
 
   const [selectedJob, setSelectedJob] = useState<JobData | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const itemsPerPage = 6;
@@ -70,6 +78,15 @@ const JobListing = () => {
     if (jobTypeFilter !== "All") {
       filtered = filtered.filter(
         (job) => job.jobType.toLowerCase() === jobTypeFilter.toLowerCase(),
+      );
+    }
+    if (sortOption === "Approved") {
+      filtered = filtered.filter(
+        (job) => job.status.toLowerCase() === "approved",
+      );
+    } else if (sortOption === "Pending") {
+      filtered = filtered.filter(
+        (job) => job.status.toLowerCase() === "pending",
       );
     }
 
@@ -96,43 +113,38 @@ const JobListing = () => {
     setItemOffset(newOffset);
   };
 
-  const openJobModal = (job: JobData) => {
+  const openDetailsModal = (job: JobData) => {
     setSelectedJob(job);
-    setModalOpen(true);
-  };
-
-  const handleConfirm = () => {
-    toast.success("You confirmed this job!");
-  };
-
-  const handleDelete = () => setConfirmDeleteOpen(true);
-
-  const handleDeleteConfirm = () => {
-    if (selectedJob) {
-      setJobs(jobs.filter((job) => job.id !== selectedJob.id));
-      toast.success("Job deleted successfully!");
-      setModalOpen(false);
-    }
-    setConfirmDeleteOpen(false);
+    setDetailsModalOpen(true);
   };
 
   return (
-    <div className="p-2  md:p-6 lg:p-0  min-h-screen">
+    <div className="p-2 md:p-6 lg:p-0 min-h-screen">
       <Toaster position="bottom-right" />
 
+      {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
-        <h1 className=" text-2xl md:text-3xl mt-8 md:mt-0 font-bold text-gray-800">
+        <h1 className="text-2xl md:text-3xl mt-8 md:mt-0 font-bold text-gray-800">
           Explore Job Opportunities
         </h1>
-        <div className="-mt-8 px-1">
-          <Button
-            className=" text-bold text-md md:text-bold md:text-lg py-3 text-center"
-            label="Job Post"
+        <div className="px-1">
+          <button
             onClick={() => navigate("/dashboard/jobpost")}
-          />
+            className="flex items-center justify-center gap-2 px-4 sm:px-5 md:px-6 lg:px-8 py-3 w-full sm:w-auto md:w-auto text-sm sm:text-base md:text-base lg:text-lg cursor-pointer 
+      bg-orange-500 text-white 
+      font-semibold rounded-md 
+      shadow-lg 
+      hover:bg-orange-600 
+      transition transform hover:-translate-y-0.5
+    "
+          >
+            <Plus size={20} />
+            <p>Job Post</p>
+          </button>
         </div>
       </div>
 
+      {/* Filters */}
       <div className="bg-white shadow-md rounded-md p-6 mb-10 border border-gray-200">
         <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
           <div className="relative w-full lg:w-1/3">
@@ -171,6 +183,7 @@ const JobListing = () => {
         </div>
       </div>
 
+      {/* Job Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentItems.length === 0 ? (
           <div className="col-span-full flex items-center justify-center h-[50vh] sm:h-[60vh] md:h-[70vh]">
@@ -183,11 +196,11 @@ const JobListing = () => {
           currentItems.map((job) => (
             <div
               key={job.id}
-              onClick={() => openJobModal(job)}
+              onClick={() => openDetailsModal(job)}
               className="group bg-white rounded-2xl p-6 border border-gray-200
-              hover:border-orange-400 hover:shadow-2xl
-              transition-all duration-300 cursor-pointer
-              flex flex-col justify-between"
+                hover:border-orange-400 hover:shadow-2xl
+                transition-all duration-300 cursor-pointer
+                flex flex-col justify-between"
             >
               <div>
                 <div className="flex justify-between items-start">
@@ -197,11 +210,26 @@ const JobListing = () => {
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">{job.company}</p>
                   </div>
-                  <span className="text-xs px-3 py-1 text-center bg-orange-100 text-orange-600 rounded-full">
-                    {job.jobType}
-                  </span>
+
+                  {/* Job Type Badge + Edit Button */}
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-center text-xs px-3 h-6 leading-none bg-orange-100 text-orange-600 rounded-full min-w-0">
+                      {job.jobType}
+                    </div>
+                    <button
+                      className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedJob(job);
+                        setEditModalOpen(true);
+                      }}
+                    >
+                      <MoreVertical size={16} />
+                    </button>
+                  </div>
                 </div>
 
+                {/* Job Details */}
                 <div className="mt-4 space-y-2 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <Banknote size={16} className="text-orange-500" />
@@ -217,19 +245,30 @@ const JobListing = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Briefcase size={16} className="text-orange-500" />
-                    <span>{job.status}</span>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        job.status === "pending"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : job.status === "approved"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-orange-100 text-orange-500"
+                      }`}
+                    >
+                      {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                    </span>
                   </div>
                 </div>
               </div>
 
+              {/* Footer */}
               <div className="mt-6 flex justify-between items-center">
                 <span className="text-xs text-gray-500">
                   Posted: {job.postedDate}
                 </span>
                 <div
                   className="w-9 h-9 flex items-center justify-center
-                  rounded-lg bg-gray-100 group-hover:bg-orange-500
-                  group-hover:text-white transition"
+                    rounded-lg bg-gray-100 group-hover:bg-orange-500
+                    group-hover:text-white transition"
                 >
                   <ArrowUpRight
                     size={18}
@@ -242,6 +281,7 @@ const JobListing = () => {
         )}
       </div>
 
+      {/* Pagination */}
       <div className="mt-10 flex justify-center">
         <ReactPaginate
           breakLabel="..."
@@ -263,18 +303,24 @@ const JobListing = () => {
         />
       </div>
 
-      <JobDetailsModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
+      {/* Modals */}
+      <JobEditModal
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
         job={selectedJob}
-        onConfirm={handleConfirm}
-        onDelete={handleDelete}
+        onSave={(updatedJob) => {
+          setJobs((prev) =>
+            prev.map((j) => (j.id === updatedJob.id ? updatedJob : j)),
+          );
+        }}
       />
 
-      <ConfirmDeleteModal
-        open={confirmDeleteOpen}
-        onClose={() => setConfirmDeleteOpen(false)}
-        onConfirm={handleDeleteConfirm}
+      <JobDetailsModal
+        open={detailsModalOpen}
+        onOpenChange={setDetailsModalOpen}
+        job={selectedJob}
+        onConfirm={() => toast.success("You confirmed this job!")}
+        onReject={() => toast.error("You rejected this job!")}
       />
     </div>
   );

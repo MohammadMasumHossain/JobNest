@@ -361,13 +361,14 @@ const JobPost = () => {
         <div className="bg-accent  rounded-sm"></div>
 
         <button
-          className=" group flex mx-auto justify-center  border mt-8 px-3 rounded-md py-2 w-40 bg-orange-500 font-bold text-md cursor-pointer text-white"
           type="submit"
+          className="group relative flex mx-auto justify-center items-center border mt-8 px-3 rounded-md py-2 w-40 bg-orange-500 font-bold text-md cursor-pointer overflow-hidden text-white"
         >
-          <span className="transition duration-300 group-hover:-translate-x-2">
+          <span className="transition-transform duration-300 group-hover:-translate-x-3">
             Submit job
           </span>
-          <span className="w-5 h-5 opacity-0 py-0.5  group-hover:opacity-100  group-hover:translate-x-3 transition duration-300">
+
+          <span className="absolute 7 opacity-0 transform transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-10">
             <ChevronRight size={20} />
           </span>
         </button>

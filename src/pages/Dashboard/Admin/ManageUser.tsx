@@ -168,7 +168,7 @@ const ManageUser = () => {
           <input
             type="text"
             placeholder="Search users..."
-            className="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-xl shadow-sm placeholder-white focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition text-sm sm:text-base md:text-base lg:text-lg"
+            className="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm placeholder-white focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition text-sm sm:text-base md:text-base lg:text-lg"
             value={globalFilter ?? ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
@@ -195,7 +195,7 @@ const ManageUser = () => {
 
       <div className="overflow-x-auto bg-white rounded-md shadow-md">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-secondary">
+          <thead className="bg-gray-800">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
