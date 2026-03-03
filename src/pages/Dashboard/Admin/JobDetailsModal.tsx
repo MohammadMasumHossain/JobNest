@@ -6,10 +6,13 @@ import { Briefcase, ClipboardList, FileText, Gift, X } from "lucide-react";
 export type JobData = {
   id: string;
   jobTitle: string;
+  vacancy: number;
   company: string;
   location: string;
   jobType: string;
-  salary: string;
+
+  Minsalary: number;
+  Maxsalary: number;
   experience: string;
   status: string;
   postedDate: string;
@@ -27,18 +30,18 @@ type JobDetailsModalProps = {
   onReject: () => void;
 };
 
-const getStatusStyle = (status: string) => {
-  switch (status.toLowerCase()) {
-    case "approved":
-      return "bg-green-50 text-green-700 border-green-200";
-    case "rejected":
-      return "bg-red-50 text-red-700 border-red-200";
-    case "pending":
-      return "bg-yellow-50 text-yellow-700 border-yellow-200";
-    default:
-      return "bg-gray-50 text-gray-700 border-gray-200";
-  }
-};
+// const getStatusStyle = (status: string) => {
+//   switch (status.toLowerCase()) {
+//     case "approved":
+//       return "bg-green-50 text-green-700 border-green-200";
+//     case "rejected":
+//       return "bg-red-50 text-red-700 border-red-200";
+//     case "pending":
+//       return "bg-yellow-50 text-yellow-700 border-yellow-200";
+//     default:
+//       return "bg-gray-50 text-gray-700 border-gray-200";
+//   }
+// };
 
 const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   open,
@@ -79,7 +82,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
 
               <button
                 onClick={() => onOpenChange(false)}
-                className="p-2 rounded-md hover:bg-gray-100 transition"
+                className="p-2 cursor-pointer rounded-md hover:bg-gray-100 transition"
               >
                 <X size={20} />
               </button>
@@ -90,16 +93,16 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
                 {job.jobType}
               </span>
               <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
-                {job.salary}
+                Salary : {job.Minsalary} - {job.Maxsalary}
               </span>
+
               <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
                 {job.experience} experience
               </span>
-              <span
-                className={`px-3 py-1 text-sm rounded-md border ${getStatusStyle(
-                  job.status,
-                )}`}
-              >
+              <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
+                Vacancy : {job.vacancy}
+              </span>
+              <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
                 {job.status}
               </span>
             </div>
@@ -128,7 +131,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
                   size={20}
                   className="text-orange-500 transition-transform duration-200 group-hover:scale-125"
                 />
-                Requirements
+                Educational Requirements
               </h3>
 
               <ul className="space-y-2 list-disc ml-2 marker:text-orange-500 list-inside text-gray-600">

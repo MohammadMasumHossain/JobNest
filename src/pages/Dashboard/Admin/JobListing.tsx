@@ -15,20 +15,21 @@ import {
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 
-import Button from "@/components/ui/Button";
 import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
 
-import JobEditModal from "./JobEditModal";
 import JobDetailsModal from "./JobDetailsModal";
 import { useNavigate } from "react-router";
 
 type JobData = {
   id: string;
+
   jobTitle: string;
   company: string;
   location: string;
   jobType: string;
-  salary: string;
+  Minsalary: number;
+  Maxsalary: number;
+  vacancy: number;
   experience: string;
   status: string;
   postedDate: string;
@@ -54,7 +55,7 @@ const JobListing = () => {
   const [sortOption, setSortOption] = useState<string>(sortOptions[0]);
 
   const [selectedJob, setSelectedJob] = useState<JobData | null>(null);
-  const [editModalOpen, setEditModalOpen] = useState(false);
+
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -65,8 +66,8 @@ const JobListing = () => {
     ...Array.from(new Set(jobs.map((job) => job.jobType))),
   ];
 
-  const getMinSalary = (salary: string) =>
-    parseInt(salary.split("-")[0].replace(/,/g, "").trim());
+  const getMinSalary = (job: JobData) => job.Minsalary;
+  const getMaxSalary = (job: JobData) => job.Maxsalary;
 
   const filteredJobs = useMemo(() => {
     let filtered = jobs.filter(
@@ -91,9 +92,9 @@ const JobListing = () => {
     }
 
     if (sortOption === "Salary: High → Low") {
-      filtered.sort((a, b) => getMinSalary(b.salary) - getMinSalary(a.salary));
+      filtered.sort((a, b) => getMaxSalary(b) - getMaxSalary(a));
     } else if (sortOption === "Salary: Low → High") {
-      filtered.sort((a, b) => getMinSalary(a.salary) - getMinSalary(b.salary));
+      filtered.sort((a, b) => getMinSalary(a) - getMinSalary(b));
     } else if (sortOption === "Latest") {
       filtered.sort(
         (a, b) =>
@@ -220,8 +221,11 @@ const JobListing = () => {
                       className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedJob(job);
-                        setEditModalOpen(true);
+                        // setSelectedJob(job);
+                        // setEditModalOpen(true);
+                        navigate("/dashboard/jobEditPage", {
+                          state: { jobData: job },
+                        });
                       }}
                     >
                       <MoreVertical size={16} />
@@ -233,7 +237,9 @@ const JobListing = () => {
                 <div className="mt-4 space-y-2 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <Banknote size={16} className="text-orange-500" />
-                    <span>{job.salary}</span>
+                    <span>
+                      {job.Minsalary}-{job.Maxsalary}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock4 size={16} className="text-orange-500" />
@@ -304,16 +310,14 @@ const JobListing = () => {
       </div>
 
       {/* Modals */}
-      <JobEditModal
-        open={editModalOpen}
-        onOpenChange={setEditModalOpen}
-        job={selectedJob}
-        onSave={(updatedJob) => {
+      {/* <JobEditPage
+        job={selectedJob ?? undefined} // <-- convert null to undefined
+        onSave={(updatedJob: JobData) => {
           setJobs((prev) =>
             prev.map((j) => (j.id === updatedJob.id ? updatedJob : j)),
           );
         }}
-      />
+      /> */}
 
       <JobDetailsModal
         open={detailsModalOpen}

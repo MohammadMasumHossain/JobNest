@@ -12,6 +12,7 @@ import JobPost from "@/pages/Dashboard/Employer/JobPost";
 import Profile from "@/pages/Dashboard/Employer/Profile";
 
 import { createBrowserRouter } from "react-router";
+import JobEditPage from "@/pages/Dashboard/Admin/JobEditPage";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const Router = createBrowserRouter([
         path: "jobpost",
         Component: JobPost,
       },
+      {
+        path: "jobEditPage",
+        Component: JobEditPage,
+      },
+
       {
         path: "joblisting",
         Component: JobListing,
