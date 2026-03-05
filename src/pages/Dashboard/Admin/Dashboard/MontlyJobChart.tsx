@@ -10,7 +10,7 @@ import {
   YAxis,
 } from "recharts";
 
-import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 import { ArrowUpDown, Filter } from "lucide-react";
 
 type JobData = { month: string; year: number; jobs: number; color: string };
@@ -143,9 +143,7 @@ const MonthlyJobsChart: React.FC = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 14 }}
-              // angle={-45}
               dy={5}
-              // textAnchor="end"
             />
             <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 14 }} />
             <Tooltip content={CustomTooltip} />

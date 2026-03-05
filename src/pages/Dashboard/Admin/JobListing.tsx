@@ -5,9 +5,9 @@ import {
   ArrowUpDown,
   ArrowUpRight,
   Banknote,
-  Briefcase,
   Clock4,
   Filter,
+  Hourglass,
   LocateFixed,
   MoreVertical,
   Plus,
@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 
-import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 
 import JobDetailsModal from "./JobDetailsModal";
 import { useNavigate } from "react-router";
@@ -23,7 +23,7 @@ import { useNavigate } from "react-router";
 type JobData = {
   id: string;
 
-  jobTitle: string;
+  jobcategory: string;
   company: string;
   location: string;
   jobType: string;
@@ -72,7 +72,7 @@ const JobListing = () => {
   const filteredJobs = useMemo(() => {
     let filtered = jobs.filter(
       (job) =>
-        job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.jobcategory.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.company.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
@@ -120,10 +120,9 @@ const JobListing = () => {
   };
 
   return (
-    <div className="p-2 md:p-6 lg:p-0 min-h-screen">
+    <div className=" mt-4 md:mt-0 md:p-6 lg:p-0 min-h-screen">
       <Toaster position="bottom-right" />
 
-      {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
         <h1 className="text-2xl md:text-3xl mt-8 md:mt-0 font-bold text-gray-800">
           Explore Job Opportunities
@@ -145,7 +144,6 @@ const JobListing = () => {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="bg-white shadow-md rounded-md p-6 mb-10 border border-gray-200">
         <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
           <div className="relative w-full lg:w-1/3">
@@ -184,7 +182,6 @@ const JobListing = () => {
         </div>
       </div>
 
-      {/* Job Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentItems.length === 0 ? (
           <div className="col-span-full flex items-center justify-center h-[50vh] sm:h-[60vh] md:h-[70vh]">
@@ -207,12 +204,11 @@ const JobListing = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-lg font-semibold text-gray-800 group-hover:text-orange-600 transition">
-                      {job.jobTitle}
+                      {job.jobcategory}
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">{job.company}</p>
                   </div>
 
-                  {/* Job Type Badge + Edit Button */}
                   <div className="flex items-center gap-2">
                     <div className="flex items-center justify-center text-xs px-3 h-6 leading-none bg-orange-100 text-orange-600 rounded-full min-w-0">
                       {job.jobType}
@@ -221,9 +217,8 @@ const JobListing = () => {
                       className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100"
                       onClick={(e) => {
                         e.stopPropagation();
-                        // setSelectedJob(job);
-                        // setEditModalOpen(true);
-                        navigate("/dashboard/jobEditPage", {
+
+                        navigate(`/dashboard/jobEditPage/${job.id}`, {
                           state: { jobData: job },
                         });
                       }}
@@ -233,7 +228,6 @@ const JobListing = () => {
                   </div>
                 </div>
 
-                {/* Job Details */}
                 <div className="mt-4 space-y-2 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <Banknote size={16} className="text-orange-500" />
@@ -250,7 +244,7 @@ const JobListing = () => {
                     <span>{job.location}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Briefcase size={16} className="text-orange-500" />
+                    <Hourglass size={16} className="text-orange-500" />
                     <span
                       className={`px-2 py-1 rounded-full text-xs ${
                         job.status === "pending"
@@ -266,7 +260,6 @@ const JobListing = () => {
                 </div>
               </div>
 
-              {/* Footer */}
               <div className="mt-6 flex justify-between items-center">
                 <span className="text-xs text-gray-500">
                   Posted: {job.postedDate}
@@ -287,7 +280,6 @@ const JobListing = () => {
         )}
       </div>
 
-      {/* Pagination */}
       <div className="mt-10 flex justify-center">
         <ReactPaginate
           breakLabel="..."
@@ -308,16 +300,6 @@ const JobListing = () => {
           disabledClassName="opacity-60 cursor-not-allowed"
         />
       </div>
-
-      {/* Modals */}
-      {/* <JobEditPage
-        job={selectedJob ?? undefined} // <-- convert null to undefined
-        onSave={(updatedJob: JobData) => {
-          setJobs((prev) =>
-            prev.map((j) => (j.id === updatedJob.id ? updatedJob : j)),
-          );
-        }}
-      /> */}
 
       <JobDetailsModal
         open={detailsModalOpen}

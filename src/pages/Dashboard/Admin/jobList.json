@@ -1,40 +1,46 @@
 [
   {
-    "id": "01",
-    "jobTitle": "Frontend Developer",
-    "company": "TechNova Ltd",
+    "id": "JOB-1025",
+    "jobcategory": "Frontend Developer ",
+    "company": "Brain Station 23",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
-    "vacancy": 3,
-    "salary": "60,000 - 80,000 BDT",
-    "Minsalary": 60000,
-    "Maxsalary": 80000,
-    "experience": "1-3 Years",
-    "status": "Pending",
-    "postedDate": "2026-01-15",
-    "jobDescription": "Develop modern and responsive web interfaces using React.",
+    "vacancy": 2,
+    "salary": "70,000 - 90,000 BDT",
+    "Minsalary": 70000,
+    "Maxsalary": 90000,
+    "experience": "2-4 Years",
+    "status": "approved",
+    "postedDate": "2026-03-01",
+    "applicationDeadline": "2026-03-25",
+    "jobDescription": "We are looking for a passionate Frontend Developer who will be responsible for building modern, scalable, and high-performance web applications. The candidate should have strong experience with React.js and modern frontend development practices.",
     "jobResponsibilities": [
-      "Build reusable React components",
-      "Convert designs into responsive UI",
-      "Optimize frontend performance",
-      "Collaborate with backend team"
+      "Develop responsive and user-friendly web interfaces using React.js"
     ],
     "requirements": [
-      "React.js experience",
-      "Strong HTML & CSS",
-      "JavaScript ES6 knowledge",
-      "Git version control"
+      "Bachelor’s degree in Computer Science or related field",
+      "2+ years experience in frontend development",
+      "Strong knowledge of React.js, JavaScript (ES6+), HTML5, and CSS3",
+      "Experience with Tailwind CSS or Bootstrap",
+      "Knowledge of Git and version control systems",
+      "Familiarity with RESTful APIs",
+      "Basic understanding of SEO principles",
+      "Experience with state management libraries (Redux, Context API)"
     ],
     "benefits": [
-      "Competitive salary",
-      "Festival bonus",
-      "Career growth",
-      "Friendly environment"
+      "Competitive salary package",
+      "Two festival bonuses",
+      "Performance-based yearly increment",
+      "Health insurance coverage",
+      "Paid annual and sick leave",
+      "Flexible working hours",
+      "Professional training and career development opportunities",
+      "Friendly and collaborative work environment"
     ]
   },
   {
     "id": "02",
-    "jobTitle": "Backend Developer",
+    "jobcategory": "Backend Developer",
     "company": "CodeCraft Solutions",
     "location": "Remote",
     "jobType": "Full-Time",
@@ -67,7 +73,7 @@
   },
   {
     "id": "03",
-    "jobTitle": "MERN Stack Developer",
+    "jobcategory": "MERN Stack Developer",
     "company": "DevSphere",
     "location": "Chattogram, Bangladesh",
     "jobType": "Contract",
@@ -95,7 +101,7 @@
   },
   {
     "id": "04",
-    "jobTitle": "UI/UX Designer",
+    "jobcategory": "UI/UX Designer",
     "company": "Creative Studio",
     "location": "Dhaka, Bangladesh",
     "jobType": "Part-Time",
@@ -117,7 +123,7 @@
   },
   {
     "id": "05",
-    "jobTitle": "Junior React Developer",
+    "jobcategory": "Junior React Developer",
     "company": "NextGen Apps",
     "location": "Remote",
     "jobType": "Internship",
@@ -147,7 +153,7 @@
   },
   {
     "id": "06",
-    "jobTitle": "Software Engineer",
+    "jobcategory": "Software Engineer",
     "company": "InnoTech",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -173,7 +179,7 @@
   },
   {
     "id": "07",
-    "jobTitle": "QA Engineer",
+    "jobcategory": "QA Engineer",
     "company": "SoftCheck",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -199,7 +205,7 @@
   },
   {
     "id": "08",
-    "jobTitle": "DevOps Engineer",
+    "jobcategory": "DevOps Engineer",
     "company": "CloudWave",
     "location": "Remote",
     "jobType": "Full-Time",
@@ -221,7 +227,7 @@
   },
   {
     "id": "09",
-    "jobTitle": "Product Manager",
+    "jobcategory": "Product Manager",
     "company": "Visionary Labs",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -247,7 +253,7 @@
   },
   {
     "id": "10",
-    "jobTitle": "Data Analyst",
+    "jobcategory": "Data Analyst",
     "company": "DataCore",
     "location": "Remote",
     "jobType": "Full-Time",
@@ -273,7 +279,7 @@
   },
   {
     "id": "11",
-    "jobTitle": "Mobile App Developer",
+    "jobcategory": "Mobile App Developer",
     "company": "Appify",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -299,7 +305,7 @@
   },
   {
     "id": "12",
-    "jobTitle": "Content Writer",
+    "jobcategory": "Content Writer",
     "company": "WriteRight",
     "location": "Remote",
     "jobType": "Part-Time",
@@ -321,7 +327,7 @@
   },
   {
     "id": "13",
-    "jobTitle": "Digital Marketing Executive",
+    "jobcategory": "Digital Marketing Executive",
     "company": "MarketPro",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -347,7 +353,7 @@
   },
   {
     "id": "14",
-    "jobTitle": "HR Executive",
+    "jobcategory": "HR Executive",
     "company": "PeopleFirst",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",
@@ -373,7 +379,7 @@
   },
   {
     "id": "15",
-    "jobTitle": "System Administrator",
+    "jobcategory": "System Administrator",
     "company": "NetSecure",
     "location": "Dhaka, Bangladesh",
     "jobType": "Full-Time",

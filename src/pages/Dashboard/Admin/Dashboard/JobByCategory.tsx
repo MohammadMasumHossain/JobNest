@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 import { Filter } from "lucide-react";
 
 type JobCategoryData = {

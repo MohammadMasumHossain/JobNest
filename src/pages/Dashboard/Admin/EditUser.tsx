@@ -2,7 +2,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { ChevronDown, User2 } from "lucide-react";
 import TextField from "@/components/ui/TextField";
-import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 import Modal from "@/components/ui/Modal";
 
 export type EditUserForm = {

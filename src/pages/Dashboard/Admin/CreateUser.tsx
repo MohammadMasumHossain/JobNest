@@ -2,7 +2,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { ChevronDown, User2, X } from "lucide-react";
 import TextField from "@/components/ui/TextField";
-import CustomDropDownMenu from "@/components/ui/CustomDropDownMenu";
+import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 
 export type UserForm = {
   email: string;
@@ -151,7 +151,6 @@ const CreateUser = ({ onClose }: CreateUserModalProps) => {
             register={register("location")}
             error={errors.location?.message}
           />
-
           <TextField
             label="Phone Number"
             id="phone"

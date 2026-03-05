@@ -26,7 +26,7 @@ import {
 import { useState } from "react";
 import CreateUser from "./CreateUser";
 import EditUser, { type EditUserForm } from "./EditUser";
-import ConfirmDeleteModal from "@/components/ui/ConfirmDeleteModal";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import { toast, Toaster } from "react-hot-toast";
 
 type UserType = {
@@ -276,14 +276,7 @@ const ManageUser = () => {
 
           <span className="flex items-center">
             <input
-              // min={1}
-              // max={table.getPageCount()}
-              // type="number"
               value={table.getState().pagination.pageIndex + 1}
-              // onChange={(e) => {
-              //   const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              //   table.setPageIndex(page);
-              // }}
               className="w-12 p-1 border border-gray-300 cursor-pointer rounded-md text-center"
             />
             <span className="ml-1">of {table.getPageCount()}</span>

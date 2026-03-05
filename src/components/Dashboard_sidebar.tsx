@@ -22,7 +22,7 @@ type MenuItem = {
 
 const menuItems: MenuItem[] = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-  // { name: "Job Post", icon: Briefcase, path: "/dashboard/jobpost" },
+
   { name: "Job Listing", icon: List, path: "/dashboard/joblisting" },
   { name: "User", icon: UserCog, path: "/dashboard/manageuser" },
 ];
@@ -39,7 +39,6 @@ const Dashboard_sidebar = () => {
 
   return (
     <>
-      {/* Mobile top bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-gray-800 text-white flex items-center justify-between px-4 py-3 shadow z-50">
         <button onClick={() => setMobileOpen(true)}>
           <Menu size={28} />
@@ -47,7 +46,6 @@ const Dashboard_sidebar = () => {
         <div />
       </div>
 
-      {/* Mobile backdrop */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -60,7 +58,6 @@ const Dashboard_sidebar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Sidebar */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -81,7 +78,6 @@ const Dashboard_sidebar = () => {
         )}
       </AnimatePresence>
 
-      {/* Desktop Sidebar */}
       <motion.div
         animate={{ width: isOpen ? 260 : 80 }}
         transition={{ duration: 0.3 }}
@@ -126,7 +122,6 @@ const Dashboard_sidebar = () => {
 const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <div className="flex flex-col flex-1 justify-between pt-2 relative">
-      {/* Top Menu Items */}
       <ul className="space-y-2 mt-4 px-2">
         {menuItems.map((item) => (
           <NavLink key={item.path} to={item.path} end>

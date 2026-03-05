@@ -5,7 +5,7 @@ import { Briefcase, ClipboardList, FileText, Gift, X } from "lucide-react";
 
 export type JobData = {
   id: string;
-  jobTitle: string;
+  jobcategory: string;
   vacancy: number;
   company: string;
   location: string;
@@ -30,19 +30,6 @@ type JobDetailsModalProps = {
   onReject: () => void;
 };
 
-// const getStatusStyle = (status: string) => {
-//   switch (status.toLowerCase()) {
-//     case "approved":
-//       return "bg-green-50 text-green-700 border-green-200";
-//     case "rejected":
-//       return "bg-red-50 text-red-700 border-red-200";
-//     case "pending":
-//       return "bg-yellow-50 text-yellow-700 border-yellow-200";
-//     default:
-//       return "bg-gray-50 text-gray-700 border-gray-200";
-//   }
-// };
-
 const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   open,
   onOpenChange,
@@ -55,11 +42,11 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/40 backdrop-blur-sm z-49" />
+        <Dialog.Overlay className="fixed inset-0 bg-black/40  backdrop-blur-sm z-49" />
 
         <Dialog.Content
           className="
-            fixed top-1/2 left-1/2 z-50
+            fixed top-1/2 mt-8 md:mt-0 left-1/2 z-50
             w-[95%] sm:w-[85%] md:w-[70%]
             max-w-4xl
             max-h-[90vh]
@@ -69,11 +56,11 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
             flex flex-col
           "
         >
-          <div className="px-8 py-6 border-b border-gray-200">
+          <div className="px-8  py-6 border-b border-gray-200">
             <div className="flex justify-between items-start">
               <div>
                 <Dialog.Title className="text-2xl font-semibold text-gray-900">
-                  {job.jobTitle}
+                  {job.jobcategory}
                 </Dialog.Title>
                 <p className="text-gray-500 mt-1">
                   {job.company} • {job.location}

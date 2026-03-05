@@ -5,7 +5,7 @@ import Login from "@/pages/Auth/Login";
 import LogOut from "@/pages/Auth/LogOut";
 import Register from "@/pages/Auth/Register";
 
-import JobDetails from "@/pages/Dashboard/Admin/JobDetails";
+// import JobDetails from "@/pages/Dashboard/Admin/JobDetails";
 import JobListing from "@/pages/Dashboard/Admin/JobListing";
 import ManageUser from "@/pages/Dashboard/Admin/ManageUser";
 import JobPost from "@/pages/Dashboard/Employer/JobPost";
@@ -40,7 +40,7 @@ const Router = createBrowserRouter([
         Component: JobPost,
       },
       {
-        path: "jobEditPage",
+        path: "jobEditPage/:id",
         Component: JobEditPage,
       },
 
@@ -48,10 +48,10 @@ const Router = createBrowserRouter([
         path: "joblisting",
         Component: JobListing,
       },
-      {
-        path: "job/:id",
-        Component: JobDetails,
-      },
+      // {
+      //   path: "job/:id",
+      //   Component: JobDetails,
+      // },
       {
         path: "manageuser",
         Component: ManageUser,

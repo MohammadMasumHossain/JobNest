@@ -5,8 +5,8 @@ import "react-calendar/dist/Calendar.css";
 import CustomCalender from "@/components/CustomCalender";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
-import CustomDropDown from "@/components/ui/CustomDropDownMenu";
-import MultiSelectDropDown from "@/components/ui/MultiSelectDropDown";
+import CustomDropDown from "@/components/CustomDropDownMenu";
+import MultiSelectDropDown from "@/components/MultiSelectDropDown";
 
 type Inputs = {
   companyname: string;
@@ -291,7 +291,7 @@ const JobPost = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1  px-8 pb-8">
+          <div className="grid grid-cols-1  px-8 pb-4">
             <div>
               <label className="font-medium">
                 Job Description <span style={{ color: "red" }}>*</span>
@@ -358,11 +358,9 @@ const JobPost = () => {
           </div>
         </div>
 
-        <div className="bg-accent  rounded-sm"></div>
-
         <button
           type="submit"
-          className="group relative flex mx-auto justify-center items-center border mt-8 px-3 rounded-md py-2 w-40 bg-orange-500 font-bold text-md cursor-pointer overflow-hidden text-white"
+          className="group relative flex mx-auto justify-center items-center border mt-4 px-3 rounded-md py-2 w-40 bg-orange-500 font-bold text-md cursor-pointer overflow-hidden text-white"
         >
           <span className="transition-transform duration-300 group-hover:-translate-x-3">
             Submit job

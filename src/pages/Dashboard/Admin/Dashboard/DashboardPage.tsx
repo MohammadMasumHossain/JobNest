@@ -26,7 +26,7 @@ const DashboardPage: React.FC = () => {
       title: "Applications Pending",
       value: 120,
       icon: <Clock />,
-      color: "bg-orange-500",
+      color: "bg-amber-700",
     },
   ];
 
