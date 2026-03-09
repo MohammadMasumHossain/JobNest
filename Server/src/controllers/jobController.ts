@@ -62,3 +62,21 @@ export const updateJob = async (
     res.status(500).json({ error: "Update failed" });
   }
 };
+
+export const rejectJob = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  try {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+    await jobCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { status: "rejected" } },
+    );
+
+    res.json({ message: "Job rejected" });
+  } catch {
+    res.status(500).json({ error: "Reject failed" });
+  }
+};
