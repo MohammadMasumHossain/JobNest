@@ -18,3 +18,8 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Create user failed" });
   }
 };
+
+export const getUsers = async (_req: Request, res: Response) => {
+  const users = await userCollection.find().toArray();
+  res.json(users);
+};
