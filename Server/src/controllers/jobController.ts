@@ -20,3 +20,8 @@ export const createJob = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to Create job" });
   }
 };
+
+export const getJobs = async (_req: Request, res: Response) => {
+  const jobs = await jobCollection.find().toArray();
+  res.json(jobs);
+};
