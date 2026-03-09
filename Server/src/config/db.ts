@@ -1,15 +1,13 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGO_URI as string;
+import dotenv from "dotenv";
 
-const client = new MongoClient(uri);
+dotenv.config();
 
-let db: Db;
+const client = new MongoClient(process.env.MONGO_URI!);
 
-export const connectDB = async () => {
+export const connetDB = async () => {
   await client.connect();
-  db = client.db("jobportal");
-  console.log("MongoDB connected");
+  console.log("MongoDB Connected");
 };
-
-export const getDB = () => db;
+export const db = client.db("jobPortal");
