@@ -27,17 +27,34 @@ export const getJobs = async (_req: Request, res: Response) => {
   res.json(jobs);
 };
 
+export const approveJob = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  try {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+    await jobCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { status: "approved" } },
+    );
+
+    res.json({ message: "Job approved" });
+  } catch {
+    res.status(500).json({ error: "Approve failed" });
+  }
+};
+
 export const updateJob = async (
   req: Request<{ id: string }, {}, Partial<Job>>,
   res: Response,
 ) => {
   try {
-    const id = req.params.id;
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
 
-    // Use req.body directly as update data
     await jobCollection.updateOne(
       { _id: new ObjectId(id) },
-      { $set: req.body }, // no destructuring needed
+      { $set: req.body },
     );
 
     res.json({ message: "Job updated" });
