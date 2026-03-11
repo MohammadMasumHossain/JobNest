@@ -5,6 +5,7 @@ import {
   getJobs,
   rejectJob,
   updateJob,
+  deleteJob,
 } from "../controllers/jobController";
 
 const router = express.Router();
@@ -13,4 +14,5 @@ router.get("/jobs", getJobs);
 router.put("/job/:id", updateJob);
 router.patch("/job/:id/approve", approveJob);
 router.patch("/job/:id/reject", rejectJob);
+router.delete("/job/:id", deleteJob);
 export default router;

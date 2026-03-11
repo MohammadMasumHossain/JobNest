@@ -80,3 +80,20 @@ export const rejectJob = async (
     res.status(500).json({ error: "Reject failed" });
   }
 };
+export const deleteJob = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  try {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const result = await jobCollection.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.json({ message: "Job deleted successfully" });
+  } catch {
+    res.status(500).json({ error: "Delete failed" });
+  }
+};

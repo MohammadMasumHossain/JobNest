@@ -20,7 +20,7 @@ import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 
 import JobDetailsModal from "./JobDetailsModal";
 import { useNavigate } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios";
 
 type JobData = {
@@ -60,9 +60,12 @@ const JobListing = () => {
   const [selectedJob, setSelectedJob] = useState<JobData | null>(null);
 
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const itemsPerPage = 6;
+
+  const queryClient = useQueryClient();
 
   const {
     data: jobs = [],
@@ -250,7 +253,7 @@ const JobListing = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  {/* <div className="flex items-center gap-2">
                     <div
                       className={`px-2 py-1 rounded-full text-xs ${
                         job.jobType === "Full-Time"
@@ -276,6 +279,71 @@ const JobListing = () => {
                     >
                       <MoreVertical size={16} />
                     </button>
+                  </div> */}
+                  <div className="flex items-center gap-2 relative">
+                    {/* Job type badge */}
+                    <div
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        job.jobType === "Full-Time"
+                          ? "bg-orange-100 text-orange-500"
+                          : job.jobType === "Contract"
+                            ? "bg-green-200 text-green-700"
+                            : job.jobType === "Part-Time"
+                              ? "bg-red-200 text-red-700"
+                              : "bg-blue-200 text-blue-700"
+                      }`}
+                    >
+                      {job.jobType}
+                    </div>
+
+                    {/* Three-dot menu */}
+                    <div className="relative">
+                      <button
+                        className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenDropdownId((prev) =>
+                            prev === job._id ? null : job._id,
+                          );
+                        }}
+                      >
+                        <MoreVertical size={16} />
+                      </button>
+
+                      {/* Dropdown menu */}
+                      {openDropdownId === job._id && (
+                        <div className="absolute right-0 mt-2 w-24 bg-white border border-gray-200 rounded shadow-lg z-10">
+                          <button
+                            className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/dashboard/jobEditPage/${job._id}`, {
+                                state: { jobData: job },
+                              });
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              try {
+                                await axiosInstance.delete(`/job/${job._id}`);
+                                toast.success("Job deleted successfully!");
+                                queryClient.invalidateQueries({
+                                  queryKey: ["jobs"],
+                                });
+                              } catch (err) {
+                                toast.error("Failed to delete job.");
+                              }
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
