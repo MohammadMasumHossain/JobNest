@@ -27,6 +27,7 @@ type JobData = {
   company: string;
   location: string;
   jobType: string;
+
   Minsalary: number;
   Maxsalary: number;
   vacancy: number;

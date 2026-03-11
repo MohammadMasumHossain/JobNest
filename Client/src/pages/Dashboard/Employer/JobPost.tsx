@@ -6,11 +6,14 @@ import CustomCalender from "@/components/CustomCalender";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 import CustomDropDown from "@/components/CustomDropDownMenu";
-import MultiSelectDropDown from "@/components/MultiSelectDropDown";
+
+import { useMutation } from "@tanstack/react-query";
+import axiosInstance from "@/lib/axios";
+import toast from "react-hot-toast";
 
 type Inputs = {
   companyname: string;
-  emailAddress: string;
+  // emailAddress: string;
   phoneNumber: string;
   jobcategory: string;
   jobType: string;
@@ -19,15 +22,15 @@ type Inputs = {
   Minsalary: number;
   Maxsalary: number;
   applicationDeadline: string;
-  skills: string;
+  // skills: string;
 
   vacancy: number;
 
   jobDescription: string;
-  JobResponsibilities: string;
+  JobResponsibilities: string[];
 
-  educationalRequirements: string;
-  benefits: string;
+  educationalRequirements: string[];
+  benefits: string[];
 };
 
 const JobPost = () => {
@@ -38,8 +41,24 @@ const JobPost = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const mutation = useMutation({
+    mutationFn: async (data: Inputs) => {
+      const res = await axiosInstance.post("/job", data);
+      console.log("Response from backend:", res.data);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      console.log("mutation success!", data);
+      toast.success("Job post Succeffully");
+    },
+    onError: (err) => {
+      console.log("mutation error:", err);
+      toast.error("Failed to post Job");
+    },
+  });
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("form submitted", data);
+    mutation.mutate(data);
   };
   const jobType = ["FullTime", "PartTime"];
   const jobTitle = [
@@ -82,7 +101,7 @@ const JobPost = () => {
               )}
             </div>
 
-            <div>
+            {/* <div>
               <label className="font-medium">
                 Email Address <span style={{ color: "red" }}>*</span>
               </label>
@@ -100,42 +119,86 @@ const JobPost = () => {
                   {errors.companyname?.message}
                 </p>
               )}
-            </div>
+            </div> */}
 
             <div>
               <label className="font-medium">Job Title</label>
-              <CustomDropDown options={jobTitle} icon={<ChevronDown />} />
+              <CustomDropDown
+                options={jobTitle}
+                icon={<ChevronDown />}
+                onSelect={(value: string) =>
+                  setValue("jobcategory", value, { shouldValidate: true })
+                }
+              />
             </div>
 
             <div>
               <label className="font-medium">Job Type</label>
-              <CustomDropDown options={jobType} icon={<ChevronDown />} />
+              <CustomDropDown
+                options={jobType}
+                icon={<ChevronDown />}
+                onSelect={(value: string) =>
+                  setValue("jobType", value, { shouldValidate: true })
+                }
+              />
+
+              <input
+                type="hidden"
+                {...register("jobType", { required: "Job Type is required" })}
+              />
             </div>
 
-            <div>
+            {/* <div>
               <label className="font-medium">
                 Skills <span style={{ color: "red" }}>*</span>
               </label>
               <MultiSelectDropDown
                 options={["React", "Next.js", "Node", "MongoDB"]}
                 onChange={(values) =>
-                  setValue("jobType", values.join(","), {
+                  setValue("skills", values.join(","), {
                     shouldValidate: true,
                   })
                 }
               />
             </div>
-
             <input
               type="hidden"
               {...register("skills", { required: "Job Type is required" })}
-            />
+            /> */}
+
+            {/* <div>
+              <label className="font-medium">
+                Skills <span style={{ color: "red" }}>*</span>
+              </label>
+              <MultiSelectDropDown
+                options={["React", "Next.js", "Node", "MongoDB"]}
+                onChange={(values) =>
+                  setValue("skills", values.join(","), { shouldValidate: true })
+                }
+              />
+              <input
+                type="hidden"
+                {...register("skills", {
+                  required: "Skills are required",
+                  // Convert array to string for backend if needed
+                  setValueAs: (v) => (Array.isArray(v) ? v.join(",") : v),
+                })}
+              />
+              {errors.skills && (
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.skills.message}
+                </p>
+              )}
+            </div> */}
 
             <div>
               <label className="font-medium">Experience Level</label>
               <CustomDropDown
                 options={experienceLevel}
                 icon={<ChevronDown />}
+                onSelect={(value: string) =>
+                  setValue("experienceLevel", value, { shouldValidate: true })
+                }
               />
             </div>
 
@@ -310,49 +373,62 @@ const JobPost = () => {
                 </p>
               )}
             </div>
+
             <div>
               <label className="font-medium">
                 Job Responsibilities <span style={{ color: "red" }}>*</span>
               </label>
               <textarea
                 id="JobResponsibilities"
-                {...register("JobResponsibilities", {
-                  required: "Job Responsibilities is required",
-                })}
-                placeholder="Job Responsibilities"
-                className={` mt-1 mb-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                placeholder="Enter each responsibility on a new line"
+                className="mt-1 mb-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32"
+                onChange={(e) =>
+                  setValue("JobResponsibilities", e.target.value.split("\n"), {
+                    shouldValidate: true,
+                  })
+                }
               />
               {errors.JobResponsibilities && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
+                <p className="mt-2 px-1 text-sm text-red-600">
                   {errors.JobResponsibilities?.message}
                 </p>
               )}
             </div>
+
             <div>
               <label className="font-medium">
                 Educational Requirements <span style={{ color: "red" }}>*</span>
               </label>
               <textarea
                 id="educationalRequirements"
-                {...register("educationalRequirements", {
-                  required: "Educational Requirements is required",
-                })}
-                placeholder="Educational Requirements"
-                className={` mt-1 mb-2  w-full resize-none px-3 py-2 border  border-gray-300 shadow-sm rounded-sm h-32`}
+                placeholder="Enter each requirement on a new line"
+                className="mt-1 mb-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32"
+                onChange={(e) =>
+                  setValue(
+                    "educationalRequirements",
+                    e.target.value.split("\n"),
+                    { shouldValidate: true },
+                  )
+                }
               />
               {errors.educationalRequirements && (
-                <p className=" mt-2  px-1 text-sm text-red-600">
+                <p className="mt-2 px-1 text-sm text-red-600">
                   {errors.educationalRequirements?.message}
                 </p>
               )}
             </div>
+
             <div>
               <label className="font-medium">Benefits</label>
               <textarea
                 id="benefits"
-                {...register("benefits", {})}
-                placeholder="Benefits"
-                className={` mt-1 mb-2 w-full px-3 py-2 border resize-none  border-gray-300 shadow-sm rounded-sm h-32`}
+                placeholder="Enter each benefit on a new line"
+                className="mt-1 mb-2 w-full px-3 py-2 border resize-none border-gray-300 shadow-sm rounded-sm h-32"
+                onChange={(e) =>
+                  setValue("benefits", e.target.value.split("\n"), {
+                    shouldValidate: true,
+                  })
+                }
               />
             </div>
           </div>
