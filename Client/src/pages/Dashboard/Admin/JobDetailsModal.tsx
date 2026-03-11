@@ -4,21 +4,21 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Briefcase, ClipboardList, FileText, Gift, X } from "lucide-react";
 
 export type JobData = {
-  id: string;
+  _id: string;
   jobcategory: string;
   vacancy: number;
-  company: string;
-  location: string;
+  companyname: string;
+  jobLocation: string;
   jobType: string;
 
   Minsalary: number;
   Maxsalary: number;
-  experience: string;
+  experienceLevel: string;
   status: string;
   postedDate: string;
   jobDescription: string;
-  requirements: string[];
-  jobResponsibilities: string[];
+  educationalRequirements: string[];
+  JobResponsibilities: string[];
   benefits: string[];
 };
 
@@ -63,7 +63,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
                   {job.jobcategory}
                 </Dialog.Title>
                 <p className="text-gray-500 mt-1">
-                  {job.company} • {job.location}
+                  {job.companyname} • {job.jobLocation}
                 </p>
               </div>
 
@@ -84,7 +84,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
               </span>
 
               <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
-                {job.experience} experience
+                {job.experienceLevel} experience
               </span>
               <span className="px-3 py-1 text-sm bg-gray-100 rounded-md">
                 Vacancy : {job.vacancy}
@@ -122,7 +122,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
               </h3>
 
               <ul className="space-y-2 list-disc ml-2 marker:text-orange-500 list-inside text-gray-600">
-                {job.requirements.map((req, i) => (
+                {job.educationalRequirements.map((req, i) => (
                   <li key={i}>{req}</li>
                 ))}
               </ul>
@@ -140,7 +140,7 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
               </h3>
 
               <ul className="space-y-2 list-disc ml-2 marker:text-orange-500 list-inside text-gray-600">
-                {job.jobResponsibilities.map((res, i) => (
+                {job.JobResponsibilities.map((res, i) => (
                   <li key={i}>{res}</li>
                 ))}
               </ul>

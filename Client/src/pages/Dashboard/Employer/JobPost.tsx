@@ -38,6 +38,7 @@ const JobPost = () => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -49,7 +50,8 @@ const JobPost = () => {
     },
     onSuccess: (data) => {
       console.log("mutation success!", data);
-      toast.success("Job post Succeffully");
+      toast.success("Job posted Succeffully");
+      reset();
     },
     onError: (err) => {
       console.log("mutation error:", err);
@@ -397,7 +399,7 @@ const JobPost = () => {
 
             <div>
               <label className="font-medium">
-                Educational Requirements <span style={{ color: "red" }}>*</span>
+                Requirements <span style={{ color: "red" }}>*</span>
               </label>
               <textarea
                 id="educationalRequirements"

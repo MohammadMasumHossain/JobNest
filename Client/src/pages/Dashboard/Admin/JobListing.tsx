@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import jobListData from "./jobList.json";
+// import jobListData from "./jobList.json";
 import ReactPaginate from "react-paginate";
 import {
   ArrowUpDown,
@@ -19,24 +19,26 @@ import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 
 import JobDetailsModal from "./JobDetailsModal";
 import { useNavigate } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "@/lib/axios";
 
 type JobData = {
-  id: string;
+  _id: string;
 
   jobcategory: string;
-  company: string;
-  location: string;
+  companyname: string;
+  jobLocation: string;
   jobType: string;
 
   Minsalary: number;
   Maxsalary: number;
   vacancy: number;
-  experience: string;
+  experienceLevel: string;
   status: string;
   postedDate: string;
   jobDescription: string;
-  requirements: string[];
-  jobResponsibilities: string[];
+  educationalRequirements: string[];
+  JobResponsibilities: string[];
   benefits: string[];
 };
 
@@ -49,7 +51,7 @@ const sortOptions = [
 ];
 
 const JobListing = () => {
-  const [jobs, setJobs] = useState<JobData[]>(jobListData);
+  // const [jobs, setJobs] = useState<JobData[]>(jobListData);
   const [searchTerm, setSearchTerm] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
   const [jobTypeFilter, setJobTypeFilter] = useState<string>("All");
@@ -62,9 +64,21 @@ const JobListing = () => {
   const navigate = useNavigate();
   const itemsPerPage = 6;
 
-  const jobTypes = [
+  const {
+    data: jobs = [],
+    isLoading,
+    isError,
+  } = useQuery<JobData[]>({
+    queryKey: ["jobs"],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/jobs");
+      return res.data;
+    },
+  });
+
+  const jobTypes: string[] = [
     "All",
-    ...Array.from(new Set(jobs.map((job) => job.jobType))),
+    ...Array.from(new Set(jobs.map((job: JobData) => job.jobType))),
   ];
 
   const getMinSalary = (job: JobData) => job.Minsalary;
@@ -72,39 +86,63 @@ const JobListing = () => {
 
   const filteredJobs = useMemo(() => {
     let filtered = jobs.filter(
-      (job) =>
-        job.jobcategory.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.company.toLowerCase().includes(searchTerm.toLowerCase()),
+      (job: JobData) =>
+        (job.jobcategory ?? "")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        (job.companyname ?? "")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()),
     );
 
     if (jobTypeFilter !== "All") {
       filtered = filtered.filter(
-        (job) => job.jobType.toLowerCase() === jobTypeFilter.toLowerCase(),
+        (job: JobData) =>
+          job.jobType.toLowerCase() === jobTypeFilter.toLowerCase(),
       );
     }
     if (sortOption === "Approved") {
       filtered = filtered.filter(
-        (job) => job.status.toLowerCase() === "approved",
+        (job: JobData) => job.status.toLowerCase() === "approved",
       );
     } else if (sortOption === "Pending") {
       filtered = filtered.filter(
-        (job) => job.status.toLowerCase() === "pending",
+        (job: JobData) => job.status.toLowerCase() === "pending",
       );
     }
 
     if (sortOption === "Salary: High → Low") {
-      filtered.sort((a, b) => getMaxSalary(b) - getMaxSalary(a));
+      filtered.sort(
+        (a: JobData, b: JobData) => getMaxSalary(b) - getMaxSalary(a),
+      );
     } else if (sortOption === "Salary: Low → High") {
-      filtered.sort((a, b) => getMinSalary(a) - getMinSalary(b));
+      filtered.sort(
+        (a: JobData, b: JobData) => getMinSalary(a) - getMinSalary(b),
+      );
     } else if (sortOption === "Latest") {
       filtered.sort(
-        (a, b) =>
+        (a: JobData, b: JobData) =>
           new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime(),
       );
     }
 
     return filtered;
   }, [jobs, searchTerm, jobTypeFilter, sortOption]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <p className="text-lg">Loading Jobs...</p>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <p className="text-lg text-red-500">Failed to load Jobs</p>
+      </div>
+    );
+  }
 
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = filteredJobs.slice(itemOffset, endOffset);
@@ -192,9 +230,9 @@ const JobListing = () => {
             </p>
           </div>
         ) : (
-          currentItems.map((job) => (
+          currentItems.map((job: JobData) => (
             <div
-              key={job.id}
+              key={job._id}
               onClick={() => openDetailsModal(job)}
               className="group bg-white rounded-2xl p-6 border border-gray-200
                 hover:border-orange-400 hover:shadow-2xl
@@ -207,7 +245,9 @@ const JobListing = () => {
                     <h2 className="text-lg font-semibold text-gray-800 group-hover:text-orange-600 transition">
                       {job.jobcategory}
                     </h2>
-                    <p className="text-sm text-gray-500 mt-1">{job.company}</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {job.companyname}
+                    </p>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -229,7 +269,7 @@ const JobListing = () => {
                       onClick={(e) => {
                         e.stopPropagation();
 
-                        navigate(`/dashboard/jobEditPage/${job.id}`, {
+                        navigate(`/dashboard/jobEditPage/${job._id}`, {
                           state: { jobData: job },
                         });
                       }}
@@ -248,11 +288,11 @@ const JobListing = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock4 size={16} className="text-orange-500" />
-                    <span>{job.experience}</span>
+                    <span>{job.experienceLevel}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <LocateFixed size={16} className="text-orange-500" />
-                    <span>{job.location}</span>
+                    <span>{job.jobLocation}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Hourglass size={16} className="text-orange-500" />
