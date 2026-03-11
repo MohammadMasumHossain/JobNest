@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-// import jobListData from "./jobList.json";
+import { BeatLoader } from "react-spinners";
+
 import ReactPaginate from "react-paginate";
 import {
   ArrowUpDown,
@@ -51,7 +52,6 @@ const sortOptions = [
 ];
 
 const JobListing = () => {
-  // const [jobs, setJobs] = useState<JobData[]>(jobListData);
   const [searchTerm, setSearchTerm] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
   const [jobTypeFilter, setJobTypeFilter] = useState<string>("All");
@@ -131,8 +131,8 @@ const JobListing = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[60vh]">
-        <p className="text-lg">Loading Jobs...</p>
+      <div className="flex justify-center items-center h-[70vh] ">
+        <BeatLoader color="#f97316" />
       </div>
     );
   }
