@@ -30,7 +30,7 @@ const JobDetails = () => {
         ← Back to Listings
       </button>
 
-      <h1 className="text-3xl font-bold">{job.jobTitle}</h1>
+      <h1 className="text-3xl font-bold">{job.jobcategory}</h1>
       <p className="text-gray-500 mt-1">
         {job.company} • {job.location}
       </p>

@@ -2,6 +2,9 @@ import React from "react";
 import Button from "@/components/ui/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Briefcase, ClipboardList, FileText, Gift, X } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import axiosInstance from "@/lib/axios";
+import toast from "react-hot-toast";
 
 export type JobData = {
   _id: string;
@@ -34,10 +37,33 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   open,
   onOpenChange,
   job,
-  onReject,
-  onConfirm,
 }) => {
+  const queryClient = useQueryClient();
   if (!job) return null;
+
+  const handleApprove = async () => {
+    try {
+      await axiosInstance.patch(`/job/${job._id}/approve`);
+      toast.success("Job approved successfully!");
+      queryClient.invalidateQueries({ queryKey: ["jobs"] }); // 🔹 Refresh job list
+      onOpenChange(false);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to approve job");
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      await axiosInstance.patch(`/job/${job._id}/reject`);
+      toast.success("Job rejected successfully!");
+      queryClient.invalidateQueries({ queryKey: ["jobs"] }); // 🔹 Refresh job list
+      onOpenChange(false);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to reject job");
+    }
+  };
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -166,8 +192,12 @@ const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
           </div>
 
           <div className=" border-t border-gray-200 py-6  bg-gray-50 flex flex-row  justify-center gap-2 ">
-            <Button label="Approve" variant="confirm" onClick={onConfirm} />
-            <Button label="Reject" variant="destructive" onClick={onReject} />
+            <Button label="Approve" variant="confirm" onClick={handleApprove} />
+            <Button
+              label="Reject"
+              variant="destructive"
+              onClick={handleReject}
+            />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

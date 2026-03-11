@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
 import CustomCalender from "@/components/CustomCalender";
 import CustomDropDown from "@/components/CustomDropDownMenu";
-import MultiSelectDropDown from "@/components/MultiSelectDropDown";
+
 import { useLocation } from "react-router";
 
 type Inputs = {
@@ -125,7 +125,7 @@ const JobEditPage = () => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <label className="font-medium">Skills *</label>
               <Controller
                 name="skills"
@@ -138,7 +138,7 @@ const JobEditPage = () => {
                   />
                 )}
               />
-            </div>
+            </div> */}
 
             <div>
               <label className="font-medium">Experience Level</label>
