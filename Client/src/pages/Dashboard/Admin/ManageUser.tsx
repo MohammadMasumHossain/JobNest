@@ -8,7 +8,7 @@ import {
   useReactTable,
   type SortingState,
 } from "@tanstack/react-table";
-import mockData from "./data.json";
+// import mockData from "./data.json";
 
 import {
   ArrowUpDown,
@@ -23,55 +23,78 @@ import {
   Search,
   User2,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateUser from "./CreateUser";
 import EditUser, { type EditUserForm } from "./EditUser";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import { toast, Toaster } from "react-hot-toast";
+import axiosInstance from "@/lib/axios";
 
 type UserType = {
-  id: number;
-  Email: string;
+  _id: string;
+  email: string;
   location: string;
   role: string;
   phone: string;
 };
 
 const ManageUser = () => {
-  const [data, setData] = useState<UserType[]>(() => [...mockData]);
+  // const [data, setData] = useState<UserType[]>(() => [...mockData]);
+  const [data, setData] = useState<UserType[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserType | null>(null);
-  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
-
-  const columnHelper = createColumnHelper<UserType>();
-
-  const handleDelete = (id: number) => {
-    setData((prev) => prev.filter((user) => user.id !== id));
-    toast.success("User deleted successfully!");
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+  const fetchUsers = async () => {
+    try {
+      const response = await axiosInstance.get("/users");
+      setData(response.data);
+    } catch (err) {
+      toast.error("Failed to fetch users");
+    }
   };
 
-  const handleEdit = (updated: EditUserForm) => {
-    setData((prev) =>
-      prev.map((user) =>
-        user.id === updated.id
-          ? {
-              ...user,
-              Email: updated.email,
-              role: updated.role,
-              location: updated.location,
-              phone: updated.phone,
-            }
-          : user,
-      ),
-    );
-    toast.success("User updated successfully!");
-    setEditingUser(null);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+  const columnHelper = createColumnHelper<UserType>();
+
+  const handleDelete = async (id: string) => {
+    try {
+      await axiosInstance.delete(`/user/${id}`);
+      setData((prev) => prev.filter((user) => user._id !== id));
+      toast.success("User deleted successfully!");
+    } catch {
+      toast.error("Failed to delete user");
+    }
+  };
+
+  // Edit user by _id
+  const handleEdit = async (updated: EditUserForm & { _id: string }) => {
+    try {
+      await axiosInstance.patch(`/user/${updated._id}`, updated);
+      setData((prev) =>
+        prev.map((user) =>
+          user._id === updated._id
+            ? {
+                ...user,
+                role: updated.role,
+                location: updated.location,
+                phone: updated.phone,
+              }
+            : user,
+        ),
+      );
+      toast.success("User updated successfully!");
+      setEditingUser(null);
+    } catch {
+      toast.error("Failed to update user");
+    }
   };
 
   const columns = [
-    columnHelper.accessor("id", {
+    columnHelper.accessor("email", {
       cell: (info) => info.getValue(),
       header: () => (
         <span className="flex items-center hover:text-orange-600">
@@ -80,7 +103,7 @@ const ManageUser = () => {
         </span>
       ),
     }),
-    columnHelper.accessor("Email", {
+    columnHelper.accessor("email", {
       cell: (info) => info.getValue(),
       header: () => (
         <span className="flex items-center hover:text-orange-600">
@@ -132,7 +155,7 @@ const ManageUser = () => {
             Edit
           </button>
           <button
-            onClick={() => setDeleteTarget(row.original.id)}
+            onClick={() => setDeleteTarget(row.original._id)}
             className="px-3 w-20 py-1 cursor-pointer text-white bg-red-600 rounded hover:bg-red-700 transition"
           >
             Delete
@@ -316,9 +339,12 @@ const ManageUser = () => {
         <EditUser
           open={true}
           user={{
-            id: editingUser.id,
-            email: editingUser.Email,
+            _id: editingUser._id,
+            email: editingUser.email,
             role: editingUser.role,
+            password: "", // add this
+            confirmpassword: "",
+
             location: editingUser.location,
             phone: editingUser.phone,
           }}

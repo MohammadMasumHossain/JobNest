@@ -6,8 +6,10 @@ import CustomDropDownMenu from "@/components/CustomDropDownMenu";
 import Modal from "@/components/ui/Modal";
 
 export type EditUserForm = {
-  id: number;
+  _id: string;
   email: string;
+  password: string;
+  confirmpassword: string;
   role: string;
   location: string;
   phone: string;
@@ -29,6 +31,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
     control,
     formState: { errors, isSubmitting },
     reset,
+    getValues,
   } = useForm<EditUserForm>({
     defaultValues: user,
   });
@@ -98,6 +101,39 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
           register={register("phone", { required: "Phone number is required" })}
           error={errors.phone?.message}
           required
+        />
+
+        <TextField
+          label="Password"
+          id="password"
+          type="password"
+          placeholder="Enter a strong password"
+          register={register("password", {
+            required: "Password is required",
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message:
+                "Password must be at least 8 characters with letters and numbers",
+            },
+          })}
+          error={errors.password?.message}
+          required
+          isPassword
+        />
+
+        <TextField
+          label="Confirm Password"
+          id="confirmpassword"
+          type="password"
+          placeholder="Confirm password"
+          register={register("confirmpassword", {
+            required: "Confirm password is required",
+            validate: (value) =>
+              value === getValues("password") || "Passwords do not match",
+          })}
+          error={errors.confirmpassword?.message}
+          required
+          isPassword
         />
 
         <button

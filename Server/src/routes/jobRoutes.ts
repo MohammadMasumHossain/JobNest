@@ -11,7 +11,8 @@ import {
 const router = express.Router();
 router.post("/job", createJob);
 router.get("/jobs", getJobs);
-router.put("/job/:id", updateJob);
+
+router.patch("/job/:id", updateJob);
 router.patch("/job/:id/approve", approveJob);
 router.patch("/job/:id/reject", rejectJob);
 router.delete("/job/:id", deleteJob);

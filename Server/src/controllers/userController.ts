@@ -30,31 +30,39 @@ export const updateUser = async (
   res: Response,
 ) => {
   try {
-    // Ensure id is a string
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-
-    await userCollection.updateOne(
+    const id = req.params.id;
+    const result = await userCollection.updateOne(
       { _id: new ObjectId(id) },
       { $set: req.body },
     );
 
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     res.json({ message: "User updated" });
-  } catch {
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Update failed" });
   }
 };
 
+// Delete user by _id
 export const deleteUser = async (
   req: Request<{ id: string }>,
   res: Response,
 ) => {
   try {
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const id = req.params.id;
+    const result = await userCollection.deleteOne({ _id: new ObjectId(id) });
 
-    await userCollection.deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
-    res.json({ message: "User deleted" });
-  } catch {
+    res.json({ message: "User deleted successfully" });
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 };
