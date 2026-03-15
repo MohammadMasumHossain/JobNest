@@ -25,34 +25,61 @@ export const getUsers = async (_req: Request, res: Response) => {
   res.json(users);
 };
 
-export const updateUser = async (
-  req: Request<{ id: string }, {}, Partial<User>>,
+// PATCH - Partial update
+export const patchUser = async (
+  req: Request<
+    { id: string },
+    {},
+    Partial<User & { confirmpassword?: string }>
+  >,
   res: Response,
 ) => {
   try {
     const id = req.params.id;
+    const { confirmpassword, ...rest } = req.body;
+    const updateData: Partial<User> = { ...rest };
 
-    // First find and update the user
     const result = await userCollection.updateOne(
       { _id: new ObjectId(id) },
-      { $set: req.body },
+      { $set: updateData },
     );
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Fetch the updated user to return complete data
     const updatedUser = await userCollection.findOne({ _id: new ObjectId(id) });
-
-    if (!updatedUser) {
-      return res.status(404).json({ error: "User not found after update" });
-    }
-
-    res.json(updatedUser); // Return the full updated user object
+    res.json(updatedUser);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Update failed" });
+    res.status(500).json({ error: "PATCH update failed" });
+  }
+};
+
+// PUT - Full replacement
+export const putUser = async (
+  req: Request<{ id: string }, {}, User & { confirmpassword?: string }>,
+  res: Response,
+) => {
+  try {
+    const id = req.params.id;
+    const { confirmpassword, ...rest } = req.body;
+    const newUserData: User = { ...rest } as User;
+
+    const result = await userCollection.replaceOne(
+      { _id: new ObjectId(id) },
+      newUserData,
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await userCollection.findOne({ _id: new ObjectId(id) });
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "PUT update failed" });
   }
 };
 

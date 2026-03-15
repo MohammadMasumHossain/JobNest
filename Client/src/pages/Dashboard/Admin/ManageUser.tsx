@@ -71,26 +71,15 @@ const ManageUser = () => {
   };
 
   // Edit user by _id
-  const handleEdit = async (updated: EditUserForm & { _id: string }) => {
-    try {
-      await axiosInstance.patch(`/user/${updated._id}`, updated);
-      setData((prev) =>
-        prev.map((user) =>
-          user._id === updated._id
-            ? {
-                ...user,
-                role: updated.role,
-                location: updated.location,
-                phone: updated.phone,
-              }
-            : user,
-        ),
-      );
-      toast.success("User updated successfully!");
-      setEditingUser(null);
-    } catch {
-      toast.error("Failed to update user");
-    }
+  const handleEdit = (updated: EditUserForm & { _id: string }) => {
+    setData((prev) =>
+      prev.map((user) =>
+        user._id === updated._id
+          ? { ...user, ...updated } // update all changed fields
+          : user,
+      ),
+    );
+    setEditingUser(null);
   };
 
   const columns = [
@@ -342,8 +331,8 @@ const ManageUser = () => {
             _id: editingUser._id,
             email: editingUser.email,
             role: editingUser.role,
-            // password: "",
-            // confirmpassword: "",
+            password: "",
+            confirmpassword: "",
 
             location: editingUser.location,
             phone: editingUser.phone,
