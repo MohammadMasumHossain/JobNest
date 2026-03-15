@@ -31,6 +31,8 @@ export const updateUser = async (
 ) => {
   try {
     const id = req.params.id;
+
+    // First find and update the user
     const result = await userCollection.updateOne(
       { _id: new ObjectId(id) },
       { $set: req.body },
@@ -40,7 +42,14 @@ export const updateUser = async (
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json({ message: "User updated" });
+    // Fetch the updated user to return complete data
+    const updatedUser = await userCollection.findOne({ _id: new ObjectId(id) });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found after update" });
+    }
+
+    res.json(updatedUser); // Return the full updated user object
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Update failed" });

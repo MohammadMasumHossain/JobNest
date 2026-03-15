@@ -1,99 +1,281 @@
+// import { Request, Response } from "express";
+// import { db } from "../config/db";
+// import { ObjectId } from "mongodb";
+// import { Job } from "../types/Job";
+
+// const jobCollection = db.collection("jobs");
+
+// export const createJob = async (req: Request, res: Response) => {
+//   try {
+//     const job = {
+//       ...req.body,
+//       status: "pending",
+//       postedDate: new Date().toISOString(),
+//     };
+//     const result = await jobCollection.insertOne(job);
+//     res.status(201).json({
+//       message: "job created",
+//       id: result.insertedId,
+//     });
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to Create job" });
+//   }
+// };
+
+// export const getJobs = async (_req: Request, res: Response) => {
+//   const jobs = await jobCollection.find().toArray();
+//   res.json(jobs);
+// };
+
+// export const approveJob = async (
+//   req: Request<{ id: string }>,
+//   res: Response,
+// ) => {
+//   try {
+//     const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+//     await jobCollection.updateOne(
+//       { _id: new ObjectId(id) },
+//       { $set: { status: "approved" } },
+//     );
+
+//     res.json({ message: "Job approved" });
+//   } catch {
+//     res.status(500).json({ error: "Approve failed" });
+//   }
+// };
+
+// export const updateJob = async (req: Request, res: Response) => {
+//   try {
+//     const { id } = req.params;
+
+//     const job = await Job.findByIdAndUpdate(id, req.body, {
+//       returnDocument: "after",
+//     });
+
+//     if (!job) {
+//       return res.status(404).json({ message: "Job not found" });
+//     }
+
+//     res.json(job);
+//   } catch (error) {
+//     res.status(500).json({ error });
+//   }
+// };
+
+// // ----------------------partial update jobs---------------------
+
+// export const patchJob = async (req: Request, res: Response) => {
+//   try {
+//     const { id } = req.params;
+
+//     const job = await Job.findByIdAndUpdate(id, req.body, {
+//       returnDocument: "after",
+//     });
+
+//     if (!job) {
+//       return res.status(404).json({ message: "Job not found" });
+//     }
+
+//     res.json(job);
+//   } catch (error) {
+//     res.status(500).json({ error });
+//   }
+// };
+
+// export const rejectJob = async (
+//   req: Request<{ id: string }>,
+//   res: Response,
+// ) => {
+//   try {
+//     const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+//     await jobCollection.updateOne(
+//       { _id: new ObjectId(id) },
+//       { $set: { status: "rejected" } },
+//     );
+
+//     res.json({ message: "Job rejected" });
+//   } catch {
+//     res.status(500).json({ error: "Reject failed" });
+//   }
+// };
+// export const deleteJob = async (
+//   req: Request<{ id: string }>,
+//   res: Response,
+// ) => {
+//   try {
+//     const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+//     const result = await jobCollection.deleteOne({ _id: new ObjectId(id) });
+
+//     if (result.deletedCount === 0) {
+//       return res.status(404).json({ error: "Job not found" });
+//     }
+
+//     res.json({ message: "Job deleted successfully" });
+//   } catch {
+//     res.status(500).json({ error: "Delete failed" });
+//   }
+// };
 import { Request, Response } from "express";
 import { db } from "../config/db";
 import { ObjectId } from "mongodb";
-import { Job } from "../types/Job";
+import type { Job } from "../types/Job";
 
-const jobCollection = db.collection("jobs");
+const jobCollection = db.collection<Job>("jobs");
+
+// ---------------------- Create Job ----------------------
 
 export const createJob = async (req: Request, res: Response) => {
   try {
-    const job = {
+    const job: Job = {
       ...req.body,
       status: "pending",
       postedDate: new Date().toISOString(),
     };
+
     const result = await jobCollection.insertOne(job);
+
     res.status(201).json({
-      message: "job created",
+      message: "Job created successfully",
       id: result.insertedId,
     });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to Create job" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create job" });
   }
 };
 
+// ---------------------- Get All Jobs ----------------------
+
 export const getJobs = async (_req: Request, res: Response) => {
-  const jobs = await jobCollection.find().toArray();
-  res.json(jobs);
+  try {
+    const jobs = await jobCollection.find().toArray();
+    res.json(jobs);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch jobs" });
+  }
 };
+
+// ---------------------- Update Job (Full Update) ----------------------
+
+export const updateJob = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+
+    const result = await jobCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: req.body },
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    const updatedJob = await jobCollection.findOne({
+      _id: new ObjectId(id),
+    });
+
+    res.json(updatedJob);
+  } catch (error) {
+    res.status(500).json({ error: "Update failed" });
+  }
+};
+
+// ---------------------- Patch Job (Partial Update) ----------------------
+
+export const patchJob = async (req: Request<{ id: string }>, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const result = await jobCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: req.body },
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    const updatedJob = await jobCollection.findOne({
+      _id: new ObjectId(id),
+    });
+
+    res.json(updatedJob);
+  } catch (error) {
+    res.status(500).json({ error: "Patch update failed" });
+  }
+};
+
+// ---------------------- Approve Job ----------------------
 
 export const approveJob = async (
   req: Request<{ id: string }>,
   res: Response,
 ) => {
   try {
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const { id } = req.params;
 
-    await jobCollection.updateOne(
+    const result = await jobCollection.updateOne(
       { _id: new ObjectId(id) },
       { $set: { status: "approved" } },
     );
 
-    res.json({ message: "Job approved" });
-  } catch {
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    res.json({ message: "Job approved successfully" });
+  } catch (error) {
     res.status(500).json({ error: "Approve failed" });
   }
 };
 
-export const updateJob = async (
-  req: Request<{ id: string }, {}, Partial<Job>>,
-  res: Response,
-) => {
-  try {
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-
-    await jobCollection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: req.body },
-    );
-
-    res.json({ message: "Job updated" });
-  } catch (err) {
-    res.status(500).json({ error: "Update failed" });
-  }
-};
+// ---------------------- Reject Job ----------------------
 
 export const rejectJob = async (
   req: Request<{ id: string }>,
   res: Response,
 ) => {
   try {
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const { id } = req.params;
 
-    await jobCollection.updateOne(
+    const result = await jobCollection.updateOne(
       { _id: new ObjectId(id) },
       { $set: { status: "rejected" } },
     );
 
-    res.json({ message: "Job rejected" });
-  } catch {
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    res.json({ message: "Job rejected successfully" });
+  } catch (error) {
     res.status(500).json({ error: "Reject failed" });
   }
 };
+
+// ---------------------- Delete Job ----------------------
+
 export const deleteJob = async (
   req: Request<{ id: string }>,
   res: Response,
 ) => {
   try {
-    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-    const result = await jobCollection.deleteOne({ _id: new ObjectId(id) });
+    const { id } = req.params;
+
+    const result = await jobCollection.deleteOne({
+      _id: new ObjectId(id),
+    });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ error: "Job not found" });
     }
 
     res.json({ message: "Job deleted successfully" });
-  } catch {
+  } catch (error) {
     res.status(500).json({ error: "Delete failed" });
   }
 };

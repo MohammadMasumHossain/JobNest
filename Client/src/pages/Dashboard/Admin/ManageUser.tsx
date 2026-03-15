@@ -342,8 +342,8 @@ const ManageUser = () => {
             _id: editingUser._id,
             email: editingUser.email,
             role: editingUser.role,
-            password: "", // add this
-            confirmpassword: "",
+            // password: "",
+            // confirmpassword: "",
 
             location: editingUser.location,
             phone: editingUser.phone,

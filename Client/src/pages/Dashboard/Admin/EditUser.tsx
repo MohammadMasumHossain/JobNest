@@ -8,8 +8,8 @@ import Modal from "@/components/ui/Modal";
 export type EditUserForm = {
   _id: string;
   email: string;
-  password: string;
-  confirmpassword: string;
+  // password: string;
+  // confirmpassword: string;
   role: string;
   location: string;
   phone: string;
@@ -103,7 +103,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
           required
         />
 
-        <TextField
+        {/* <TextField
           label="Password"
           id="password"
           type="password"
@@ -134,7 +134,7 @@ const EditUser = ({ user, open, onClose, onUpdate }: EditUserProps) => {
           error={errors.confirmpassword?.message}
           required
           isPassword
-        />
+        /> */}
 
         <button
           type="submit"
