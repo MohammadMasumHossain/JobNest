@@ -10,6 +10,7 @@ import {
 const router = express.Router();
 router.post("/user", createUser);
 router.get("/users", getUsers);
+
 router.patch("/user/:id", patchUser);
 router.put("/user/:id", putUser);
 router.delete("/user/:id", deleteUser);

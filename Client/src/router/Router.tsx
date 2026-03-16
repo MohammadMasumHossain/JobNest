@@ -13,6 +13,7 @@ import Profile from "@/pages/Dashboard/Employer/Profile";
 
 import { createBrowserRouter } from "react-router";
 import JobEditPage from "@/pages/Dashboard/Admin/JobEditPage";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Router = createBrowserRouter([
   {
@@ -54,7 +55,9 @@ const Router = createBrowserRouter([
       // },
       {
         path: "manageuser",
-        Component: ManageUser,
+        // Component: ManageUser,
+        element: <ProtectedRoute role="Employer" />,
+        children: [{ index: true, element: <ManageUser /> }],
       },
       {
         path: "profile",

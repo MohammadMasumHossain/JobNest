@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { db } from "../config/db";
 import { ObjectId } from "mongodb";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { User } from "../types/User";
 
 const userCollection = db.collection("users");

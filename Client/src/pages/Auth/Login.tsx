@@ -1,4 +1,5 @@
-import { ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Eye, EyeOff, ChevronRight } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate, NavLink } from "react-router";
@@ -10,16 +11,42 @@ type Inputs = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    toast.success("Login successful!");
-    console.log("form submitted", data);
-    setTimeout(() => navigate("/dashboard"), 500);
+  // const onSubmit: SubmitHandler<Inputs> = (data) => {
+  //   toast.success("Login successful!");
+  //   console.log("form submitted", data);
+  //   setTimeout(() => navigate("/dashboard"), 500);
+  // };
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // credentials: "include",
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        toast.error(result.message || "Login failed");
+        return;
+      }
+
+      toast.success("Login successful!");
+
+      navigate("/dashboard");
+    } catch (err) {
+      toast.error("Something went wrong!");
+      console.error(err);
+    }
   };
 
   return (
@@ -35,48 +62,53 @@ const Login = () => {
           </NavLink>
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="font-medium block mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register("email", { required: "Email is required" })}
-                placeholder="Email Address"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-              />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
+          <div>
+            <label htmlFor="email" className="font-medium block mb-1">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              {...register("email", { required: "Email is required" })}
+              placeholder="Email Address"
+              className="mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
 
-            <div>
-              <label htmlFor="password" className="font-medium block mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                {...register("password", { required: "Enter your Password" })}
-                placeholder="Password"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-              />
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
+          <div className="relative">
+            <label htmlFor="password" className="font-medium block mb-1">
+              Password
+            </label>
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              {...register("password", { required: "Enter your Password" })}
+              placeholder="Password"
+              className="mt-1 w-full px-3 py-2 border border-gray-300 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-13 transform -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
             type="submit"
-            className="group flex items-center justify-center border mt-6 px-3 py-2 w-full bg-[#FF8A00] rounded-md font-bold text-md cursor-pointer text-white  transition"
+            className="group flex items-center justify-center border mt-4 px-3 py-2 w-full bg-[#FF8A00] rounded-md font-bold text-md cursor-pointer text-white transition"
           >
             <span className="transition duration-300 group-hover:-translate-x-2">
               Sign In
