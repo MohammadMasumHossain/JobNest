@@ -24,6 +24,7 @@ const Login = () => {
   //   console.log("form submitted", data);
   //   setTimeout(() => navigate("/dashboard"), 500);
   // };
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await fetch("http://localhost:5000/login", {

@@ -55,9 +55,7 @@ const Router = createBrowserRouter([
       // },
       {
         path: "manageuser",
-        // Component: ManageUser,
-        element: <ProtectedRoute role="Employer" />,
-        children: [{ index: true, element: <ManageUser /> }],
+        Component: ManageUser,
       },
       {
         path: "profile",
