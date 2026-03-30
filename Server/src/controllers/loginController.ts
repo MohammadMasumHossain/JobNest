@@ -31,18 +31,18 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // 5. Generate Token
     const token = jwt.sign(
       { id: user._id.toString(), role: user.role, email: user.email },
       process.env.JWT_SECRET || "secret",
-      { expiresIn: "1d" },
+      { expiresIn: "60s" },
     );
     // Set HTTP-only cookie
     res.cookie("accessToken", token, {
-      httpOnly: true, // Prevents XSS attacks
-      secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
-      sameSite: "strict", // Prevents CSRF
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      path: "/",
+      maxAge: 60 * 1000,
     });
 
     return res.json({
@@ -70,4 +70,13 @@ export const getCurrentUser = async (req: Request, res: Response) => {
   } catch {
     res.status(401).json({ message: "Invalid token" });
   }
+};
+export const logoutUser = (req: Request, res: Response) => {
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+  });
+  res.json({ message: "Logged out successfully" });
 };

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Eye, EyeOff, ChevronRight } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { set, useForm, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate, NavLink } from "react-router";
+import { useNavigate, NavLink, Navigate } from "react-router";
+import { useAuth } from "@/context/AuthContext";
 
 type Inputs = {
   email: string;
@@ -11,6 +12,7 @@ type Inputs = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setUser, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -25,13 +27,18 @@ const Login = () => {
   //   setTimeout(() => navigate("/dashboard"), 500);
   // };
 
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // credentials: "include",
+
         body: JSON.stringify(data),
+        credentials: "include",
       });
 
       const result = await res.json();
@@ -41,9 +48,12 @@ const Login = () => {
         return;
       }
 
+      // setUser(result.user);
+      setUser(result);
+
       toast.success("Login successful!");
 
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } catch (err) {
       toast.error("Something went wrong!");
       console.error(err);

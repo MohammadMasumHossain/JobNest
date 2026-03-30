@@ -14,6 +14,8 @@ import Profile from "@/pages/Dashboard/Employer/Profile";
 import { createBrowserRouter } from "react-router";
 import JobEditPage from "@/pages/Dashboard/Admin/JobEditPage";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import ErrorPage from "@/components/ErrorPage";
+import { Component } from "lucide-react";
 
 const Router = createBrowserRouter([
   {
@@ -33,39 +35,54 @@ const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    Component: DashboardLayout,
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+    // Component: DashboardLayout,
     children: [
-      { index: true, Component: DashboardHome },
+      { index: true, element: <DashboardHome /> },
       {
         path: "jobpost",
-        Component: JobPost,
+        element: <JobPost />,
       },
       {
         path: "jobEditPage/:id",
-        Component: JobEditPage,
+        element: <JobEditPage />,
       },
 
       {
         path: "joblisting",
-        Component: JobListing,
+        element: <JobListing />,
       },
+
       // {
       //   path: "job/:id",
       //   Component: JobDetails,
       // },
       {
         path: "manageuser",
-        Component: ManageUser,
+        // Component: ManageUser,
+        element: (
+          <ProtectedRoute role="Admin">
+            <ManageUser />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "profile",
-        Component: Profile,
+        element: <Profile />,
       },
       {
         path: "logout",
-        Component: LogOut,
+        element: <LogOut />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
