@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Eye, EyeOff, ChevronRight } from "lucide-react";
-import { set, useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate, NavLink, Navigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
@@ -21,22 +21,41 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  // const onSubmit: SubmitHandler<Inputs> = (data) => {
-  //   toast.success("Login successful!");
-  //   console.log("form submitted", data);
-  //   setTimeout(() => navigate("/dashboard"), 500);
-  // };
-
   if (user) {
     return <Navigate to="/dashboard" replace />;
   }
 
+  // const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  //   try {
+  //     const res = await fetch("http://localhost:5000/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+
+  //       body: JSON.stringify(data),
+  //       credentials: "include",
+  //     });
+
+  //     const result = await res.json();
+
+  //     if (!res.ok) {
+  //       toast.error(result.message || "Login failed");
+  //       return;
+  //     }
+
+  //     // setUser(result.user);
+  //     setUser(result);
+
+  //     toast.success("Login successful!");
+  //   } catch (err) {
+  //     toast.error("Something went wrong!");
+  //     console.error(err);
+  //   }
+  // };
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-
         body: JSON.stringify(data),
         credentials: "include",
       });
@@ -48,12 +67,14 @@ const Login = () => {
         return;
       }
 
-      // setUser(result.user);
-      setUser(result);
+      setUser({
+        name: result.name,
+        role: result.role,
+        email: result.email,
+      });
 
       toast.success("Login successful!");
-
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (err) {
       toast.error("Something went wrong!");
       console.error(err);

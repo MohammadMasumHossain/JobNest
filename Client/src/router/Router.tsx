@@ -5,7 +5,6 @@ import Login from "@/pages/Auth/Login";
 import LogOut from "@/pages/Auth/LogOut";
 import Register from "@/pages/Auth/Register";
 
-// import JobDetails from "@/pages/Dashboard/Admin/JobDetails";
 import JobListing from "@/pages/Dashboard/Admin/JobListing";
 import ManageUser from "@/pages/Dashboard/Admin/ManageUser";
 import JobPost from "@/pages/Dashboard/Employer/JobPost";
@@ -15,7 +14,6 @@ import { createBrowserRouter } from "react-router";
 import JobEditPage from "@/pages/Dashboard/Admin/JobEditPage";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ErrorPage from "@/components/ErrorPage";
-import { Component } from "lucide-react";
 
 const Router = createBrowserRouter([
   {
@@ -40,7 +38,7 @@ const Router = createBrowserRouter([
         <DashboardLayout />
       </ProtectedRoute>
     ),
-    // Component: DashboardLayout,
+
     children: [
       { index: true, element: <DashboardHome /> },
       {
@@ -57,13 +55,9 @@ const Router = createBrowserRouter([
         element: <JobListing />,
       },
 
-      // {
-      //   path: "job/:id",
-      //   Component: JobDetails,
-      // },
       {
         path: "manageuser",
-        // Component: ManageUser,
+
         element: (
           <ProtectedRoute role="Admin">
             <ManageUser />

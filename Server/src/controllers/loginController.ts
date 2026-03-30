@@ -47,8 +47,10 @@ export const loginUser = async (req: Request, res: Response) => {
 
     return res.json({
       token,
+      name: user.name,
       role: user.role,
       email: user.email,
+
       message: "Login successful",
     });
   } catch (err) {
@@ -56,6 +58,7 @@ export const loginUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 export const getCurrentUser = async (req: Request, res: Response) => {
   try {
     const token = req.cookies.accessToken;

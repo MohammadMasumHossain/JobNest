@@ -1,43 +1,28 @@
-// import { useEffect } from "react";
-
-// import { useNavigate } from "react-router";
-
-// const LogOut = () => {
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     localStorage.removeItem("token");
-//     sessionStorage.clear();
-
-//     const timer = setTimeout(() => {
-//       navigate("/", { replace: true });
-//     }, 100);
-
-//     return () => clearTimeout(timer);
-//   }, [navigate]);
-
-//   return null;
-// };
-
-// export default LogOut;
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import axiosInstance from "@/lib/axios";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-hot-toast";
 
 const LogOut = () => {
   const navigate = useNavigate();
   const { setUser } = useAuth();
+  const hasRun = useRef(false);
 
   useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
     const logout = async () => {
       try {
         await axiosInstance.post("/logout", {}, { withCredentials: true });
+        toast.success("Logged out successfully");
       } catch (err) {
-        console.error("Logout failed:", err);
+        toast.error("Failed to log out");
       } finally {
-        setUser(null); // 🔹 remove user from context
-        navigate("/", { replace: true });
+        setUser(null);
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 800);
       }
     };
 

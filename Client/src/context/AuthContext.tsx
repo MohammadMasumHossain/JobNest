@@ -23,8 +23,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axiosInstance.get("/me", { withCredentials: true });
-        setUser(res.data);
+        const res = await axiosInstance.get("/me", {
+          withCredentials: true,
+        });
+
+        const userData = res.data;
+        setUser({
+          name: userData.name || userData.role || "User",
+          role: userData.role,
+        });
       } catch (err) {
         setUser(null);
       } finally {
@@ -32,8 +39,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     fetchUser();
-    // const interval = setInterval(fetchUser, 5000);
-    // return () => clearInterval(interval);
   }, []);
 
   return (
@@ -43,7 +48,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// ✅ Hook for components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAuth must be used within AuthProvider");

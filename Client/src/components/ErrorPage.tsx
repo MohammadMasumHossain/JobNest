@@ -1,4 +1,3 @@
-// ErrorPage.tsx
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router";

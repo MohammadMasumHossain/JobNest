@@ -1,27 +1,24 @@
-// import { Navigate } from "react-router";
-// import { useAuth } from "@/context/AuthContext";
-
-// const ProtectedRoute = ({ children, role }: any) => {
-//   const { user } = useAuth();
-
-//   if (!user) {
-//     return <Navigate to="/" replace />;
-//   }
-
-//   // ✅ Role check
-//   if (role && user.role !== role) {
-//     return <Navigate to="/dashboard" replace />;
-//   }
-
-//   return children;
-// };
-// export default ProtectedRoute;
 import { Navigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
+import AccessDenied from "./AccessDenied";
+import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
-const ProtectedRoute = ({ children, role }: any) => {
-  const { user, loading } = useAuth(); //
+type ProtectedRouteProps = {
+  children: React.ReactNode;
+  role?: string;
+};
 
+const ProtectedRoute = ({ children, role }: ProtectedRouteProps) => {
+  const { user, loading } = useAuth();
+  const [toastShown, setToastShown] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user && !toastShown) {
+      toast.error("Access Token expired . Please login again.");
+      setToastShown(true);
+    }
+  }, [loading, user, toastShown]);
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -34,9 +31,8 @@ const ProtectedRoute = ({ children, role }: any) => {
     return <Navigate to="/" replace />;
   }
 
-  // ✅ Role check
   if (role && user.role !== role) {
-    return <Navigate to="/dashboard" replace />;
+    return <AccessDenied />;
   }
 
   return children;
