@@ -1,0 +1,406 @@
+[
+  {
+    "id": "JOB-1025",
+    "jobcategory": "Frontend Developer ",
+    "company": "Brain Station 23",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "vacancy": 2,
+    "salary": "70,000 - 90,000 BDT",
+    "Minsalary": 70000,
+    "Maxsalary": 90000,
+    "experience": "2-4 Years",
+    "status": "approved",
+    "postedDate": "2026-03-01",
+    "applicationDeadline": "2026-03-25",
+    "jobDescription": "We are looking for a passionate Frontend Developer who will be responsible for building modern, scalable, and high-performance web applications. The candidate should have strong experience with React.js and modern frontend development practices.",
+    "jobResponsibilities": [
+      "Develop responsive and user-friendly web interfaces using React.js"
+    ],
+    "requirements": [
+      "Bachelor’s degree in Computer Science or related field",
+      "2+ years experience in frontend development",
+      "Strong knowledge of React.js, JavaScript (ES6+), HTML5, and CSS3",
+      "Experience with Tailwind CSS or Bootstrap",
+      "Knowledge of Git and version control systems",
+      "Familiarity with RESTful APIs",
+      "Basic understanding of SEO principles",
+      "Experience with state management libraries (Redux, Context API)"
+    ],
+    "benefits": [
+      "Competitive salary package",
+      "Two festival bonuses",
+      "Performance-based yearly increment",
+      "Health insurance coverage",
+      "Paid annual and sick leave",
+      "Flexible working hours",
+      "Professional training and career development opportunities",
+      "Friendly and collaborative work environment"
+    ]
+  },
+  {
+    "id": "02",
+    "jobcategory": "Backend Developer",
+    "company": "CodeCraft Solutions",
+    "location": "Remote",
+    "jobType": "Full-Time",
+    "vacancy": 3,
+
+    "Minsalary": 80000,
+    "Maxsalary": 100000,
+    "experience": "2-4 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-14",
+    "jobDescription": "Build scalable backend systems and APIs.",
+    "jobResponsibilities": [
+      "Develop REST APIs",
+      "Manage MongoDB databases",
+      "Implement authentication",
+      "Ensure application security"
+    ],
+    "requirements": [
+      "Node.js & Express",
+      "MongoDB experience",
+      "JWT authentication",
+      "API design knowledge"
+    ],
+    "benefits": [
+      "Remote work",
+      "Health insurance",
+      "Paid leave",
+      "Performance bonus"
+    ]
+  },
+  {
+    "id": "03",
+    "jobcategory": "MERN Stack Developer",
+    "company": "DevSphere",
+    "location": "Chattogram, Bangladesh",
+    "jobType": "Contract",
+    "vacancy": 3,
+
+    "Minsalary": 50000,
+    "Maxsalary": 70000,
+    "experience": "1-2 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-13",
+    "jobDescription": "Work on full-stack MERN applications.",
+    "jobResponsibilities": [
+      "Develop frontend & backend",
+      "Integrate APIs",
+      "Fix bugs",
+      "Deploy applications"
+    ],
+    "requirements": [
+      "React & Node.js",
+      "MongoDB",
+      "Basic DevOps knowledge",
+      "Problem-solving skills"
+    ],
+    "benefits": ["Flexible contract", "Remote option", "Skill development"]
+  },
+  {
+    "id": "04",
+    "jobcategory": "UI/UX Designer",
+    "company": "Creative Studio",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Part-Time",
+    "vacancy": 3,
+
+    "Minsalary": 40000,
+    "Maxsalary": 60000,
+    "experience": "1-2 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-12",
+    "jobDescription": "Design intuitive and attractive user experiences.",
+    "jobResponsibilities": [
+      "Create wireframes",
+      "Design UI layouts",
+      "Collaborate with developers"
+    ],
+    "requirements": ["Figma or Adobe XD", "Basic UX principles", "Creativity"],
+    "benefits": ["Flexible hours", "Creative freedom", "Portfolio growth"]
+  },
+  {
+    "id": "05",
+    "jobcategory": "Junior React Developer",
+    "company": "NextGen Apps",
+    "location": "Remote",
+    "jobType": "Internship",
+    "vacancy": 3,
+
+    "Minsalary": 15000,
+    "Maxsalary": 20000,
+    "experience": "0-1 Year",
+    "status": "Pending",
+    "postedDate": "2026-01-11",
+    "jobDescription": "Assist in building React applications.",
+    "jobResponsibilities": [
+      "Write React components",
+      "Fix UI bugs",
+      "Learn from senior developers"
+    ],
+    "requirements": [
+      "Basic React knowledge",
+      "JavaScript fundamentals",
+      "Willingness to learn"
+    ],
+    "benefits": [
+      "Mentorship",
+      "Remote work",
+      "Job opportunity after internship"
+    ]
+  },
+  {
+    "id": "06",
+    "jobcategory": "Software Engineer",
+    "company": "InnoTech",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "vacancy": 3,
+
+    "Minsalary": 70000,
+    "Maxsalary": 90000,
+    "experience": "2-3 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-10",
+    "jobDescription": "Develop scalable software solutions.",
+    "jobResponsibilities": [
+      "Write clean code",
+      "Debug applications",
+      "Participate in code reviews"
+    ],
+    "requirements": [
+      "Strong programming skills",
+      "Problem-solving ability",
+      "Team collaboration"
+    ],
+    "benefits": ["Annual bonus", "Health benefits", "Paid leave"]
+  },
+  {
+    "id": "07",
+    "jobcategory": "QA Engineer",
+    "company": "SoftCheck",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+    "vacancy": 3,
+
+    "Minsalary": 45000,
+    "Maxsalary": 650000,
+    "experience": "1-2 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-09",
+    "jobDescription": "Ensure software quality through testing.",
+    "jobResponsibilities": [
+      "Write test cases",
+      "Perform manual testing",
+      "Report bugs"
+    ],
+    "requirements": [
+      "QA fundamentals",
+      "Attention to detail",
+      "Testing tools knowledge"
+    ],
+    "benefits": ["Training", "Career growth", "Friendly team"]
+  },
+  {
+    "id": "08",
+    "jobcategory": "DevOps Engineer",
+    "company": "CloudWave",
+    "location": "Remote",
+    "jobType": "Full-Time",
+    "vacancy": 3,
+
+    "Minsalary": 100000,
+    "Maxsalary": 1300000,
+    "experience": "3-5 Years",
+    "status": "Pending",
+    "postedDate": "2026-01-08",
+    "jobDescription": "Manage CI/CD pipelines and cloud infrastructure.",
+    "jobResponsibilities": [
+      "Automate deployments",
+      "Manage servers",
+      "Ensure system reliability"
+    ],
+    "requirements": ["AWS or Azure", "Docker & CI/CD", "Linux knowledge"],
+    "benefits": ["Remote work", "High salary", "Learning budget"]
+  },
+  {
+    "id": "09",
+    "jobcategory": "Product Manager",
+    "company": "Visionary Labs",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+
+    "Minsalary": 90000,
+    "Maxsalary": 120000,
+    "experience": "3+ Years",
+    "status": "Pending",
+    "vacancy": 3,
+    "postedDate": "2026-01-07",
+    "jobDescription": "Lead product development lifecycle.",
+    "jobResponsibilities": [
+      "Define product roadmap",
+      "Coordinate teams",
+      "Gather requirements"
+    ],
+    "requirements": [
+      "Product management experience",
+      "Communication skills",
+      "Leadership"
+    ],
+    "benefits": ["Performance bonus", "Health insurance", "Leadership role"]
+  },
+  {
+    "id": "10",
+    "jobcategory": "Data Analyst",
+    "company": "DataCore",
+    "location": "Remote",
+    "jobType": "Full-Time",
+
+    "Minsalary": 70000,
+    "Maxsalary": 100000,
+    "experience": "2 Years",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-06",
+    "jobDescription": "Analyze data to support business decisions.",
+    "jobResponsibilities": [
+      "Data analysis",
+      "Prepare reports",
+      "Visualize data"
+    ],
+    "requirements": [
+      "Excel & SQL",
+      "Data visualization tools",
+      "Analytical thinking"
+    ],
+    "benefits": ["Remote work", "Skill development", "Career growth"]
+  },
+  {
+    "id": "11",
+    "jobcategory": "Mobile App Developer",
+    "company": "Appify",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+
+    "Minsalary": 80000,
+    "Maxsalary": 110000,
+    "experience": "2-4 Years",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-05",
+    "jobDescription": "Develop Android and iOS applications.",
+    "jobResponsibilities": [
+      "Build mobile apps",
+      "Fix bugs",
+      "Optimize performance"
+    ],
+    "requirements": [
+      "Flutter or React Native",
+      "API integration",
+      "Mobile UI knowledge"
+    ],
+    "benefits": ["Competitive salary", "Learning opportunities", "Paid leave"]
+  },
+  {
+    "id": "12",
+    "jobcategory": "Content Writer",
+    "company": "WriteRight",
+    "location": "Remote",
+    "jobType": "Part-Time",
+
+    "Minsalary": 30000,
+    "Maxsalary": 45000,
+    "experience": "1 Year",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-04",
+    "jobDescription": "Create engaging content for blogs and websites.",
+    "jobResponsibilities": [
+      "Write articles",
+      "Edit content",
+      "SEO optimization"
+    ],
+    "requirements": ["Good writing skills", "SEO basics", "Creativity"],
+    "benefits": ["Flexible hours", "Remote work", "Creative freedom"]
+  },
+  {
+    "id": "13",
+    "jobcategory": "Digital Marketing Executive",
+    "company": "MarketPro",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+
+    "Minsalary": 40000,
+    "Maxsalary": 100000,
+    "experience": "1-2 Years",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-03",
+    "jobDescription": "Promote brand through digital channels.",
+    "jobResponsibilities": [
+      "Manage social media",
+      "Run ad campaigns",
+      "Analyze performance"
+    ],
+    "requirements": [
+      "Digital marketing knowledge",
+      "Facebook & Google Ads",
+      "Communication skills"
+    ],
+    "benefits": ["Bonus", "Career growth", "Training"]
+  },
+  {
+    "id": "14",
+    "jobcategory": "HR Executive",
+    "company": "PeopleFirst",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+
+    "Minsalary": 35000,
+    "Maxsalary": 55000,
+    "experience": "1-3 Years",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-02",
+    "jobDescription": "Manage recruitment and HR operations.",
+    "jobResponsibilities": [
+      "Recruit employees",
+      "Handle documentation",
+      "Employee engagement"
+    ],
+    "requirements": [
+      "HR knowledge",
+      "Communication skills",
+      "Organizational skills"
+    ],
+    "benefits": ["Friendly environment", "Career growth", "Annual increment"]
+  },
+  {
+    "id": "15",
+    "jobcategory": "System Administrator",
+    "company": "NetSecure",
+    "location": "Dhaka, Bangladesh",
+    "jobType": "Full-Time",
+
+    "Minsalary": 75000,
+    "Maxsalary": 90000,
+    "experience": "3 Years",
+    "vacancy": 3,
+    "status": "Pending",
+    "postedDate": "2026-01-01",
+    "jobDescription": "Maintain and secure IT infrastructure.",
+    "jobResponsibilities": [
+      "Manage servers",
+      "Monitor systems",
+      "Ensure data security"
+    ],
+    "requirements": [
+      "Linux administration",
+      "Networking knowledge",
+      "Security best practices"
+    ],
+    "benefits": ["Job stability", "Health insurance", "Paid leave"]
+  }
+]
